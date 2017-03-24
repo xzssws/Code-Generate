@@ -1,0 +1,16 @@
+﻿<#@ template debug="false" hostspecific="True" language="C#" #>
+<#@include file="..\Tools\AutoLoad.ttinclude" #>
+<# 
+	Init();
+	List<PageModel> pages=GetPagesQ();
+	AssemblyName ="FundsRegulatoryModel";//程序集名称
+    NameSpaceName = "Model";//名称空间名称
+    foreach (PageModel item in pages)
+    {
+	  string DisplayName = item.Name; //文件名称
+	  string DisplayLabel = item.Label; //文件中文名称
+      if(string.IsNullOrEmpty(DisplayLabel)){ DisplayLabel="None";}
+	  NewFile(DisplayName+"Map.xml");
+#>
+<#@include file="..\Template\IBaitsMapTemplate.ttinclude" #>
+<#}EndFile();#>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+	<!--实体类别名-->
+	<alias>
+		<typeAlias alias="DutyFunEntity" type="DynamicEntity.DutyFunEntity,EntityTemplate" />
+	</alias>
+	<!--结果返回集-->
+	<resultMaps>
+		<resultMap id="SelectAllDutyFun" class="DutyFunEntity">
+			<result property="DF_ID" column="DF_ID"/>
+			<result property="DutyId" column="DutyId"/>
+			<result property="FunId" column="FunId"/>
+		</resultMap>
+	</resultMaps>
+	<!--操作指令-->
+	<statements>
+		<!--查询-->
+		<select id="SelectDutyFun" resultMap="SelectAllDutyFun">
+			SELECT
+			DF_ID,
+			DutyId,
+			FunId
+			FROM DutyFun
+			WHERE  1=1
+			<isNotEmpty  prepend="AND" property="DF_ID">
+				DF_ID = #DF_ID#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="DutyId">
+				DutyId = #DutyId#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="FunId">
+				FunId = #FunId#
+			</isNotEmpty>
+			<isNotEmpty prepend="ORDER BY " property="SortField">
+				$SortField$
+				<isEqual property="IsDesc" compareValue="true">
+				  DESC
+				</isEqual>
+			</isNotEmpty>
+		</select>
+		<!--添加-->
+		<insert id="AddDutyFun" parameterClass="DutyFunEntity">
+			INSERT INTO DutyFun
+			(
+
+				DF_ID
+				,DutyId
+				,FunId
+
+			) VALUES (
+			
+				#DF_ID#
+				#,DutyId#
+				#,FunId#
+			
+			);
+		</insert>
+		<!--更新-->
+
+		<update id ="UpdateDutyFun" parameterClass="DutyFunEntity">
+			UPDATE DutyFun
+			SET
+			DF_ID = #DF_ID#
+			<isNotEmpty prepend="," property="DF_ID">
+				DF_ID = #DF_ID#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="DutyId">
+				DutyId = #DutyId#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="FunId">
+				FunId = #FunId#
+			</isNotEmpty>
+			WHERE  DF_ID = #DF_ID#
+		</update>
+		<!--删除-->
+		<delete id="DeleteDutyFun" parameterClass="string">
+			DELETE DutyFun WHERE  DF_ID = #value#;
+		</delete>
+
+	</statements>
+</sqlMap>

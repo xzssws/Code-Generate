@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+	<!--实体类别名-->
+	<alias>
+		<typeAlias alias="StudentXInfo" type="Test.Entity.StudentXInfo,Test.Entity" />
+	</alias>
+	<!--结果返回集-->
+	<resultMaps>
+		<resultMap id="SelectAllStudentX" class="StudentXInfo">
+			<result property="ID" column="ID"/>
+			<result property="Name" column="Name"/>
+			<result property="Age" column="Age"/>
+			<result property="Sex" column="Sex"/>
+			<result property="Class" column="Class"/>
+			<result property="Flag" column="Flag"/>
+		</resultMap>
+	</resultMaps>
+	<!--操作指令-->
+	<statements>
+		<!--查询-->
+		<select id="SelectStudentX" resultMap="SelectAllStudentX">
+			SELECT
+			ID,
+			Name,
+			Age,
+			Sex,
+			Class,
+			Flag
+			FROM StudentX
+			WHERE  1=1
+			<isNotEmpty  prepend="AND" property="ID">
+				ID = #ID#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="Name">
+				Name = #Name#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="Age">
+				Age = #Age#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="Sex">
+				Sex = #Sex#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="Class">
+				Class = #Class#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="Flag">
+				Flag = #Flag#
+			</isNotEmpty>
+			<isNotEmpty prepend="ORDER BY " property="SortField">
+				$SortField$
+				<isEqual property="IsDesc" compareValue="true">
+				  DESC
+				</isEqual>
+			</isNotEmpty>
+		</select>
+		<!--添加-->
+		<insert id="AddStudentX" parameterClass="StudentXInfo">
+			INSERT INTO StudentX
+			(
+
+				ID
+				<isNotEmpty prepend=","   property="Name">
+					Name
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="Age">
+					Age
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="Sex">
+					Sex
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="Class">
+					Class
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="Flag">
+					Flag
+				  </isNotEmpty>
+
+			) VALUES (
+			
+				#ID#
+				<isNotEmpty prepend=","   property="Name">
+					#Name#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="Age">
+					#Age#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="Sex">
+					#Sex#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="Class">
+					#Class#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="Flag">
+					#Flag#
+				  </isNotEmpty>
+			
+			);
+		</insert>
+		<!--更新-->
+
+		<update id ="UpdateStudentX" parameterClass="StudentXInfo">
+			UPDATE StudentX
+			SET
+			NULLPRIMARY = #NULLPRIMARY#
+			<isNotEmpty prepend="," property="ID">
+				ID = #ID#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="Name">
+				Name = #Name#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="Age">
+				Age = #Age#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="Sex">
+				Sex = #Sex#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="Class">
+				Class = #Class#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="Flag">
+				Flag = #Flag#
+			</isNotEmpty>
+			WHERE  NULLPRIMARY = #NULLPRIMARY#
+		</update>
+		<!--删除-->
+		<delete id="DeleteStudentX" parameterClass="string">
+			DELETE StudentX WHERE  NULLPRIMARY = #value#;
+		</delete>
+
+	</statements>
+</sqlMap>

@@ -1,0 +1,18 @@
+﻿<#@ template debug="false" hostspecific="True" language="C#" #>
+<#@include file="..\Tools\AutoLoad.ttinclude" #>
+<# 
+	Init();
+	List<PageModel> pages=GetPagesQ();
+	AssemblyName ="FundsRegulatorySrv";//程序集名称
+    NameSpaceName = "";//名称空间名称
+    foreach (PageModel item in pages)
+    {
+	  string DisplayName = item.Name; //文件名称
+	  string DisplayLabel = item.Label; //文件中文名称
+      if(string.IsNullOrEmpty(DisplayLabel)){ DisplayName="None";}
+	  string ServiceName = item.Name+"Service";
+	  string ModelType = DisplayName+"Model";
+	  NewFile(ServiceName+".asmx");  
+#>
+<#@include file="..\Template\WebServiceTemplate.ttinclude" #>
+<#}EndFile();#>

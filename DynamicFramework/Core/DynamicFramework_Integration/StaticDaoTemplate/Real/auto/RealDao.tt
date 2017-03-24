@@ -1,0 +1,84 @@
+﻿<#@ template debug="false" hostspecific="True" language="C#" #>
+<#@include file="$(SolutionDir)\Utils\TBUild.ttinclude" #>
+<#@ output extension=".i" #>
+<# 
+	Init("T");
+
+	HTable("TableName","TableName");
+#>
+<#
+	//亲~~~~~~~ 如果上面的基本配置好了就不要改我了。
+    foreach (Page item in pages)
+    {
+	  if(OTable.Contains(item.Name)) continue;//排除表过滤
+	  string DisplayName = item.Name; //文件名称
+	  string DisplayLabel = item.Label; //文件中文表示 现在所有都是英文
+      if(string.IsNullOrEmpty(DisplayLabel)){ DisplayName="None"+Flag;}
+	  NewFile(DisplayName+DaoSuffix+".cs"); //生成文件名称定义
+#>
+using System;
+using System.Collections.Generic;
+<#=string.IsNullOrEmpty(EntityNameSpace)?"":string.Format("using {0};",EntityNameSpace)#>
+
+namespace <#=DaoNamespace#>
+{
+    /// <summary>
+    /// <#=DisplayLabel#>数据库操作类
+    /// </summary>
+    public class <#=DisplayName#><#=DaoSuffix#>
+    {
+        /// <summary>
+        /// 添加一条[<#=DisplayLabel#>]数据
+        /// </summary>
+        /// <param name="entity">[<#=DisplayLabel#>]新实例</param>
+        /// <returns>添加完成状态</returns>
+        public static bool Add(<#=DisplayName#><#=EntitySuffix#> entity)
+        {
+            if (entity == null) throw new ArgumentNullException("系统异常:参数 entity 是空值");
+            MyBatis.SqlMap.Insert("Add<#=DisplayName#>", entity);
+            return true;
+        }
+
+        /// <summary>
+        /// 更新一条[<#=DisplayLabel#>]数据
+        /// </summary>
+        /// <param name="entity">[<#=DisplayLabel#>]更新实例</param>
+        /// <returns>修改完成状态</returns>
+        public static bool Update(<#=DisplayName#><#=EntitySuffix#> entity)
+        {
+            if (entity == null) throw new ArgumentNullException("系统异常:参数 entity 是空值");
+            int result = MyBatis.SqlMap.Update("Update<#=DisplayName#>", entity);
+            return result > 0;
+        }
+        /// <summary>
+        /// 删除一条[<#=DisplayLabel#>]
+        /// </summary>
+        /// <param name="entityID">[<#=DisplayLabel#>]主键编号</param>
+        /// <returns>删除完成状态</returns>
+        public static bool Delete(string entityID)
+        {
+            if (string.IsNullOrEmpty(entityID)) throw new ArgumentNullException("系统异常:参数 entity 是空值");
+            int result = MyBatis.SqlMap.Delete("Delete<#=DisplayName#>", entityID);
+            return result > 0;
+        }
+        /// <summary>
+        /// 查询所有[<#=DisplayLabel#>]
+        /// </summary>
+        /// <returns>[<#=DisplayLabel#>]集合</returns>
+        public static IList<<#=DisplayName#><#=EntitySuffix#>> Selects()
+        {
+            return MyBatis.SqlMap.QueryForList<<#=DisplayName#><#=EntitySuffix#>>("Select<#=DisplayName#>", null);
+        }
+        /// <summary>
+        /// 查看并筛选[<#=DisplayLabel#>]
+        /// </summary>
+        /// <param name="t">[<#=DisplayLabel#>]筛选实例</param>
+        /// <returns>[<#=DisplayLabel#>]集合</returns>
+        public static IList<<#=DisplayName#><#=EntitySuffix#>> Select(<#=DisplayName#><#=EntitySuffix#> entity)
+        {
+            if (entity == null) throw new ArgumentNullException("系统异常:参数 entity 是空值");
+            return MyBatis.SqlMap.QueryForList<<#=DisplayName#><#=EntitySuffix#>>("Select<#=DisplayName#>", null);
+        }
+    }
+}
+<#}EndFile();#>

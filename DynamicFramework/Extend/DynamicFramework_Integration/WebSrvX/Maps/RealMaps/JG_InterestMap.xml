@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+	<!--实体类别名-->
+	<alias>
+		<typeAlias alias="JG_InterestEntity" type="DynamicEntity.JG_InterestEntity,EntityTemplate" />
+	</alias>
+	<!--结果返回集-->
+	<resultMaps>
+		<resultMap id="SelectAllJG_Interest" class="JG_InterestEntity">
+			<result property="IT_ID" column="IT_ID"/>
+			<result property="IT_Date" column="IT_Date"/>
+			<result property="IT_ProtocolNo" column="IT_ProtocolNo"/>
+			<result property="IT_Amount" column="IT_Amount"/>
+			<result property="IT_InterestRate" column="IT_InterestRate"/>
+			<result property="IT_Interest" column="IT_Interest"/>
+			<result property="IT_SettleFlag" column="IT_SettleFlag"/>
+		</resultMap>
+	</resultMaps>
+	<!--操作指令-->
+	<statements>
+		<!--查询-->
+		<select id="SelectJG_Interest" resultMap="SelectAllJG_Interest">
+			SELECT
+			IT_ID,
+			IT_Date,
+			IT_ProtocolNo,
+			IT_Amount,
+			IT_InterestRate,
+			IT_Interest,
+			IT_SettleFlag
+			FROM JG_Interest
+			WHERE  1=1
+			<isNotEmpty  prepend="AND" property="IT_ID">
+				IT_ID = #IT_ID#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="IT_Date">
+				IT_Date = #IT_Date#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="IT_ProtocolNo">
+				IT_ProtocolNo = #IT_ProtocolNo#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="IT_Amount">
+				IT_Amount = #IT_Amount#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="IT_InterestRate">
+				IT_InterestRate = #IT_InterestRate#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="IT_Interest">
+				IT_Interest = #IT_Interest#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="IT_SettleFlag">
+				IT_SettleFlag = #IT_SettleFlag#
+			</isNotEmpty>
+			<isNotEmpty prepend="ORDER BY " property="SortField">
+				$SortField$
+				<isEqual property="IsDesc" compareValue="true">
+				  DESC
+				</isEqual>
+			</isNotEmpty>
+		</select>
+		<!--添加-->
+		<insert id="AddJG_Interest" parameterClass="JG_InterestEntity">
+			INSERT INTO JG_Interest
+			(
+
+				<isNotEmpty    property="IT_ID">
+					IT_ID
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="IT_Date">
+					IT_Date
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="IT_ProtocolNo">
+					IT_ProtocolNo
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="IT_Amount">
+					IT_Amount
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="IT_InterestRate">
+					IT_InterestRate
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="IT_Interest">
+					IT_Interest
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="IT_SettleFlag">
+					IT_SettleFlag
+				  </isNotEmpty>
+
+			) VALUES (
+			
+				<isNotEmpty    property="IT_ID">
+					#IT_ID#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="IT_Date">
+					#IT_Date#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="IT_ProtocolNo">
+					#IT_ProtocolNo#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="IT_Amount">
+					#IT_Amount#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="IT_InterestRate">
+					#IT_InterestRate#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="IT_Interest">
+					#IT_Interest#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="IT_SettleFlag">
+					#IT_SettleFlag#
+				  </isNotEmpty>
+			
+			);
+		</insert>
+		<!--更新-->
+
+		<update id ="UpdateJG_Interest" parameterClass="JG_InterestEntity">
+			UPDATE JG_Interest
+			SET
+			IT_ID = #IT_ID#
+			<isNotEmpty prepend="," property="IT_ID">
+				IT_ID = #IT_ID#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="IT_Date">
+				IT_Date = #IT_Date#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="IT_ProtocolNo">
+				IT_ProtocolNo = #IT_ProtocolNo#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="IT_Amount">
+				IT_Amount = #IT_Amount#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="IT_InterestRate">
+				IT_InterestRate = #IT_InterestRate#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="IT_Interest">
+				IT_Interest = #IT_Interest#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="IT_SettleFlag">
+				IT_SettleFlag = #IT_SettleFlag#
+			</isNotEmpty>
+			WHERE  IT_ID = #IT_ID#
+		</update>
+		<!--删除-->
+		<delete id="DeleteJG_Interest" parameterClass="string">
+			DELETE JG_Interest WHERE  IT_ID = #value#;
+		</delete>
+
+	</statements>
+</sqlMap>

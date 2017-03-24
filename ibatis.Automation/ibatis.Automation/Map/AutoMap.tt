@@ -1,0 +1,148 @@
+﻿<#@ template debug="false" hostspecific="True" language="C#" #>
+<#@include file="$(ProjectDir)ibatis.Automation.ttinclude" #>
+<#@ output extension=".i" #>
+<# 
+	//(* = *)这里是基本配置
+	Init("T");
+#>
+<#
+	List<Field> Canull;
+	List<Field> Nonull;
+	//亲~~~~~~~ 如果上面的基本配置好了就不要改我了。
+    foreach (Page page in pages)
+    {
+	  string DisplayName = page.Name; //文件名称
+	  string DisplayLabel = page.Label; //文件中文表示 现在所有都是英文
+      if(string.IsNullOrEmpty(DisplayName)){ DisplayName="None"+Flag;}//处理空字段空表情况
+	  Field PrimaryField = GetPrimaryKey(page);//主键字段
+	  NewFile(DisplayName+iBatisMap+".xml"); //生成文件名称定义	  
+	  string EntityName = DisplayName+EntitySuffix;
+	  Canull = new List<Field>();
+	  Nonull = new List<Field>();
+	  foreach (Field field in page.Fields){
+		  if(field.CanNull||field.IsIdentity||field.Default != string.Empty) Canull.Add(field);
+		  else Nonull.Add(field);
+      }
+	  
+#>
+<?xml version="1.0" encoding="utf-8" ?>
+<!--  包含<#=string.IsNullOrEmpty(DisplayLabel.Trim())?DisplayName:DisplayLabel.Replace(Environment.NewLine," ")#>基本的返回集,基础查询操作,新增操作,修改操作和删除操作 -->
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+
+	<!--别名定义-->
+	<alias>
+		<typeAlias alias="<#=EntityName#>" type="<#=EntityNameSpace.TrimEnd('.')#>.<#=EntityName#>,<#=EntityAssembly#>" />
+	</alias>
+
+	<!-- <#=string.IsNullOrEmpty(DisplayLabel.Trim())?DisplayName:DisplayLabel.Replace(Environment.NewLine," ")#>的结果集映射 -->
+	<resultMaps>
+		<resultMap id="Result-<#=DisplayName#>" class="<#=EntityName#>">
+<# foreach (Field field in page.Fields) { if(field.Name=="") field.Name = "Null"+Flag.ToString();#>
+			<result property="<#=field.Name#>" column="<#=field.Name#>"/>
+<#}#>
+		</resultMap>
+	</resultMaps>
+
+	<!-- <#=string.IsNullOrEmpty(DisplayLabel.Trim())?DisplayName:DisplayLabel.Replace(Environment.NewLine," ")#>的基础操作 -->
+	<statements>
+
+		<!-- 表格字段语段 -->
+		<sql id="Sql-<#=DisplayName#>-Fields">
+<# for (int i = 0; i < page.Fields.Count; i++) {  Field field = page.Fields[i]; if(field.Name=="") { field.Name = "Null"+Flag.ToString();}#>
+			<#=field.Name+((i<page.Fields.Count-1)?",":"")#>
+<#}#>
+		</sql>
+
+		<!-- 筛选条件语段 -->
+		<sql id="Sql-<#=DisplayName#>-Condition">
+		 	WHERE  1=1
+<#foreach (Field field in page.Fields) { if(field.Name=="") {field.Name = "Null"+Flag.ToString();}#>
+			<isNotNull  prepend="AND" property="<#=field.Name#>">
+				<#=field.Name#> = #<#=field.Name#>#
+			</isNotNull>
+<#}#>
+		</sql>
+
+		<!-- 根据条件查询 <#=string.IsNullOrEmpty(DisplayLabel.Trim())?DisplayName:DisplayLabel.Replace(Environment.NewLine," ")#> -->
+		<select id="Select-<#=DisplayName#>" resultMap="Result-<#=DisplayName#>" parameterClass="<#=EntityName#>">
+			SELECT <include refid="Sql-<#=DisplayName#>-Fields"/> FROM <#=DisplayName#> <include refid="Sql-<#=DisplayName#>-Condition"/>
+		</select>
+
+		<!-- 添加 <#=string.IsNullOrEmpty(DisplayLabel.Trim())?DisplayName:DisplayLabel.Replace(Environment.NewLine," ")#> -->
+		<insert id="Insert-<#=DisplayName#>" parameterClass="<#=EntityName#>">
+			INSERT INTO <#=DisplayName#>
+			(
+<#for (int i = 0; i < Nonull.Count; i++) {  Field field = Nonull[i];#>
+				<#=((i==0)?"":",")+field.Name#>
+<#}#>
+<#for (int i = 0; i < Canull.Count; i++) {  Field field = Canull[i];#>
+				<isNotNull <#=i==0&&Nonull.Count==0?"":"prepend=\",\""#>   property="<#=field.Name#>">
+					<#=field.Name#>
+				  </isNotNull>
+<#}#>
+			) VALUES (
+<#for (int i = 0; i < Nonull.Count; i++) {  Field field = Nonull[i];#>
+				<#=(i==0)?"":","#>#<#=field.Name#>#
+<#}#>
+<#for (int i = 0; i < Canull.Count; i++) {  Field field = Canull[i]; #>
+				<isNotNull <#=i==0&&Nonull.Count==0?"":"prepend=\",\""#>   property="<#=field.Name#>">
+					#<#=field.Name#>#
+				  </isNotNull>
+<#}#>
+			
+			);
+		</insert>
+
+		<!-- 更改一条<#=string.IsNullOrEmpty(DisplayLabel.Trim())?DisplayName:DisplayLabel.Replace(Environment.NewLine," ")#> -->
+		<update id ="Update-<#=DisplayName#>" parameterClass="<#=EntityName#>">
+			UPDATE <#=DisplayName#>
+			SET
+			<#=PrimaryField.Name#> = #<#=PrimaryField.Name#>#
+<#for (int i = 0; i < page.Fields.Count; i++){ Field field = page.Fields[i]; if(field==PrimaryField) continue; if(field.Name==""){ field.Name = "Null"+Flag.ToString();}#>
+			<isNotNull prepend="," property="<#=field.Name#>">
+				<#=field.Name#> = #<#=field.Name#>#
+			</isNotNull>
+<#}#>
+			WHERE  <#=PrimaryField.Name#> = #<#=PrimaryField.Name#>#
+		</update>
+
+		<!-- 删除一条<#=string.IsNullOrEmpty(DisplayLabel.Trim())?DisplayName:DisplayLabel.Replace(Environment.NewLine," ")#> -->
+		<delete id="Delete-<#=DisplayName#>" parameterClass="string">
+			DELETE <#=DisplayName#> WHERE  <#=PrimaryField.Name#> = #value#;
+		</delete>
+
+		<!--  批量删除 <#=string.IsNullOrEmpty(DisplayLabel.Trim())?DisplayName:DisplayLabel.Replace(Environment.NewLine," ")#> -->
+		<delete id="Delete-<#=DisplayName#>-ByCondition" parameterClass="<#=EntityName#>">
+			DELETE <#=DisplayName#> <include refid="Sql-<#=DisplayName#>-Condition"/>
+		</delete>
+
+		<!-- 批量添加<#=string.IsNullOrEmpty(DisplayLabel.Trim())?DisplayName:DisplayLabel.Replace(Environment.NewLine," ")#>(不支持可选字段插入) -->
+		<insert id="Inserts-<#=DisplayName#>" parameterClass="list">
+			<iterate conjunction=";" open="" close="">
+			INSERT INTO <#=DisplayName#>
+			(
+			<#for (int i = 0; i < page.Fields.Count; i++){ Field field = page.Fields[i]; if(field.Name==""){ field.Name = "Null"+Flag.ToString();}#>
+				<#=field.Name#><#=(i+1==page.Fields.Count?"":",")#>
+			<#}#>
+			) VALUES (
+			<#for (int i = 0; i < page.Fields.Count; i++){ Field field = page.Fields[i]; if(field.Name==""){ field.Name = "Null"+Flag.ToString();}#>
+				#[].<#=field.Name#><#=i+1==page.Fields.Count?"#":"#,"#>
+			<#}#>
+			)
+			</iterate>
+		</insert>
+
+		<!-- 批量更改<#=string.IsNullOrEmpty(DisplayLabel.Trim())?DisplayName:DisplayLabel.Replace(Environment.NewLine," ")#>(不支持可选字段更改) -->
+		<update id ="Updates-<#=DisplayName#>" parameterClass="list">
+			<iterate conjunction=";" open="" close="">
+			UPDATE <#=DisplayName#>
+			SET
+<#for (int i = 0; i < page.Fields.Count; i++){ Field field = page.Fields[i];if(field==PrimaryField) continue; if(field.Name==""){ field.Name = "Null"+Flag.ToString();}#>
+			<#=field.Name#>=#[].<#=field.Name#><#=i+1==page.Fields.Count?"#":"#,"#>
+<#}#>
+		WHERE  <#=PrimaryField.Name#> = #[].<#=PrimaryField.Name#>#
+		</iterate>
+	</update>
+	</statements>
+</sqlMap>
+<#}EndFile();#>

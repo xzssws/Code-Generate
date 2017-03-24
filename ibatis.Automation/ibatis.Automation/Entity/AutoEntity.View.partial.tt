@@ -1,0 +1,28 @@
+﻿<#@ template debug="false" hostspecific="True" language="C#" #>
+<#@include file="$(ProjectDir)ibatis.Automation.ttinclude" #>
+<#@ output extension=".i" #>
+<# 
+	Init("V");
+#>
+<#
+	//亲~~~~~~~ 如果上面的基本配置好了就不要改我了。
+    foreach (Page item in pages)
+    {
+	  string DisplayName = item.Name; //文件名称
+	  string DisplayLabel = item.Label; //文件中文表示 现在所有都是英文
+      if(string.IsNullOrEmpty(DisplayName)){ DisplayName="None"+Flag;}
+	  NewFile(DisplayName+EntitySuffix+".cs"); //生成文件名称定义
+#>
+using System;
+
+namespace <#=EntityNameSpace#>
+{
+    /// <summary>
+    /// <#=string.IsNullOrEmpty(DisplayLabel.Trim())?DisplayName:DisplayLabel.Replace(Environment.NewLine," ")#>
+    /// </summary>
+	[Serializable]
+    public partial class <#=DisplayName#><#=EntitySuffix#>
+    {
+    }
+}
+<#}EndFile();#>

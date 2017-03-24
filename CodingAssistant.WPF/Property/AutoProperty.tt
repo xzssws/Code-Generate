@@ -1,0 +1,35 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".txt" #>
+<#
+    Dictionary<string,string> dic = new Dictionary<string,string>();
+    dic.Add("名称","string:name");
+#>
+<#
+    foreach (var item in dic) { string[] values = item.Value.Split(':'); string type = values[0]; string name = values[1]; string remark = item.Key; 
+#>
+        /// <summary>
+        /// <#=remark#> 属性字段
+        /// <para>关联属性: <#=name#></para>
+        /// </summary>
+        private <#=type#> _<#=name.ToLower()#>;
+        /// <summary>
+        /// <#=remark#>
+        /// </summary>
+        public <#=type#> <#=name#>
+        {
+            get
+            {
+                if (<#=name.ToLower()#> == null) <#=name.ToLower()#> = new <#=type#>();
+                return <#=name.ToLower()#>;
+            }
+            set
+            {
+                <#=name.ToLower()#> = value;
+                RaisePropertyChanged("<#=name#>");
+            }
+        }
+<#}#>

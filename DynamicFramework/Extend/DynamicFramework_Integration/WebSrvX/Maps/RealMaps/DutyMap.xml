@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+	<!--实体类别名-->
+	<alias>
+		<typeAlias alias="DutyEntity" type="DynamicEntity.DutyEntity,EntityTemplate" />
+	</alias>
+	<!--结果返回集-->
+	<resultMaps>
+		<resultMap id="SelectAllDuty" class="DutyEntity">
+			<result property="DutyId" column="DutyId"/>
+			<result property="DutyCode" column="DutyCode"/>
+			<result property="DutyName" column="DutyName"/>
+			<result property="Describe" column="Describe"/>
+		</resultMap>
+	</resultMaps>
+	<!--操作指令-->
+	<statements>
+		<!--查询-->
+		<select id="SelectDuty" resultMap="SelectAllDuty">
+			SELECT
+			DutyId,
+			DutyCode,
+			DutyName,
+			Describe
+			FROM Duty
+			WHERE  1=1
+			<isNotEmpty  prepend="AND" property="DutyId">
+				DutyId = #DutyId#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="DutyCode">
+				DutyCode = #DutyCode#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="DutyName">
+				DutyName = #DutyName#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="Describe">
+				Describe = #Describe#
+			</isNotEmpty>
+			<isNotEmpty prepend="ORDER BY " property="SortField">
+				$SortField$
+				<isEqual property="IsDesc" compareValue="true">
+				  DESC
+				</isEqual>
+			</isNotEmpty>
+		</select>
+		<!--添加-->
+		<insert id="AddDuty" parameterClass="DutyEntity">
+			INSERT INTO Duty
+			(
+
+				DutyId
+				,DutyCode
+				,DutyName
+				<isNotEmpty prepend=","   property="Describe">
+					Describe
+				  </isNotEmpty>
+
+			) VALUES (
+			
+				#DutyId#
+				#,DutyCode#
+				#,DutyName#
+				<isNotEmpty prepend=","   property="Describe">
+					#Describe#
+				  </isNotEmpty>
+			
+			);
+		</insert>
+		<!--更新-->
+
+		<update id ="UpdateDuty" parameterClass="DutyEntity">
+			UPDATE Duty
+			SET
+			DutyId = #DutyId#
+			<isNotEmpty prepend="," property="DutyId">
+				DutyId = #DutyId#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="DutyCode">
+				DutyCode = #DutyCode#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="DutyName">
+				DutyName = #DutyName#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="Describe">
+				Describe = #Describe#
+			</isNotEmpty>
+			WHERE  DutyId = #DutyId#
+		</update>
+		<!--删除-->
+		<delete id="DeleteDuty" parameterClass="string">
+			DELETE Duty WHERE  DutyId = #value#;
+		</delete>
+
+	</statements>
+</sqlMap>

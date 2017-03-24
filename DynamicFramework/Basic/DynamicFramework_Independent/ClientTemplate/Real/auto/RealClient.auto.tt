@@ -1,0 +1,107 @@
+﻿<#@ template debug="false" hostspecific="True" language="C#" #>
+<#@include file="$(ProjectDir)\Tools\TBUild.ttinclude" #>
+<#@ output extension=".i" #>
+<# 
+	Init("T");
+	HTable("TableName","TableName");
+#>
+<#
+	//亲~~~~~~~ 如果上面的基本配置好了就不要改我了。
+    foreach (Page item in pages)
+    {
+	  if(OTable.Contains(item.Name)) continue;//排除表过滤
+	  string DisplayName = item.Name; //文件名称
+	  string DisplayLabel = item.Label; //文件中文表示 现在所有都是英文
+      if(string.IsNullOrEmpty(DisplayLabel)){ DisplayName="None"+Flag;}
+	  NewFile(DisplayName+ClientSuffix+".auto.cs"); //生成文件名称定义
+#>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+<#=string.IsNullOrEmpty(WebSrvNameSpace)?"":string.Format("using {0};",WebSrvNameSpace)#>
+namespace <#=ClientNameSpace#>
+{
+    /// <summary>
+    /// [<#=DisplayLabel#>]客户端代理类
+    /// </summary>
+    public sealed partial class <#=DisplayName#><#=ClientSuffix#>
+    {
+        #region 单例模式
+
+        private <#=DisplayName#><#=ClientSuffix#>() { }
+    
+        private static readonly object LockObj = new object();
+
+        private static <#=DisplayName#><#=ClientSuffix#> _instance;
+
+        /// <summary>
+        /// 获得对象实例
+        /// </summary>
+        public static <#=DisplayName#><#=ClientSuffix#> Instance
+        {
+            get
+            {
+                lock (LockObj)
+                {
+                    if (_instance == null)
+                    {
+                        _instance = new <#=DisplayName#><#=ClientSuffix#>();
+                    }
+                    return _instance;
+                }
+            }
+        }
+
+        #endregion
+
+        private <#=DisplayName+WebSrvRefSuffix#>.<#=DisplayName+WebSrvSuffix#> service = new <#=DisplayName+WebSrvRefSuffix#>.<#=DisplayName+WebSrvSuffix#>();
+
+        #region 基础物理操作(增删改查)
+        /// <summary>
+        /// 添加对象 <#=DisplayLabel#>
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns>完成状态</returns>
+        public bool Add(<#=DisplayName#><#=EntitySuffix#> entity)
+        {
+            return service.Add(entity);
+        }
+        /// <summary>
+        /// 更新对象 <#=DisplayLabel#>
+        /// </summary>
+        /// <param name="entity">更新的对象</param>
+        /// <returns>完成状态</returns>
+        public bool Update(<#=DisplayName#><#=EntitySuffix#> entity)
+        {
+            return service.Update(entity);
+        }
+        /// <summary>
+        /// 删除对象 <#=DisplayLabel#>
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns>完成状态</returns>
+        public bool Delete(<#=DisplayName#><#=EntitySuffix#> entity)
+        {
+            return service.Delete(entity);
+        }
+        /// <summary>
+        /// 查询所有 <#=DisplayLabel#>
+        /// </summary>
+        /// <returns>对象集合</returns>
+        public List<<#=DisplayName#><#=EntitySuffix#>> Selects()
+        {
+            return service.Selects().ToList<<#=DisplayName#><#=EntitySuffix#>>();
+        }
+        /// <summary>
+        /// 条件查询 <#=DisplayLabel#>
+        /// </summary>
+        /// <param name="entity">筛选实例</param>
+        /// <returns>对象集合</returns>
+        public List<<#=DisplayName#><#=EntitySuffix#>> Select(<#=DisplayName#><#=EntitySuffix#> entity)
+        {
+            return service.Select(entity).ToList<<#=DisplayName#><#=EntitySuffix#>>();
+        }
+        #endregion
+    }
+}
+<#}EndFile();#>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+	<!--实体类别名-->
+	<alias>
+		<typeAlias alias="FundCollectInfoEntity" type="DynamicEntity.FundCollectInfoEntity,EntityTemplate" />
+	</alias>
+	<!--结果返回集-->
+	<resultMaps>
+		<resultMap id="SelectAllFundCollectInfo" class="FundCollectInfoEntity">
+			<result property="XYBM" column="XYBM"/>
+			<result property="QYMC" column="QYMC"/>
+			<result property="QYBH" column="QYBH"/>
+			<result property="FKZH" column="FKZH"/>
+			<result property="KHWD" column="KHWD"/>
+			<result property="XMMC" column="XMMC"/>
+			<result property="SKZH" column="SKZH"/>
+			<result property="SKFMC" column="SKFMC"/>
+			<result property="JYJE" column="JYJE"/>
+			<result property="FKZHYE" column="FKZHYE"/>
+			<result property="SKZHYE" column="SKZHYE"/>
+		</resultMap>
+	</resultMaps>
+	<!--操作指令-->
+	<statements>
+		<!--查询-->
+		<select id="SelectFundCollectInfo" resultMap="SelectAllFundCollectInfo">
+			SELECT
+			XYBM,
+			QYMC,
+			QYBH,
+			FKZH,
+			KHWD,
+			XMMC,
+			SKZH,
+			SKFMC,
+			JYJE,
+			FKZHYE,
+			SKZHYE
+			FROM FundCollectInfo
+			WHERE  1=1
+			<isNotEmpty  prepend="AND" property="XYBM">
+				XYBM = #XYBM#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="QYMC">
+				QYMC = #QYMC#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="QYBH">
+				QYBH = #QYBH#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="FKZH">
+				FKZH = #FKZH#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="KHWD">
+				KHWD = #KHWD#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="XMMC">
+				XMMC = #XMMC#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="SKZH">
+				SKZH = #SKZH#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="SKFMC">
+				SKFMC = #SKFMC#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="JYJE">
+				JYJE = #JYJE#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="FKZHYE">
+				FKZHYE = #FKZHYE#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="SKZHYE">
+				SKZHYE = #SKZHYE#
+			</isNotEmpty>
+			<isNotEmpty prepend="ORDER BY " property="OrderField">
+				$OrderField$
+				<isEqual property="IsDesc" compareValue="true">
+				  DESC
+				</isEqual>
+			</isNotEmpty>
+		</select>
+	</statements>
+</sqlMap>

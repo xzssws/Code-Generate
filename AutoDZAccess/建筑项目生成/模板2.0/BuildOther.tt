@@ -1,0 +1,246 @@
+﻿<#@ template debug="false" hostspecific="True" language="C#" #>
+<#@include file="$(SolutionDir)\Utils\TBUild.ttinclude" #>
+<#@ output extension=".i" #>
+<# 
+	Init("T");
+	NTable("TableName","TableName");
+#>
+<#
+	//亲~~~~~~~ 如果上面的基本配置好了就不要改我了。
+    foreach (Page page in pages)
+    {
+	  if(NTables.Contains(page.Name)) continue;//排除表过滤
+	  string DisplayName = page.Name; //文件名称
+	  string DisplayLabel = page.Label; //文件中文表示 现在所有都是英文
+      if(string.IsNullOrEmpty(DisplayLabel)){ DisplayName="None"+Flag;}//处理空字段空表情况
+	  Field PrimaryField = GetPrimaryKey(page);//主键字段
+	  NewFile(DisplayName+"Mgr.cs"); //生成文件名称定义	  
+	  string EntityName = DisplayName+EntitySuffix;
+#>
+using System;
+public class <#=DisplayName#>Other
+{
+/* 0101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101 */
+        #region I<#=DisplayName#> 成员
+        /// <summary>
+        /// 增加一条[<#=DisplayName#>]
+        /// </summary>
+        public bool Add<#=DisplayName#>(<#=DisplayName#> obj)
+        {
+            <#=DisplayName#>Mgr mgr = new <#=DisplayName#>Mgr();
+            return mgr.Add<#=DisplayName#>(obj);
+        }
+        /// <summary>
+        /// 更改一条[<#=DisplayName#>]
+        /// </summary>
+        public bool Update<#=DisplayName#>(<#=DisplayName#> obj, string primaryKey)
+        {
+            <#=DisplayName#>Mgr mgr = new <#=DisplayName#>Mgr();
+            return mgr.Update<#=DisplayName#>(obj, primaryKey);
+        }
+        /// <summary>
+        /// 根据条件删除一条或多条[<#=DisplayName#>]
+        /// </summary>
+        public bool Delete<#=DisplayName#>(DZFFilter filter)
+        {
+            <#=DisplayName#>Mgr mgr = new <#=DisplayName#>Mgr();
+            return mgr.Delete<#=DisplayName#>(filter);
+        }
+        /// <summary>
+        /// 根据主键删除一条[<#=DisplayName#>]
+        /// </summary>
+        public bool Delete<#=DisplayName#>(string Key)
+        {
+            <#=DisplayName#>Mgr mgr = new <#=DisplayName#>Mgr();
+            return mgr.Delete<#=DisplayName#>(Key);
+        }
+        /// <summary>
+        /// 根据主键获取一条[<#=DisplayName#>]
+        /// </summary>
+        public <#=DisplayName#> Get<#=DisplayName#>(string Key)
+        {
+            <#=DisplayName#>Mgr mgr = new <#=DisplayName#>Mgr();
+            return mgr.Get<#=DisplayName#>(Key);
+        }
+        /// <summary>
+        /// 根据条件筛选并获得多条[<#=DisplayName#>]
+        /// </summary>
+        public List<<#=DisplayName#>> Get<#=DisplayName#>s(DZFFilter filter)
+        {
+            <#=DisplayName#>Mgr mgr = new <#=DisplayName#>Mgr();
+            return mgr.Get<#=DisplayName#>s(filter);
+        }
+        /// <summary>
+        /// 根据筛选实体筛选并获得多条[<#=DisplayName#>]
+        /// </summary>
+        public List<<#=DisplayName#>> Get<#=DisplayName#>s(<#=DisplayName#> obj)
+        {
+            <#=DisplayName#>Mgr mgr = new <#=DisplayName#>Mgr();
+            return mgr.Get<#=DisplayName#>s(obj);
+        }
+        /// <summary>
+        /// 获取数据库中所有[<#=DisplayName#>]
+        /// </summary>
+        public List<<#=DisplayName#>> Get<#=DisplayName#>s()
+        {
+            <#=DisplayName#>Mgr mgr = new <#=DisplayName#>Mgr();
+            return mgr.Get<#=DisplayName#>s();
+        }
+
+        #endregion
+/* 0101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101 */		
+		#region <#=DisplayName#> Service
+        /// <summary>
+        /// 增加一条[<#=DisplayName#>]
+        /// </summary>
+        [WebMethod(EnableSession = true, Description = "增加一条[<#=DisplayName#>]")]
+        public bool Add<#=DisplayName#>(string objstr)
+        {
+            <#=DisplayName#> obj = BinarySerializer.Deserialize(objstr) as <#=DisplayName#>;
+            return BT_MaterialStorageLocalClient.GetClient().Add<#=DisplayName#>(obj);
+        }
+        /// <summary>
+        /// 更改一条[<#=DisplayName#>]
+        /// </summary>
+        [WebMethod(EnableSession = true, Description = "更改一条[<#=DisplayName#>]")]
+        public bool Update<#=DisplayName#>(string objstr, string primaryKey)
+        {
+            <#=DisplayName#> obj = BinarySerializer.Deserialize(objstr) as <#=DisplayName#>;
+            return BT_MaterialStorageLocalClient.GetClient().Update<#=DisplayName#>(obj, primaryKey);
+        }
+        /// <summary>
+        /// 根据条件删除一条或多条[<#=DisplayName#>]
+        /// </summary>
+        [WebMethod(EnableSession = true, Description = "根据条件删除一条或多条[<#=DisplayName#>]")]
+        public bool Delete<#=DisplayName#>BF(string filterstr)
+        {
+            DZFFilter filter = BinarySerializer.Deserialize(filterstr) as DZFFilter;
+            return BT_MaterialStorageLocalClient.GetClient().Delete<#=DisplayName#>(filter);
+        }
+        /// <summary>
+        /// 根据主键删除一条[<#=DisplayName#>]
+        /// </summary>
+        [WebMethod(EnableSession = true, Description = "根据主键删除一条[<#=DisplayName#>]")]
+        public bool Delete<#=DisplayName#>BK(string Key)
+        {
+            return BT_MaterialStorageLocalClient.GetClient().Delete<#=DisplayName#>(Key);
+        }
+        /// <summary>
+        /// 根据主键获取一条[<#=DisplayName#>]
+        /// </summary>
+        [WebMethod(EnableSession = true, Description = "根据主键获取一条[<#=DisplayName#>]")]
+        public string Get<#=DisplayName#>(string Key)
+        {
+            <#=DisplayName#> obj = BT_MaterialStorageLocalClient.GetClient().Get<#=DisplayName#>(Key);
+            return BinarySerializer.Serialize(obj);
+        }
+        /// <summary>
+        /// 根据条件筛选并获得多条[<#=DisplayName#>]
+        /// </summary>
+        [WebMethod(EnableSession = true, Description = "根据条件筛选并获得多条[<#=DisplayName#>]")]
+        public string Get<#=DisplayName#>sBF(string filterstr)
+        {
+            DZFFilter filter = BinarySerializer.Deserialize(filterstr) as DZFFilter;
+            List<<#=DisplayName#>> list = BT_MaterialStorageLocalClient.GetClient().Get<#=DisplayName#>s(filter);
+            return BinarySerializer.Serialize(list);
+        }
+        /// <summary>
+        /// 根据筛选实体筛选并获得多条[<#=DisplayName#>]
+        /// </summary>
+        [WebMethod(EnableSession = true, Description = "根据筛选实体筛选并获得多条[<#=DisplayName#>]")]
+        public string Get<#=DisplayName#>sBE(string objstr)
+        {
+            <#=DisplayName#> obj = BinarySerializer.Deserialize(objstr) as <#=DisplayName#>;
+            List<<#=DisplayName#>> list = BT_MaterialStorageLocalClient.GetClient().Get<#=DisplayName#>s(obj);
+            return BinarySerializer.Serialize(list);
+        }
+        /// <summary>
+        /// 获取数据库中所有[<#=DisplayName#>]
+        /// </summary>
+        [WebMethod(EnableSession = true, Description = "获取数据库中多有[<#=DisplayName#>]")]
+        public string Get<#=DisplayName#>s()
+        {
+            List<<#=DisplayName#>> list = BT_MaterialStorageLocalClient.GetClient().Get<#=DisplayName#>s();
+            return BinarySerializer.Serialize(list);
+        }
+
+        #endregion
+/* 0101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101 */		
+		#region I<#=DisplayName#> 成员
+        /// <summary>
+        /// 增加一条[<#=DisplayName#>]
+        /// </summary>
+        public bool Add<#=DisplayName#>(<#=DisplayName#> obj)
+        {
+            string objstr = BinarySerializer.Serialize(obj);
+            bool result = CurrentService.Add<#=DisplayName#>(objstr);
+            return result;
+        }
+        /// <summary>
+        /// 更改一条[<#=DisplayName#>]
+        /// </summary>
+        public bool Update<#=DisplayName#>(<#=DisplayName#> obj, string primaryKey)
+        {
+            string objstr = BinarySerializer.Serialize(obj);
+            bool result = CurrentService.Update<#=DisplayName#>(objstr, primaryKey);
+            return result;
+        }
+        /// <summary>
+        /// 根据条件删除一条或多条[<#=DisplayName#>]
+        /// </summary>
+        public bool Delete<#=DisplayName#>(DZFFilter filter)
+        {
+            string filterstr = BinarySerializer.Serialize(filter);
+            bool result = CurrentService.Delete<#=DisplayName#>BF(filterstr);
+            return result;
+        }
+        /// <summary>
+        /// 根据主键删除一条[<#=DisplayName#>]
+        /// </summary>
+        public bool Delete<#=DisplayName#>(string Key)
+        {
+            bool result = CurrentService.Delete<#=DisplayName#>BK(Key);
+            return result;
+        }
+        /// <summary>
+        /// 根据主键获取一条[<#=DisplayName#>]
+        /// </summary>
+        public DongZheng.Soft.BT.Spi.<#=DisplayName#> Get<#=DisplayName#>(string Key)
+        {
+            object obj = CurrentService.Get<#=DisplayName#>(Key);
+            DongZheng.Soft.BT.Spi.<#=DisplayName#> result = obj as DongZheng.Soft.BT.Spi.<#=DisplayName#>;
+            return result;
+        }
+        /// <summary>
+        /// 根据条件筛选并获得多条[<#=DisplayName#>]
+        /// </summary>
+        public List<DongZheng.Soft.BT.Spi.<#=DisplayName#>> Get<#=DisplayName#>s(DZFFilter filter)
+        {
+            string filterstr = BinarySerializer.Serialize(filter);
+            object obj = BinarySerializer.Deserialize(CurrentService.Get<#=DisplayName#>sBF(filterstr));
+            List<DongZheng.Soft.BT.Spi.<#=DisplayName#>> result = obj as List<DongZheng.Soft.BT.Spi.<#=DisplayName#>>;
+            return result;
+        }
+        /// <summary>
+        /// 根据筛选实体筛选并获得多条[<#=DisplayName#>]
+        /// </summary>
+        public List<<#=DisplayName#>> Get<#=DisplayName#>s(<#=DisplayName#> obj)
+        {
+            string objstr = BinarySerializer.Serialize(obj);
+            object resultobj = BinarySerializer.Deserialize(CurrentService.Get<#=DisplayName#>sBE(objstr));
+            List<DongZheng.Soft.BT.Spi.<#=DisplayName#>> result = resultobj as List<DongZheng.Soft.BT.Spi.<#=DisplayName#>>;
+            return result;
+        }
+        /// <summary>
+        /// 获取数据库中所有[<#=DisplayName#>]
+        /// </summary>
+        public List<<#=DisplayName#>> Get<#=DisplayName#>s()
+        {
+            object obj = BinarySerializer.Deserialize(CurrentService.Get<#=DisplayName#>s());
+            List<DongZheng.Soft.BT.Spi.<#=DisplayName#>> result = obj as List<DongZheng.Soft.BT.Spi.<#=DisplayName#>>;
+            return result;
+        }
+
+        #endregion
+}
+<#}EndFile();#>

@@ -1,0 +1,266 @@
+﻿<#@ template debug="false" hostspecific="True" language="C#" #>
+<#@include file="$(SolutionDir)\Utils\TBUild.ttinclude" #>
+<#@ output extension=".i" #>
+<# 
+	//(* = *)这里是基本配置
+	Init("T");
+	NTable("Table1","Table2");
+#>
+<#
+	//亲~~~~~~~ 如果上面的基本配置好了就不要改我了。
+	List<Field> Canull;
+	List<Field> Nonull;
+    foreach (Page page in pages)
+    {
+	  if(NTables.Contains(page.Name)) continue;//排除表过滤
+	  string DisplayName = page.Name; //文件名称
+	  string DisplayLabel = page.Label; //文件中文表示 现在所有都是英文
+      if(string.IsNullOrEmpty(DisplayLabel)){ DisplayName="None"+Flag;}//处理空字段空表情况
+	  Field PrimaryField = GetPrimaryKey(page);//主键字段
+	  NewFile(DisplayName+"DAC.cs"); //生成文件名称定义	  
+	  string EntityName = DisplayName+EntitySuffix;//实体名称
+	  Canull = new List<Field>();//可空字段
+	  Nonull = new List<Field>();//非空字段
+	  StringBuilder AllFields=new StringBuilder();
+	  StringBuilder AllFieldss = new StringBuilder();
+	  StringBuilder objfields = new StringBuilder();
+	  StringBuilder newobjfields = new StringBuilder();
+	  foreach (Field field in page.Fields){
+		  if(field.CanNull||field.IsIdentity||field.Default != string.Empty) Canull.Add(field);
+		  else Nonull.Add(field);
+		  AllFields.Append(field.Name+",");
+		  AllFieldss.Append("\""+field.Name+"\",");
+		  objfields.Append("obj."+field.Name+",");
+		  newobjfields.Append("newObject."+field.Name+",");
+      }
+	  
+#>
+using System;
+using System.Collections.Generic;
+using System.Text;
+using DongZhengSoft.Framework.Core.DataAccess;
+using DongZheng.Soft.BT.Spi;
+using System.Data;
+
+namespace DongZheng.Soft.BT.Core
+{
+    public class <#=DisplayName#>DAC : AbstractDAC<<#=DisplayName#>, string>
+    {
+        #region 基础实现
+        
+        //注：此段代码是实现框架对于基础的增删改查的实现，请注意修改。
+        
+        //获得数据库访问对象
+        protected override IDZFDatabase GetDatabase()
+        {
+            return Database.GetDatabase();
+        }
+        //表名
+        protected override string Table
+        {
+            get
+            {
+                return "<#=DisplayName#>";
+            }
+        }
+        //主键字段名称
+        protected override string PrimaryKey
+        {
+            get
+            {
+                return "<#=PrimaryField.Name#>";
+            }
+        }
+        //查询字段集
+        protected override string QueryFields
+        {
+            get
+            {
+                return "<#=AllFields.ToString().TrimEnd(',')#>";
+            }
+        }
+        //插入字段数组
+        protected override string[] InsertFields
+        {
+            get
+            {
+                return new string[]{ <#=AllFieldss.ToString().TrimEnd(',')#> };
+            }
+        }
+        //插入语句参数赋值
+        protected override object[] GetInsertSQLParamDataList(<#=DisplayName#> newObject)
+        {
+            return new object[] { <#=newobjfields.ToString().TrimEnd(',')#> };
+        }
+        //更新字段数组
+        protected override string[] UpdateFields
+        {
+            get
+            {
+                return new string[]{ <#=AllFieldss.ToString().TrimEnd(',')#> };
+            }
+        }
+        //更新语句参数赋值 最多加一位为主键
+        protected override object[] GetUpdateRowSQLParamDataList(<#=DisplayName#> obj)
+        {
+            return new object[] { <#=objfields.ToString().TrimEnd(',')#>};
+        }
+        //获取是否存在
+        protected override string GetContainsObjectSQL(<#=DisplayName#> obj)
+        {
+<#if(PrimaryField.Name!="[ID]"){#>
+			return GetContainsKeySQL(obj.<#=PrimaryField.Name#>);
+<#}else{#>
+            throw new NotImplementedException();
+<#}#>
+        }
+        //通过DataRow给对象各个属性赋值
+        protected override <#=DisplayName#> GetObjectByDataRow(DataRow row)
+        {
+            <#=DisplayName#> obj = new <#=DisplayName#>();
+			<#foreach (Field field in page.Fields){#>
+if (row["<#=field.Name#>"]!=null&&row["<#=field.Name#>"]!=DBNull.Value) obj.<#=field.Name#> = <#=CLRConvert(field.Type)#>row["<#=field.Name#>"]);
+			<#}#>
+return obj;
+        }
+        /// <summary>
+        /// 扩展_实体对象转换筛选对象 
+        /// </summary>
+        /// <remarks>
+        /// 注：将对象不为空的属性加入条件筛选
+        /// 特注：只为内部使用方便，没其他特殊含义。
+        /// </remarks>
+        /// <param name="obj">对象</param>
+        /// <returns>过滤对象</returns>
+        private DZFFilter et_ObjectToFilter(<#=DisplayName#> obj)
+        {
+            if (obj == null) return new DZFFilter();
+
+            DZFFilter filter = new DZFFilter();
+            StringBuilder sqlfilter = new StringBuilder();
+            sqlfilter.Append("1 = 1 ");
+<#foreach (Field item in page.Fields){#>
+			if (<#=CLRDefault(item,"obj")#>) sqlfilter.AppendFormat(" AND <#=item.Name#> = <#=CLRNO(item,"{0}")#> ", obj.<#=item.Name#>);
+<#}#>
+			filter.FilterCondition = sqlfilter.ToString();
+            return filter;
+        }
+        #endregion
+
+        #region 预制方法
+
+        //注：下列方法是基础的增删该查操作的实现。
+
+        /// <summary>
+        /// 增加一条[<#=DisplayName#>]
+        /// </summary>
+        public bool Add<#=DisplayName#>(<#=DisplayName#> obj)
+        {
+            try
+            {
+                this.Add(obj);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        /// <summary>
+        /// 更改一条[<#=DisplayName#>]
+        /// </summary>
+        public bool Update<#=DisplayName#>(<#=DisplayName#> obj, string primaryKey)
+        {
+            try
+            {
+                this[primaryKey] = obj;
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        /// <summary>
+        /// 根据条件删除一条或多条[<#=DisplayName#>]
+        /// </summary>
+        public bool Delete<#=DisplayName#>(DZFFilter filter)
+        {
+            try
+            {
+                this.Remove(filter);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        /// <summary>
+        /// 根据主键删除一条[<#=DisplayName#>]
+        /// </summary>
+        public bool Delete<#=DisplayName#>(string Key)
+        {
+            try
+            {
+                this.Remove(Key);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        /// <summary>
+        /// 根据主键获取一条[<#=DisplayName#>]
+        /// </summary>
+        public <#=DisplayName#> Get<#=DisplayName#>(string Key)
+        {
+            try
+            {
+                <#=DisplayName#> obj = this[Key];
+                return obj;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        /// <summary>
+        /// 根据条件筛选并获得多条[<#=DisplayName#>]
+        /// </summary>
+        public List<<#=DisplayName#>> Get<#=DisplayName#>s(DZFFilter filter)
+        {
+            try
+            {
+                return this.GetObjects(filter);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        /// <summary>
+        /// 根据筛选实体筛选并获得多条[<#=DisplayName#>]
+        /// </summary>
+        public List<<#=DisplayName#>> Get<#=DisplayName#>s(<#=DisplayName#> obj)
+        {
+            DZFFilter dzf = et_ObjectToFilter(obj);
+            return Get<#=DisplayName#>s(dzf);
+        }
+        /// <summary>
+        /// 获取数据库中多有[<#=DisplayName#>]
+        /// </summary>
+        public List<<#=DisplayName#>> Get<#=DisplayName#>s()
+        {
+            DZFFilter dzf = new DZFFilter();
+            return Get<#=DisplayName#>s(dzf);
+        }
+        #endregion
+
+        #region 业务方法
+
+        #endregion
+    }
+}
+<#}EndFile();#>

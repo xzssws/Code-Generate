@@ -1,0 +1,27 @@
+﻿using System;
+
+namespace <#=AssemblyName#>.<#=NameSpaceName#>
+{
+    /// <summary>
+    /// <#=DisplayLabel#>
+    /// </summary>
+    public class <#=DisplayName#>Model
+    {
+<# foreach (ControlModel citem in item.Controls) 
+	{  
+		 string filedName = "_"+citem.Name.ToLowerInvariant(); 
+	     if(filedName=="_") filedName = "_Null"+Flag.ToString();
+		 if(citem.Name=="") {citem.Name = "Null"+Flag.ToString();}
+#>
+        private <#=citem.DataType#> <#=filedName#>;
+        /// <summary>
+        /// <#=citem.Label#>
+        /// </summary>
+        public <#=citem.DataType#> <#=citem.Name#>
+        {
+            get { return <#=filedName#>; }
+            set { <#=filedName#> = value; }
+        }
+<# }#>
+   }
+}

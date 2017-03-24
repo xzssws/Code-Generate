@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+	<!--实体类别名-->
+	<alias>
+		<typeAlias alias="AdjustAccountTableEntity" type="DynamicEntity.AdjustAccountTableEntity,EntityTemplate" />
+	</alias>
+	<!--结果返回集-->
+	<resultMaps>
+		<resultMap id="SelectAllAdjustAccountTable" class="AdjustAccountTableEntity">
+			<result property="htbah" column="htbah"/>
+			<result property="sqrq" column="sqrq"/>
+			<result property="qrrq" column="qrrq"/>
+			<result property="qrr" column="qrr"/>
+			<result property="lc" column="lc"/>
+			<result property="fkzh" column="fkzh"/>
+			<result property="fkje" column="fkje"/>
+			<result property="jexz" column="jexz"/>
+			<result property="ckr" column="ckr"/>
+			<result property="cklsh" column="cklsh"/>
+			<result property="ckyh" column="ckyh"/>
+			<result property="tkzh" column="tkzh"/>
+			<result property="id" column="id"/>
+			<result property="ckid" column="ckid"/>
+			<result property="zflsh" column="zflsh"/>
+			<result property="czr" column="czr"/>
+			<result property="zhye" column="zhye"/>
+			<result property="nxybh" column="nxybh"/>
+		</resultMap>
+	</resultMaps>
+	<!--操作指令-->
+	<statements>
+		<!--查询-->
+		<select id="SelectAdjustAccountTable" resultMap="SelectAllAdjustAccountTable">
+			SELECT
+			htbah,
+			sqrq,
+			qrrq,
+			qrr,
+			lc,
+			fkzh,
+			fkje,
+			jexz,
+			ckr,
+			cklsh,
+			ckyh,
+			tkzh,
+			id,
+			ckid,
+			zflsh,
+			czr,
+			zhye,
+			nxybh
+			FROM AdjustAccountTable
+			WHERE  1=1
+			<isNotEmpty  prepend="AND" property="htbah">
+				htbah = #htbah#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="sqrq">
+				sqrq = #sqrq#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="qrrq">
+				qrrq = #qrrq#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="qrr">
+				qrr = #qrr#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="lc">
+				lc = #lc#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="fkzh">
+				fkzh = #fkzh#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="fkje">
+				fkje = #fkje#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="jexz">
+				jexz = #jexz#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="ckr">
+				ckr = #ckr#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="cklsh">
+				cklsh = #cklsh#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="ckyh">
+				ckyh = #ckyh#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="tkzh">
+				tkzh = #tkzh#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="id">
+				id = #id#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="ckid">
+				ckid = #ckid#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="zflsh">
+				zflsh = #zflsh#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="czr">
+				czr = #czr#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="zhye">
+				zhye = #zhye#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="nxybh">
+				nxybh = #nxybh#
+			</isNotEmpty>
+			<isNotEmpty prepend="ORDER BY " property="OrderField">
+				$OrderField$
+				<isEqual property="IsDesc" compareValue="true">
+				  DESC
+				</isEqual>
+			</isNotEmpty>
+		</select>
+	</statements>
+</sqlMap>

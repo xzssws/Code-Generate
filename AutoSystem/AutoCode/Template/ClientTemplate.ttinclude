@@ -1,0 +1,76 @@
+﻿<# string ModelType = DisplayName+"Model";#>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using FundsRegulatoryClient.<#=DisplayName#>Srv;
+
+namespace <#=AssemblyName#>
+{
+	 /// <summary>
+     /// <#=DisplayLabel#>
+     /// </summary>
+    public sealed class <#=DisplayName#>Client:BaseClient<<#=DisplayName#>Service>
+    {
+        private static <#=DisplayName#>Client _instance;
+        /// <summary>
+        /// 获取 [<#=DisplayName#>Client] 操作对象实例
+        /// </summary>
+        public static <#=DisplayName#>Client Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new <#=DisplayName#>Client();
+                }
+                return _instance;
+            }
+        }
+        /// <summary>
+        /// 添加 <#=DisplayLabel#>
+        /// </summary>
+        /// <param name="m"></param>
+        /// <returns>完成状态</returns>
+        public bool Add(<#=ModelType#> m)
+        {
+            return service.Add(m);
+        }
+        /// <summary>
+        /// 更新 <#=DisplayLabel#>
+        /// </summary>
+        /// <param name="m">更新的对象</param>
+        /// <returns>完成状态</returns>
+        public bool Update(<#=ModelType#> m)
+        {
+            return service.Update(m);
+        }
+        /// <summary>
+        /// 删除 <#=DisplayLabel#>
+        /// </summary>
+        /// <param name="m"></param>
+        /// <returns>完成状态</returns>
+        public bool Delete(<#=ModelType#> m)
+        {
+            return service.Delete(m);
+        }
+        /// <summary>
+        /// 查看所有 <#=DisplayLabel#>
+        /// </summary>
+        /// <returns>对象集合</returns>
+        public List<<#=ModelType#>> Selects()
+        {
+            return service.Selects().ToList<<#=ModelType#>>();
+        }
+        /// <summary>
+        /// 查看特定 <#=DisplayLabel#>
+        /// </summary>
+        /// <param name="m">筛选实例</param>
+        /// <returns>对象集合</returns>
+        public List<<#=ModelType#>> Select(<#=ModelType#> m)
+        {
+            return service.Select(m).ToList<<#=ModelType#>>();
+        }
+        
+    }
+}

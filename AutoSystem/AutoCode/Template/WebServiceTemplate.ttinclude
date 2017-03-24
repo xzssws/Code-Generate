@@ -1,0 +1,51 @@
+﻿<%@ WebService Language="C#" CodeBehind="<#=ServiceName#>.asmx.cs" Class="<#=AssemblyName#>.<#=DisplayName#>" %>
+<#NewFile(ServiceName+".asmx.cs");#>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Services;
+using FundsRegulatoryModel.Model;
+using FundsRegulatoryDao.DAO;
+
+namespace <#=AssemblyName#>
+{
+    /// <summary>
+    /// <#=ServiceName#> 的摘要说明
+    /// </summary>
+    [WebService(Namespace = "http://tempuri.org/")]
+    [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+    [System.ComponentModel.ToolboxItem(false)]
+    // 若要允许使用 ASP.NET AJAX 从脚本中调用此 Web 服务，请取消对下行的注释。
+    // [System.Web.Script.Services.ScriptService]
+    public class <#=ServiceName#> : System.Web.Services.WebService
+    {
+        <#=DisplayName#>Dao daoHelp =  <#=DisplayName#>Dao.Instance;
+
+        [WebMethod(Description="添加[<#=DisplayLabel#>]")]
+        public bool Add(<#=ModelType#> o)
+        {
+            return daoHelp.Add(o);
+        }
+        [WebMethod(Description="更新[<#=DisplayLabel#>]")]
+        public bool Update(<#=ModelType#> o)
+        {
+            return daoHelp.Update(o);
+        }
+        [WebMethod(Description="删除[<#=DisplayLabel#>]")]
+        public bool Delete(<#=ModelType#> o)
+        {
+            return daoHelp.Delete(o);
+        }
+        [WebMethod(Description="查看所有[<#=DisplayLabel#>]")]
+        public List<<#=ModelType#>> Selects()
+        {
+            return daoHelp.Selects() as List<<#=ModelType#>>;
+        }
+        [WebMethod(Description="查看特定[<#=DisplayLabel#>]")]
+        public List<<#=ModelType#>> Select(<#=ModelType#> o)
+        {
+            return daoHelp.Select(o) as List<<#=ModelType#>>;
+        }
+    }
+}

@@ -1,0 +1,46 @@
+﻿<#@ template debug="false" hostspecific="True" language="C#" #>
+<#@include file="$(SolutionDir)\Utils\TBUild.ttinclude" #>
+<#@ output extension=".i" #>
+<# 
+	Init("T");
+#>
+<#
+	//亲~~~~~~~ 如果上面的基本配置好了就不要改我了。
+    foreach (Page item in pages)
+    {
+	  string DisplayName = item.Name; //文件名称
+	  string DisplayLabel = item.Label; //文件中文表示 现在所有都是英文
+      if(string.IsNullOrEmpty(DisplayLabel)){ DisplayName="None"+Flag;}
+	  NewFile(DisplayName+EntitySuffix+".cs"); //生成文件名称定义
+#>
+using System;
+
+namespace <#=EntityNameSpace#>
+{
+    /// <summary>
+    /// <#=DisplayLabel#>
+    /// </summary>
+    public class <#=DisplayName#><#=EntitySuffix#>:BaseEntity
+    {
+<# foreach (Field field in item.Fields) 
+	{  
+		 string fieldName = "_"+field.Name.ToLowerInvariant(); 
+		 string FieldName = field.Name;
+	     if(fieldName=="_") fieldName = "_"+Flag.ToString();
+		 if(FieldName=="") {FieldName = Flag.ToString();}
+#>
+
+        private <#=Builder.ToCLR(field.Type,field.CanNull)#> <#=fieldName#>;
+        /// <summary>
+        /// <#=string.IsNullOrEmpty(field.Remark.Trim())?FieldName:field.Remark#>
+        /// </summary>
+        public <#=Builder.ToCLR(field.Type,field.CanNull)#> <#=FieldName==DisplayName?FieldName+"Field":FieldName#>
+        {
+            get { return <#=fieldName#>; }
+            set { <#=fieldName#> = value; }
+        }
+<# }#>
+   }
+}
+
+<#}EndFile();#>

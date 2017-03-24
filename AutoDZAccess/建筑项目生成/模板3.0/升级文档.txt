@@ -1,0 +1,6 @@
+﻿Manager 对DAC的增删改查 全部移动到DAC层 Manager 完全实现转调方式。
+DAC的代码层次化
+DAC 超级模式
+DAC Update语句重写加入
+DAC Contains 语句重写加入
+DAC 分布化。

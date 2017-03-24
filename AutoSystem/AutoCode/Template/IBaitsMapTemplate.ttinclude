@@ -1,0 +1,63 @@
+﻿<#	  string ModelType = DisplayName+"Model"; #>
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="<#=ModelType#>" xmlns="http://ibatis.apache.org/mapping"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <!--导入程序集-->
+  <alias>
+    <typeAlias alias="<#=ModelType#>" type="<#=AssemblyName#>.<#=NameSpaceName#>.<#=ModelType#>,<#=AssemblyName#>" />
+  </alias>
+  <!--返回集-->
+  <resultMaps>
+    <resultMap id="SelectAll<#=DisplayName#>" class="<#=DisplayName#>Model">
+<# foreach (ControlModel citem in item.Controls) 
+	{
+	 if(citem.Name==""){ citem.Name = "Null"+Flag.ToString();}
+#>
+	  <result property="<#=citem.Name#>" column="<#=citem.Name#>"/>
+<#}#>
+    </resultMap>
+  </resultMaps>
+  <!--操作-->
+  <statements>
+		<select id="Select<#=DisplayName#>" resultMap="SelectAll<#=DisplayName#>">
+		SELECT 
+<#
+	StringBuilder sbtmp = new StringBuilder();
+	StringBuilder sbtmpx = new StringBuilder();
+	foreach (ControlModel citem in item.Controls) 
+	{
+		 if(citem.Name==""){ citem.Name = "Null"+Flag.ToString();}
+		 sbtmpx.Append("#"+citem.Name+"#,");
+		 sbtmp.AppendLine("			"+citem.Name+",");
+	 }#>
+		<#=sbtmp.ToString().Trim().TrimEnd(',')#>	 
+		FROM <#=DisplayName#>
+		WHERE  1=1
+<#foreach (ControlModel citem in item.Controls) 
+		{
+		 if(citem.Name=="") {citem.Name = "Null"+Flag.ToString();}#>
+			<isNotEmpty property="<#=citem.Name#>">
+				 AND <#=citem.Name#> = #<#=citem.Name#># 
+			</isNotEmpty>
+<#}#>
+		</select>
+    <insert id="Add<#=DisplayName#>" parameterClass="<<#=ModelType#>">
+      INSERT INTO <#=DisplayName#> (<#=sbtmp.ToString().Trim().TrimEnd(',')#>)
+	  VALUES (<#=sbtmpx.ToString().Trim().TrimEnd(',')#>)
+    </insert>
+    <update id ="Update<#=DisplayName#>" parameterClass="<#=ModelType#>">
+      UPDATE <#=DisplayName#> 
+	  SET 
+<#for (int i = 0; i < item.Controls.Count; i++)
+        {
+			 ControlModel citem = item.Controls[i];
+			 if(citem.Name==""){ citem.Name = "Null"+Flag.ToString();}#>
+				  <#=citem.Name#> = #<#=citem.Name#># <#=item.Controls.Count-i>1?",":""#>
+<#}#>
+	WHERE [字段] = #value#
+    </update>
+    <delete id="Delete<#=DisplayName#>" parameterClass="string">
+      DELETE <#=DisplayName#> WHERE [字段] = #value#
+    </delete>
+  </statements>
+</sqlMap>

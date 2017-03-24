@@ -1,0 +1,81 @@
+﻿<#string ModelType = DisplayName+"Model";#>
+using System;
+using System.Collections.Generic;
+using FundsRegulatoryModel.Model;
+
+namespace <#=AssemblyName#>.<#=NameSpaceName#>
+{
+    /// <summary>
+    /// [<#=DisplayLabel#>]数据库操作类
+    /// </summary>
+    public  class <#=DisplayName#>Dao : BaseDAO<<#=ModelType#>>
+    {
+        /// <summary>
+        /// 构建 [<#=DisplayLabel#>]数据库操作类
+        /// </summary>
+        private <#=DisplayName#>Dao()
+        {
+            DefaultKey = "<#=DisplayName#>";
+        }
+
+        private static <#=DisplayName#>Dao _instance;
+        /// <summary>
+        /// 获取 [<#=DisplayLabel#>]数据库操作类实例
+        /// </summary>
+        public static <#=DisplayName#>Dao Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new <#=DisplayName#>Dao();
+                }
+                return _instance;
+            }
+        }
+        /// <summary>
+        /// 向数据库中添加一个[<#=DisplayLabel#>]的新实例
+        /// </summary>
+        /// <param name="t">[<#=DisplayLabel#>]新实例</param>
+        /// <returns>添加完成状态</returns>
+        public override bool Add(<#=ModelType#> t)
+        {
+            return i(t);
+        }
+        /// <summary>
+        /// 修改数据库中的[<#=DisplayLabel#>]数据
+        /// </summary>
+        /// <param name="t">[<#=DisplayLabel#>]实例</param>
+        /// <returns>修改完成状态</returns>
+        public override bool Update(<#=ModelType#> t)
+        {
+            return u(t);
+        }
+        /// <summary>
+        /// 删除数据库中一条[<#=DisplayLabel#>]
+        /// </summary>
+        /// <param name="t">[<#=DisplayLabel#>]条件</param>
+        /// <returns>删除完成状态</returns>
+        public override bool Delete(<#=ModelType#> t)
+        {
+            return d(t);
+        }
+        /// <summary>
+        /// 查看数据库中所有[<#=DisplayLabel#>]数据
+        /// </summary>
+        /// <returns>[<#=DisplayLabel#>]集合</returns>
+        public override IList<<#=ModelType#>> Selects()
+        {
+            return ss();
+        }
+        /// <summary>
+        /// 查看数据库中特定的[<#=DisplayLabel#>]数据
+        /// </summary>
+        /// <param name="t">[<#=DisplayLabel#>]筛选实例</param>
+        /// <returns>[<#=DisplayLabel#>]集合</returns>
+        public override IList<<#=ModelType#>> Select(<#=ModelType#> t)
+        {
+            return s(t);
+        }
+    }
+}

@@ -1,0 +1,52 @@
+﻿<#@ template debug="false" hostspecific="True" language="C#" #>
+<#@include file="$(SolutionDir)\Utils\TBUild.ttinclude" #>
+<#@ output extension=".i" #>
+<# 
+	Init("V");
+	HTable("TableName","TableName");
+#>
+<#
+	//亲~~~~~~~ 如果上面的基本配置好了就不要改我了。
+    foreach (Page page in pages)
+    {
+	  if(OTable.Contains(page.Name)) continue;//排除表过滤
+	  string DisplayName = page.Name; //文件名称
+	  string DisplayLabel = page.Label; //文件中文表示 现在所有都是英文
+      if(string.IsNullOrEmpty(DisplayLabel)){ DisplayName="None"+Flag;}//处理空字段空表情况
+	  Field PrimaryField = GetPrimaryKey(page);//主键字段
+	  NewFile(DisplayName+iBatisMap+".xml"); //生成文件名称定义	  
+	  string EntityName = DisplayName+EntitySuffix;
+#>
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+	<!--实体类别名-->
+	<alias>
+		<typeAlias alias="<#=EntityName#>" type="<#=EntityNameSpace.TrimEnd('.')#>.<#=EntityName#>,<#=EntityAssembly#>" />
+	</alias>
+	<!--结果返回集-->
+	<resultMaps>
+		<resultMap id="SelectAll<#=DisplayName#>" class="<#=EntityName#>">
+<# foreach (Field field in page.Fields) { if(field.Name=="") field.Name = "Null"+Flag.ToString();#>
+			<result property="<#=field.Name#>" column="<#=field.Name#>"/>
+<#}#>
+		</resultMap>
+	</resultMaps>
+	<!--操作指令-->
+	<statements>
+		<!--查询-->
+		<select id="Select<#=DisplayName#>" resultMap="SelectAll<#=DisplayName#>">
+			SELECT
+<# for (int i = 0; i < page.Fields.Count; i++) {  Field field = page.Fields[i]; if(field.Name=="") { field.Name = "Null"+Flag.ToString();}#>
+			<#=field.Name+((i<page.Fields.Count-1)?",":"")#>
+<#}#>
+			FROM <#=DisplayName#>
+			WHERE  1=1
+<#foreach (Field field in page.Fields) { if(field.Name=="") {field.Name = "Null"+Flag.ToString();}#>
+			<isNotEmpty  prepend="AND" property="<#=field.Name#>">
+				<#=field.Name#> = #<#=field.Name#>#
+			</isNotEmpty>
+<#}#>
+		</select>
+	</statements>
+</sqlMap>
+<#}EndFile();#>

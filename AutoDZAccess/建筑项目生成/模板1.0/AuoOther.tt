@@ -1,0 +1,168 @@
+﻿<#@ template debug="false" hostspecific="True" language="C#" #>
+<#@include file="$(SolutionDir)\Utils\TBUild.ttinclude" #>
+<#@ output extension=".i" #>
+<# 
+	Init("V");
+	NTable("TableName","TableName");
+#>
+<#
+	//亲~~~~~~~ 如果上面的基本配置好了就不要改我了。
+    foreach (Page page in pages)
+    {
+	  if(NTables.Contains(page.Name)) continue;//排除表过滤
+	  string DisplayName = page.Name; //文件名称
+	  string DisplayLabel = page.Label; //文件中文表示 现在所有都是英文
+      if(string.IsNullOrEmpty(DisplayLabel)){ DisplayName="None"+Flag;}//处理空字段空表情况
+	  Field PrimaryField = GetPrimaryKey(page);//主键字段
+	  NewFile(DisplayName+"NoNo.cs"); //生成文件名称定义	  
+	  string EntityName = DisplayName+EntitySuffix;
+#>
+
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Text;
+using DongZhengSoft.Framework.Core.Common;
+
+//Interface
+namespace DongZheng.Soft.BT.Spi
+{
+    /// <summary>
+    /// 接口解释
+    /// </summary>
+    public interface I<#=DisplayName#>
+    {
+        /// <summary>
+        /// 添加
+        /// </summary>
+        bool Add<#=DisplayName#>(<#=DisplayName#> obj);
+        /// <summary>
+        /// 更新
+        /// </summary>
+        bool Update<#=DisplayName#>(<#=DisplayName#> obj);
+        /// <summary>
+        /// 删除
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        bool Delete<#=DisplayName#>(string key);
+        /// <summary>
+        /// 获得单个
+        /// </summary>
+        /// <returns></returns>
+        <#=DisplayName#> Get<#=DisplayName#>(string key);
+        /// <summary>
+        /// 获得多个
+        /// </summary>
+        /// <returns></returns>
+        List<<#=DisplayName#>> Get<#=DisplayName#>s(<#=DisplayName#> obj);
+    }
+}
+
+//LocalClient
+         #region I<#=DisplayName#> 成员
+
+        public bool Add<#=DisplayName#>(<#=DisplayName#> obj)
+        {
+            <#=DisplayName#>Mgr mgr = new <#=DisplayName#>Mgr();
+            return mgr.Add<#=DisplayName#>(obj);
+        }
+
+        public bool Update<#=DisplayName#>(<#=DisplayName#> obj)
+        {
+            <#=DisplayName#>Mgr mgr = new <#=DisplayName#>Mgr();
+            return mgr.Update<#=DisplayName#>(obj, obj.ID);
+        }
+
+        public bool Delete<#=DisplayName#>(string key)
+        {
+            <#=DisplayName#>Mgr mgr = new <#=DisplayName#>Mgr();
+            return mgr.Delete<#=DisplayName#>(key);
+        }
+
+        public <#=DisplayName#> Get<#=DisplayName#>(string key)
+        {
+            <#=DisplayName#>Mgr mgr = new <#=DisplayName#>Mgr();
+            return mgr.Get<#=DisplayName#>(key);
+        }
+
+        public List<<#=DisplayName#>> Get<#=DisplayName#>s(<#=DisplayName#> obj)
+        {
+            <#=DisplayName#>Mgr mgr = new <#=DisplayName#>Mgr();
+            return mgr.Get<#=DisplayName#>s(obj);
+        }
+
+        #endregion
+
+
+//WebService
+		#region 业务
+        [WebMethod(EnableSession = true, Description = "添加一个")]
+        private bool Add<#=DisplayName#>(string objstr)
+        {
+            <#=DisplayName#> obj = BinarySerializer.Deserialize(objstr) as <#=DisplayName#>;
+            return BT_MaterialStorageLocalClient.GetClient().Add<#=DisplayName#>(obj);
+        }
+        [WebMethod(EnableSession = true, Description = "更改一个")]
+        private bool Update<#=DisplayName#>(string objstr)
+        {
+            <#=DisplayName#> obj = BinarySerializer.Deserialize(objstr) as <#=DisplayName#>;
+            return BT_MaterialStorageLocalClient.GetClient().Update<#=DisplayName#>(obj);
+        }
+        [WebMethod(EnableSession = true, Description = "删除一个")]
+        private bool Delete<#=DisplayName#>(string key)
+        {
+            return BT_MaterialStorageLocalClient.GetClient().Delete<#=DisplayName#>(key);
+        }
+        [WebMethod(EnableSession = true, Description = "获得一个")]
+        private string Get<#=DisplayName#>(string key)
+        {
+            return BinarySerializer.Serialize(BT_MaterialStorageLocalClient.GetClient().Get<#=DisplayName#>(key));
+        }
+        [WebMethod(EnableSession = true, Description = "获得多个")]
+        private string Get<#=DisplayName#>s(string objstr)
+        {
+            <#=DisplayName#> obj = BinarySerializer.Deserialize(objstr) as <#=DisplayName#>;
+            return BinarySerializer.Serialize(BT_MaterialStorageLocalClient.GetClient().Get<#=DisplayName#>s(obj));
+        } 
+        #endregion
+
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+	<!--实体类别名-->
+	<alias>
+		<typeAlias alias="<#=EntityName#>" type="<#=EntityNameSpace.TrimEnd('.')#>.<#=EntityName#>,<#=EntityAssembly#>" />
+	</alias>
+	<!--结果返回集-->
+	<resultMaps>
+		<resultMap id="SelectAll<#=DisplayName#>" class="<#=EntityName#>">
+<# foreach (Field field in page.Fields) { if(field.Name=="") field.Name = "Null"+Flag.ToString();#>
+			<result property="<#=field.Name#>" column="<#=field.Name#>"/>
+<#}#>
+		</resultMap>
+	</resultMaps>
+	<!--操作指令-->
+	<statements>
+		<!--查询-->
+		<select id="Select<#=DisplayName#>" resultMap="SelectAll<#=DisplayName#>">
+			SELECT
+<# for (int i = 0; i < page.Fields.Count; i++) {  Field field = page.Fields[i]; if(field.Name=="") { field.Name = "Null"+Flag.ToString();}#>
+			<#=field.Name+((i<page.Fields.Count-1)?",":"")#>
+<#}#>
+			FROM <#=DisplayName#>
+			WHERE  1=1
+<#foreach (Field field in page.Fields) { if(field.Name=="") {field.Name = "Null"+Flag.ToString();}#>
+			<isNotEmpty  prepend="AND" property="<#=field.Name#>">
+				<#=field.Name#> = #<#=field.Name#>#
+			</isNotEmpty>
+<#}#>
+			<isNotEmpty prepend="ORDER BY " property="SortField">
+				$SortField$
+				<isEqual property="IsDesc" compareValue="true">
+				  DESC
+				</isEqual>
+			</isNotEmpty>
+		</select>
+	</statements>
+</sqlMap>
+<#}EndFile();#>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+	<!--实体类别名-->
+	<alias>
+		<typeAlias alias="TableDicationaryEntity" type="DynamicEntity.TableDicationaryEntity,EntityTemplate" />
+	</alias>
+	<!--结果返回集-->
+	<resultMaps>
+		<resultMap id="SelectAllTableDicationary" class="TableDicationaryEntity">
+			<result property="表名" column="表名"/>
+			<result property="字段序号" column="字段序号"/>
+			<result property="字段名" column="字段名"/>
+			<result property="标识" column="标识"/>
+			<result property="主键" column="主键"/>
+			<result property="类型" column="类型"/>
+			<result property="占用字节数" column="占用字节数"/>
+			<result property="长度" column="长度"/>
+			<result property="小数位数" column="小数位数"/>
+			<result property="允许空" column="允许空"/>
+			<result property="默认值" column="默认值"/>
+			<result property="说明" column="说明"/>
+		</resultMap>
+	</resultMaps>
+	<!--操作指令-->
+	<statements>
+		<!--查询-->
+		<select id="SelectTableDicationary" resultMap="SelectAllTableDicationary">
+			SELECT
+			表名,
+			字段序号,
+			字段名,
+			标识,
+			主键,
+			类型,
+			占用字节数,
+			长度,
+			小数位数,
+			允许空,
+			默认值,
+			说明
+			FROM TableDicationary
+			WHERE  1=1
+			<isNotEmpty  prepend="AND" property="表名">
+				表名 = #表名#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="字段序号">
+				字段序号 = #字段序号#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="字段名">
+				字段名 = #字段名#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="标识">
+				标识 = #标识#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="主键">
+				主键 = #主键#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="类型">
+				类型 = #类型#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="占用字节数">
+				占用字节数 = #占用字节数#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="长度">
+				长度 = #长度#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="小数位数">
+				小数位数 = #小数位数#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="允许空">
+				允许空 = #允许空#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="默认值">
+				默认值 = #默认值#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="说明">
+				说明 = #说明#
+			</isNotEmpty>
+			<isNotEmpty prepend="ORDER BY " property="OrderField">
+				$OrderField$
+				<isEqual property="IsDesc" compareValue="true">
+				  DESC
+				</isEqual>
+			</isNotEmpty>
+		</select>
+	</statements>
+</sqlMap>

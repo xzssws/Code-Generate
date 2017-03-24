@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+	<!--实体类别名-->
+	<alias>
+		<typeAlias alias="UserInfoEntity" type="DynamicEntity.UserInfoEntity,EntityTemplate" />
+	</alias>
+	<!--结果返回集-->
+	<resultMaps>
+		<resultMap id="SelectAllUserInfo" class="UserInfoEntity">
+			<result property="UserId" column="UserId"/>
+			<result property="UserCode" column="UserCode"/>
+			<result property="UserPwd" column="UserPwd"/>
+			<result property="UserName" column="UserName"/>
+			<result property="UnitId" column="UnitId"/>
+			<result property="Sex" column="Sex"/>
+			<result property="Linktel" column="Linktel"/>
+			<result property="Email" column="Email"/>
+			<result property="State" column="State"/>
+			<result property="Describe" column="Describe"/>
+			<result property="LoginIp" column="LoginIp"/>
+			<result property="Ssq" column="Ssq"/>
+		</resultMap>
+	</resultMaps>
+	<!--操作指令-->
+	<statements>
+		<!--查询-->
+		<select id="SelectUserInfo" resultMap="SelectAllUserInfo">
+			SELECT
+			UserId,
+			UserCode,
+			UserPwd,
+			UserName,
+			UnitId,
+			Sex,
+			Linktel,
+			Email,
+			State,
+			Describe,
+			LoginIp,
+			Ssq
+			FROM UserInfo
+			WHERE  1=1
+			<isNotEmpty  prepend="AND" property="UserId">
+				UserId = #UserId#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="UserCode">
+				UserCode = #UserCode#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="UserPwd">
+				UserPwd = #UserPwd#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="UserName">
+				UserName = #UserName#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="UnitId">
+				UnitId = #UnitId#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="Sex">
+				Sex = #Sex#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="Linktel">
+				Linktel = #Linktel#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="Email">
+				Email = #Email#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="State">
+				State = #State#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="Describe">
+				Describe = #Describe#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="LoginIp">
+				LoginIp = #LoginIp#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="Ssq">
+				Ssq = #Ssq#
+			</isNotEmpty>
+			<isNotEmpty prepend="ORDER BY " property="OrderField">
+				$OrderField$
+				<isEqual property="IsDesc" compareValue="true">
+				  DESC
+				</isEqual>
+			</isNotEmpty>
+		</select>
+		<!--添加-->
+		<insert id="AddUserInfo" parameterClass="UserInfoEntity">
+			INSERT INTO UserInfo
+			(
+			UserId,
+			UserCode,
+			UserPwd,
+			UserName,
+			UnitId,
+			Sex,
+			Linktel,
+			Email,
+			State,
+			Describe,
+			LoginIp,
+			Ssq
+
+			) VALUES (
+
+			#UserId#,
+			#UserCode#,
+			#UserPwd#,
+			#UserName#,
+			#UnitId#,
+			#Sex#,
+			#Linktel#,
+			#Email#,
+			#State#,
+			#Describe#,
+			#LoginIp#,
+			#Ssq#
+			
+			);
+		</insert>
+		<!--更新-->
+		<update id ="UpdateUserInfo" parameterClass="UserInfoEntity">
+			UPDATE UserInfo
+			SET
+			UserId = #UserId#
+			<isNotEmpty prepend="," property="UserId">
+				UserId = #UserId#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="UserCode">
+				UserCode = #UserCode#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="UserPwd">
+				UserPwd = #UserPwd#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="UserName">
+				UserName = #UserName#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="UnitId">
+				UnitId = #UnitId#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="Sex">
+				Sex = #Sex#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="Linktel">
+				Linktel = #Linktel#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="Email">
+				Email = #Email#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="State">
+				State = #State#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="Describe">
+				Describe = #Describe#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="LoginIp">
+				LoginIp = #LoginIp#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="Ssq">
+				Ssq = #Ssq#
+			</isNotEmpty>
+			WHERE  UserId = #UserId#
+		</update>
+		<!--删除-->
+		<delete id="DeleteUserInfo" parameterClass="string">
+			DELETE UserInfo WHERE  UserId = #value#;
+		</delete>
+
+	</statements>
+</sqlMap>

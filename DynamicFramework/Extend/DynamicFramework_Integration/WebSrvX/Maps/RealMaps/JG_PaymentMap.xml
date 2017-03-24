@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+	<!--实体类别名-->
+	<alias>
+		<typeAlias alias="JG_PaymentEntity" type="DynamicEntity.JG_PaymentEntity,EntityTemplate" />
+	</alias>
+	<!--结果返回集-->
+	<resultMaps>
+		<resultMap id="SelectAllJG_Payment" class="JG_PaymentEntity">
+			<result property="PA_ID" column="PA_ID"/>
+			<result property="PA_xybh" column="PA_xybh"/>
+			<result property="PA_zqlb" column="PA_zqlb"/>
+			<result property="PA_zqje" column="PA_zqje"/>
+			<result property="PA_zqjd" column="PA_zqjd"/>
+			<result property="PA_fkfzh" column="PA_fkfzh"/>
+			<result property="PA_fkfmc" column="PA_fkfmc"/>
+			<result property="PA_fkBank" column="PA_fkBank"/>
+			<result property="PA_fkfye" column="PA_fkfye"/>
+			<result property="PA_skfzh" column="PA_skfzh"/>
+			<result property="PA_skfmc" column="PA_skfmc"/>
+			<result property="PA_skBank" column="PA_skBank"/>
+			<result property="PA_zfqqlsh" column="PA_zfqqlsh"/>
+			<result property="PA_zfqrlsh" column="PA_zfqrlsh"/>
+			<result property="PA_zfrq" column="PA_zfrq"/>
+			<result property="PA_yhzfrq" column="PA_yhzfrq"/>
+			<result property="PA_sqr" column="PA_sqr"/>
+			<result property="PA_sqrq" column="PA_sqrq"/>
+			<result property="PA_shr" column="PA_shr"/>
+			<result property="PA_shrq" column="PA_shrq"/>
+			<result property="PA_lc" column="PA_lc"/>
+			<result property="PA_Person" column="PA_Person"/>
+			<result property="PA_BankCode" column="PA_BankCode"/>
+			<result property="PA_Remark" column="PA_Remark"/>
+		</resultMap>
+	</resultMaps>
+	<!--操作指令-->
+	<statements>
+		<!--查询-->
+		<select id="SelectJG_Payment" resultMap="SelectAllJG_Payment">
+			SELECT
+			PA_ID,
+			PA_xybh,
+			PA_zqlb,
+			PA_zqje,
+			PA_zqjd,
+			PA_fkfzh,
+			PA_fkfmc,
+			PA_fkBank,
+			PA_fkfye,
+			PA_skfzh,
+			PA_skfmc,
+			PA_skBank,
+			PA_zfqqlsh,
+			PA_zfqrlsh,
+			PA_zfrq,
+			PA_yhzfrq,
+			PA_sqr,
+			PA_sqrq,
+			PA_shr,
+			PA_shrq,
+			PA_lc,
+			PA_Person,
+			PA_BankCode,
+			PA_Remark
+			FROM JG_Payment
+			WHERE  1=1
+			<isNotEmpty  prepend="AND" property="PA_ID">
+				PA_ID = #PA_ID#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="PA_xybh">
+				PA_xybh = #PA_xybh#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="PA_zqlb">
+				PA_zqlb = #PA_zqlb#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="PA_zqje">
+				PA_zqje = #PA_zqje#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="PA_zqjd">
+				PA_zqjd = #PA_zqjd#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="PA_fkfzh">
+				PA_fkfzh = #PA_fkfzh#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="PA_fkfmc">
+				PA_fkfmc = #PA_fkfmc#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="PA_fkBank">
+				PA_fkBank = #PA_fkBank#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="PA_fkfye">
+				PA_fkfye = #PA_fkfye#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="PA_skfzh">
+				PA_skfzh = #PA_skfzh#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="PA_skfmc">
+				PA_skfmc = #PA_skfmc#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="PA_skBank">
+				PA_skBank = #PA_skBank#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="PA_zfqqlsh">
+				PA_zfqqlsh = #PA_zfqqlsh#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="PA_zfqrlsh">
+				PA_zfqrlsh = #PA_zfqrlsh#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="PA_zfrq">
+				PA_zfrq = #PA_zfrq#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="PA_yhzfrq">
+				PA_yhzfrq = #PA_yhzfrq#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="PA_sqr">
+				PA_sqr = #PA_sqr#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="PA_sqrq">
+				PA_sqrq = #PA_sqrq#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="PA_shr">
+				PA_shr = #PA_shr#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="PA_shrq">
+				PA_shrq = #PA_shrq#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="PA_lc">
+				PA_lc = #PA_lc#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="PA_Person">
+				PA_Person = #PA_Person#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="PA_BankCode">
+				PA_BankCode = #PA_BankCode#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="PA_Remark">
+				PA_Remark = #PA_Remark#
+			</isNotEmpty>
+			<isNotEmpty prepend="ORDER BY " property="SortField">
+				$SortField$
+				<isEqual property="IsDesc" compareValue="true">
+				  DESC
+				</isEqual>
+			</isNotEmpty>
+		</select>
+		<!--添加-->
+		<insert id="AddJG_Payment" parameterClass="JG_PaymentEntity">
+			INSERT INTO JG_Payment
+			(
+
+				PA_ID
+				<isNotEmpty prepend=","   property="PA_xybh">
+					PA_xybh
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_zqlb">
+					PA_zqlb
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_zqje">
+					PA_zqje
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_zqjd">
+					PA_zqjd
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_fkfzh">
+					PA_fkfzh
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_fkfmc">
+					PA_fkfmc
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_fkBank">
+					PA_fkBank
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_fkfye">
+					PA_fkfye
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_skfzh">
+					PA_skfzh
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_skfmc">
+					PA_skfmc
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_skBank">
+					PA_skBank
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_zfqqlsh">
+					PA_zfqqlsh
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_zfqrlsh">
+					PA_zfqrlsh
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_zfrq">
+					PA_zfrq
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_yhzfrq">
+					PA_yhzfrq
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_sqr">
+					PA_sqr
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_sqrq">
+					PA_sqrq
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_shr">
+					PA_shr
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_shrq">
+					PA_shrq
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_lc">
+					PA_lc
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_Person">
+					PA_Person
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_BankCode">
+					PA_BankCode
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_Remark">
+					PA_Remark
+				  </isNotEmpty>
+
+			) VALUES (
+			
+				#PA_ID#
+				<isNotEmpty prepend=","   property="PA_xybh">
+					#PA_xybh#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_zqlb">
+					#PA_zqlb#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_zqje">
+					#PA_zqje#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_zqjd">
+					#PA_zqjd#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_fkfzh">
+					#PA_fkfzh#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_fkfmc">
+					#PA_fkfmc#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_fkBank">
+					#PA_fkBank#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_fkfye">
+					#PA_fkfye#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_skfzh">
+					#PA_skfzh#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_skfmc">
+					#PA_skfmc#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_skBank">
+					#PA_skBank#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_zfqqlsh">
+					#PA_zfqqlsh#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_zfqrlsh">
+					#PA_zfqrlsh#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_zfrq">
+					#PA_zfrq#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_yhzfrq">
+					#PA_yhzfrq#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_sqr">
+					#PA_sqr#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_sqrq">
+					#PA_sqrq#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_shr">
+					#PA_shr#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_shrq">
+					#PA_shrq#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_lc">
+					#PA_lc#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_Person">
+					#PA_Person#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_BankCode">
+					#PA_BankCode#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PA_Remark">
+					#PA_Remark#
+				  </isNotEmpty>
+			
+			);
+		</insert>
+		<!--更新-->
+
+		<update id ="UpdateJG_Payment" parameterClass="JG_PaymentEntity">
+			UPDATE JG_Payment
+			SET
+			PA_ID = #PA_ID#
+			<isNotEmpty prepend="," property="PA_ID">
+				PA_ID = #PA_ID#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="PA_xybh">
+				PA_xybh = #PA_xybh#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="PA_zqlb">
+				PA_zqlb = #PA_zqlb#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="PA_zqje">
+				PA_zqje = #PA_zqje#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="PA_zqjd">
+				PA_zqjd = #PA_zqjd#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="PA_fkfzh">
+				PA_fkfzh = #PA_fkfzh#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="PA_fkfmc">
+				PA_fkfmc = #PA_fkfmc#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="PA_fkBank">
+				PA_fkBank = #PA_fkBank#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="PA_fkfye">
+				PA_fkfye = #PA_fkfye#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="PA_skfzh">
+				PA_skfzh = #PA_skfzh#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="PA_skfmc">
+				PA_skfmc = #PA_skfmc#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="PA_skBank">
+				PA_skBank = #PA_skBank#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="PA_zfqqlsh">
+				PA_zfqqlsh = #PA_zfqqlsh#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="PA_zfqrlsh">
+				PA_zfqrlsh = #PA_zfqrlsh#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="PA_zfrq">
+				PA_zfrq = #PA_zfrq#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="PA_yhzfrq">
+				PA_yhzfrq = #PA_yhzfrq#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="PA_sqr">
+				PA_sqr = #PA_sqr#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="PA_sqrq">
+				PA_sqrq = #PA_sqrq#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="PA_shr">
+				PA_shr = #PA_shr#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="PA_shrq">
+				PA_shrq = #PA_shrq#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="PA_lc">
+				PA_lc = #PA_lc#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="PA_Person">
+				PA_Person = #PA_Person#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="PA_BankCode">
+				PA_BankCode = #PA_BankCode#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="PA_Remark">
+				PA_Remark = #PA_Remark#
+			</isNotEmpty>
+			WHERE  PA_ID = #PA_ID#
+		</update>
+		<!--删除-->
+		<delete id="DeleteJG_Payment" parameterClass="string">
+			DELETE JG_Payment WHERE  PA_ID = #value#;
+		</delete>
+
+	</statements>
+</sqlMap>

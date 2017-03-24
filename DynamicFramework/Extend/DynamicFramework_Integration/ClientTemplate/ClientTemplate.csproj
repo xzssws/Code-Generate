@@ -1,0 +1,297 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7360F9CD-4843-4EAA-906B-1B8BC0DAC465}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ClientTemplate</RootNamespace>
+    <AssemblyName>ClientTemplate</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Logic\auto\AdjustAccountTableClient.auto.cs">
+      <DependentUpon>LogicClient.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Logic\auto\FundCollectInfoClient.auto.cs">
+      <DependentUpon>LogicClient.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Logic\auto\ShowAllModelsClient.auto.cs">
+      <DependentUpon>LogicClient.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Logic\auto\TableDicationaryClient.auto.cs">
+      <DependentUpon>LogicClient.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Logic\auto\实体字典Client.auto.cs">
+      <DependentUpon>LogicClient.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Real\auto\DspFuncClient.auto.cs">
+      <DependentUpon>RealClient.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Real\auto\DutyClient.auto.cs">
+      <DependentUpon>RealClient.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Real\auto\DutyFunClient.auto.cs">
+      <DependentUpon>RealClient.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Real\auto\JG_AccountManageClient.auto.cs">
+      <DependentUpon>RealClient.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Real\auto\JG_AdjustClient.auto.cs">
+      <DependentUpon>RealClient.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Real\auto\JG_AmountCollectClient.auto.cs">
+      <DependentUpon>RealClient.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Real\auto\JG_BranchesClient.auto.cs">
+      <DependentUpon>RealClient.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Real\auto\JG_DepositClient.auto.cs">
+      <DependentUpon>RealClient.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Real\auto\JG_InterestClient.auto.cs">
+      <DependentUpon>RealClient.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Real\auto\JG_InterestRateClient.auto.cs">
+      <DependentUpon>RealClient.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Real\auto\JG_ListidClient.auto.cs">
+      <DependentUpon>RealClient.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Real\auto\JG_MessageInfoClient.auto.cs">
+      <DependentUpon>RealClient.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Real\auto\JG_PaymentClient.auto.cs">
+      <DependentUpon>RealClient.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Real\auto\JG_SpvProtocolClient.auto.cs">
+      <DependentUpon>RealClient.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Real\auto\ParmClient.auto.cs">
+      <DependentUpon>RealClient.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Real\auto\ParmItemClient.auto.cs">
+      <DependentUpon>RealClient.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Real\auto\SerialNoConfigClient.auto.cs">
+      <DependentUpon>RealClient.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Real\auto\SysConfigClient.auto.cs">
+      <DependentUpon>RealClient.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Real\auto\UserDutyClient.auto.cs">
+      <DependentUpon>RealClient.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Real\auto\UserInfoClient.auto.cs">
+      <DependentUpon>RealClient.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\LogicService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\RealService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Custom\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\LogicService\AdjustAccountTableEntity.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\LogicService\FundCollectInfoEntity.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\LogicService\LogicSrv.disco" />
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\LogicService\LogicSrv.wsdl" />
+    <None Include="Web References\LogicService\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\LogicService\ShowAllModelsEntity.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\LogicService\TableDicationaryEntity.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\LogicService\实体字典Entity.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\RealService\DspFuncEntity.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\RealService\DutyEntity.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\RealService\DutyFunEntity.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\RealService\JG_AccountManageEntity.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\RealService\JG_AdjustEntity.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\RealService\JG_AmountCollectEntity.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\RealService\JG_BranchesEntity.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\RealService\JG_DepositEntity.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\RealService\JG_InterestEntity.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\RealService\JG_InterestRateEntity.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\RealService\JG_ListidEntity.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\RealService\JG_MessageInfoEntity.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\RealService\JG_PaymentEntity.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\RealService\JG_SpvProtocolEntity.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\RealService\ParmEntity.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\RealService\ParmItemEntity.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\RealService\RealSrv.disco" />
+    <None Include="Logic\auto\LogicClient.auto.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>LogicClient.auto.i</LastGenOutput>
+    </None>
+    <None Include="Real\auto\RealClient.auto.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>RealClient.auto.i</LastGenOutput>
+    </None>
+    <Content Include="Logic\auto\LogicClient.auto.i">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LogicClient.auto.tt</DependentUpon>
+    </Content>
+    <Content Include="Tools\TBuild.ttinclude" />
+    <None Include="Web References\RealService\RealSrv.wsdl" />
+    <None Include="Web References\RealService\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\RealService\SerialNoConfigEntity.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\RealService\SysConfigEntity.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\RealService\UserDutyEntity.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\RealService\UserInfoEntity.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Readme.txt" />
+    <Content Include="Real\auto\RealClient.auto.i">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RealClient.auto.tt</DependentUpon>
+    </Content>
+    <Content Include="Tools\iBuild.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://localhost:28124/Services/LogicSrv.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\LogicService\</RelPath>
+      <UpdateFromURL>http://localhost:28124/Services/LogicSrv.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>ClientTemplate_LogicService_LogicSrv</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://localhost:28232/Services/RealSrv.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\RealService\</RelPath>
+      <UpdateFromURL>http://localhost:28232/Services/RealSrv.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>ClientTemplate_RealService_RealSrv</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

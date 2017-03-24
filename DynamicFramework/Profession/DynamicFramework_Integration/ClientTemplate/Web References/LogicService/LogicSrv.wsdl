@@ -1,0 +1,1445 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="AdjustAccountTable_Select">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:AdjustAccountTableEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AdjustAccountTableEntity">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseEntity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="htbah" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="sqrq" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="qrrq" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="qrr" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="lc" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="fkzh" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="fkje" nillable="true" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="jexz" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ckr" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="cklsh" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ckyh" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="tkzh" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="id" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ckid" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="zflsh" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="czr" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="zhye" nillable="true" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="nxybh" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="BaseEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SortField" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsDesc" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AdjustAccountTable_SelectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AdjustAccountTable_SelectResult" type="tns:ArrayOfAdjustAccountTableEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfAdjustAccountTableEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AdjustAccountTableEntity" nillable="true" type="tns:AdjustAccountTableEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AdjustAccountTable_SelectForSort">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:AdjustAccountTableEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="sortField" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isDesc" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AdjustAccountTable_SelectForSortResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AdjustAccountTable_SelectForSortResult" type="tns:ArrayOfAdjustAccountTableEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AdjustAccountTable_SelectForPage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:AdjustAccountTableEntity" />
+            <s:element minOccurs="1" maxOccurs="1" name="Skip" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Count" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AdjustAccountTable_SelectForPageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AdjustAccountTable_SelectForPageResult" type="tns:ArrayOfAdjustAccountTableEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AdjustAccountTable_Selects">
+        <s:complexType />
+      </s:element>
+      <s:element name="AdjustAccountTable_SelectsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AdjustAccountTable_SelectsResult" type="tns:ArrayOfAdjustAccountTableEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AdjustAccountTable_SelectsForSort">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sortField" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isDesc" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AdjustAccountTable_SelectsForSortResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AdjustAccountTable_SelectsForSortResult" type="tns:ArrayOfAdjustAccountTableEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AdjustAccountTable_SelectsForPage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Skip" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Count" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AdjustAccountTable_SelectsForPageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AdjustAccountTable_SelectsForPageResult" type="tns:ArrayOfAdjustAccountTableEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FundCollectInfo_Select">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:FundCollectInfoEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="FundCollectInfoEntity">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseEntity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="XYBM" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="QYMC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="QYBH" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="FKZH" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="KHWD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="XMMC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SKZH" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SKFMC" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="JYJE" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="FKZHYE" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="SKZHYE" type="s:decimal" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="FundCollectInfo_SelectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FundCollectInfo_SelectResult" type="tns:ArrayOfFundCollectInfoEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfFundCollectInfoEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="FundCollectInfoEntity" nillable="true" type="tns:FundCollectInfoEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="FundCollectInfo_SelectForSort">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:FundCollectInfoEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="sortField" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isDesc" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FundCollectInfo_SelectForSortResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FundCollectInfo_SelectForSortResult" type="tns:ArrayOfFundCollectInfoEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FundCollectInfo_SelectForPage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:FundCollectInfoEntity" />
+            <s:element minOccurs="1" maxOccurs="1" name="Skip" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Count" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FundCollectInfo_SelectForPageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FundCollectInfo_SelectForPageResult" type="tns:ArrayOfFundCollectInfoEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FundCollectInfo_Selects">
+        <s:complexType />
+      </s:element>
+      <s:element name="FundCollectInfo_SelectsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FundCollectInfo_SelectsResult" type="tns:ArrayOfFundCollectInfoEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FundCollectInfo_SelectsForSort">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sortField" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isDesc" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FundCollectInfo_SelectsForSortResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FundCollectInfo_SelectsForSortResult" type="tns:ArrayOfFundCollectInfoEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FundCollectInfo_SelectsForPage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Skip" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Count" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FundCollectInfo_SelectsForPageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FundCollectInfo_SelectsForPageResult" type="tns:ArrayOfFundCollectInfoEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ShowAllModels_Select">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:ShowAllModelsEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ShowAllModelsEntity">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseEntity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="FieldPageName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="FieldName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="FieldType" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="FieldLabel" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="FieldPageLabel" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="FieldRemark" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ShowAllModels_SelectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ShowAllModels_SelectResult" type="tns:ArrayOfShowAllModelsEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfShowAllModelsEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ShowAllModelsEntity" nillable="true" type="tns:ShowAllModelsEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ShowAllModels_SelectForSort">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:ShowAllModelsEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="sortField" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isDesc" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ShowAllModels_SelectForSortResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ShowAllModels_SelectForSortResult" type="tns:ArrayOfShowAllModelsEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ShowAllModels_SelectForPage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:ShowAllModelsEntity" />
+            <s:element minOccurs="1" maxOccurs="1" name="Skip" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Count" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ShowAllModels_SelectForPageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ShowAllModels_SelectForPageResult" type="tns:ArrayOfShowAllModelsEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ShowAllModels_Selects">
+        <s:complexType />
+      </s:element>
+      <s:element name="ShowAllModels_SelectsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ShowAllModels_SelectsResult" type="tns:ArrayOfShowAllModelsEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ShowAllModels_SelectsForSort">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sortField" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isDesc" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ShowAllModels_SelectsForSortResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ShowAllModels_SelectsForSortResult" type="tns:ArrayOfShowAllModelsEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ShowAllModels_SelectsForPage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Skip" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Count" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ShowAllModels_SelectsForPageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ShowAllModels_SelectsForPageResult" type="tns:ArrayOfShowAllModelsEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TableDicationary_Select">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:TableDicationaryEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TableDicationaryEntity">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseEntity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="表名" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="字段序号" nillable="true" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="字段名" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="标识" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="主键" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="类型" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="占用字节数" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="长度" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="小数位数" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="允许空" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="默认值" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="说明" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="TableDicationary_SelectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TableDicationary_SelectResult" type="tns:ArrayOfTableDicationaryEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfTableDicationaryEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TableDicationaryEntity" nillable="true" type="tns:TableDicationaryEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="TableDicationary_SelectForSort">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:TableDicationaryEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="sortField" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isDesc" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TableDicationary_SelectForSortResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TableDicationary_SelectForSortResult" type="tns:ArrayOfTableDicationaryEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TableDicationary_SelectForPage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:TableDicationaryEntity" />
+            <s:element minOccurs="1" maxOccurs="1" name="Skip" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Count" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TableDicationary_SelectForPageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TableDicationary_SelectForPageResult" type="tns:ArrayOfTableDicationaryEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TableDicationary_Selects">
+        <s:complexType />
+      </s:element>
+      <s:element name="TableDicationary_SelectsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TableDicationary_SelectsResult" type="tns:ArrayOfTableDicationaryEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TableDicationary_SelectsForSort">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sortField" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isDesc" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TableDicationary_SelectsForSortResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TableDicationary_SelectsForSortResult" type="tns:ArrayOfTableDicationaryEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TableDicationary_SelectsForPage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Skip" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Count" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TableDicationary_SelectsForPageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TableDicationary_SelectsForPageResult" type="tns:ArrayOfTableDicationaryEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="实体字典_Select">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:实体字典Entity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="实体字典Entity">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseEntity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="字段" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="字段类型" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="字段备注" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="实体类" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="实体字典_SelectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="实体字典_SelectResult" type="tns:ArrayOf实体字典Entity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOf实体字典Entity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="实体字典Entity" nillable="true" type="tns:实体字典Entity" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="实体字典_SelectForSort">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:实体字典Entity" />
+            <s:element minOccurs="0" maxOccurs="1" name="sortField" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isDesc" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="实体字典_SelectForSortResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="实体字典_SelectForSortResult" type="tns:ArrayOf实体字典Entity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="实体字典_SelectForPage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:实体字典Entity" />
+            <s:element minOccurs="1" maxOccurs="1" name="Skip" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Count" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="实体字典_SelectForPageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="实体字典_SelectForPageResult" type="tns:ArrayOf实体字典Entity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="实体字典_Selects">
+        <s:complexType />
+      </s:element>
+      <s:element name="实体字典_SelectsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="实体字典_SelectsResult" type="tns:ArrayOf实体字典Entity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="实体字典_SelectsForSort">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sortField" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isDesc" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="实体字典_SelectsForSortResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="实体字典_SelectsForSortResult" type="tns:ArrayOf实体字典Entity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="实体字典_SelectsForPage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Skip" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Count" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="实体字典_SelectsForPageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="实体字典_SelectsForPageResult" type="tns:ArrayOf实体字典Entity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AdjustAccountTable_SelectSoapIn">
+    <wsdl:part name="parameters" element="tns:AdjustAccountTable_Select" />
+  </wsdl:message>
+  <wsdl:message name="AdjustAccountTable_SelectSoapOut">
+    <wsdl:part name="parameters" element="tns:AdjustAccountTable_SelectResponse" />
+  </wsdl:message>
+  <wsdl:message name="AdjustAccountTable_SelectForSortSoapIn">
+    <wsdl:part name="parameters" element="tns:AdjustAccountTable_SelectForSort" />
+  </wsdl:message>
+  <wsdl:message name="AdjustAccountTable_SelectForSortSoapOut">
+    <wsdl:part name="parameters" element="tns:AdjustAccountTable_SelectForSortResponse" />
+  </wsdl:message>
+  <wsdl:message name="AdjustAccountTable_SelectForPageSoapIn">
+    <wsdl:part name="parameters" element="tns:AdjustAccountTable_SelectForPage" />
+  </wsdl:message>
+  <wsdl:message name="AdjustAccountTable_SelectForPageSoapOut">
+    <wsdl:part name="parameters" element="tns:AdjustAccountTable_SelectForPageResponse" />
+  </wsdl:message>
+  <wsdl:message name="AdjustAccountTable_SelectsSoapIn">
+    <wsdl:part name="parameters" element="tns:AdjustAccountTable_Selects" />
+  </wsdl:message>
+  <wsdl:message name="AdjustAccountTable_SelectsSoapOut">
+    <wsdl:part name="parameters" element="tns:AdjustAccountTable_SelectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="AdjustAccountTable_SelectsForSortSoapIn">
+    <wsdl:part name="parameters" element="tns:AdjustAccountTable_SelectsForSort" />
+  </wsdl:message>
+  <wsdl:message name="AdjustAccountTable_SelectsForSortSoapOut">
+    <wsdl:part name="parameters" element="tns:AdjustAccountTable_SelectsForSortResponse" />
+  </wsdl:message>
+  <wsdl:message name="AdjustAccountTable_SelectsForPageSoapIn">
+    <wsdl:part name="parameters" element="tns:AdjustAccountTable_SelectsForPage" />
+  </wsdl:message>
+  <wsdl:message name="AdjustAccountTable_SelectsForPageSoapOut">
+    <wsdl:part name="parameters" element="tns:AdjustAccountTable_SelectsForPageResponse" />
+  </wsdl:message>
+  <wsdl:message name="FundCollectInfo_SelectSoapIn">
+    <wsdl:part name="parameters" element="tns:FundCollectInfo_Select" />
+  </wsdl:message>
+  <wsdl:message name="FundCollectInfo_SelectSoapOut">
+    <wsdl:part name="parameters" element="tns:FundCollectInfo_SelectResponse" />
+  </wsdl:message>
+  <wsdl:message name="FundCollectInfo_SelectForSortSoapIn">
+    <wsdl:part name="parameters" element="tns:FundCollectInfo_SelectForSort" />
+  </wsdl:message>
+  <wsdl:message name="FundCollectInfo_SelectForSortSoapOut">
+    <wsdl:part name="parameters" element="tns:FundCollectInfo_SelectForSortResponse" />
+  </wsdl:message>
+  <wsdl:message name="FundCollectInfo_SelectForPageSoapIn">
+    <wsdl:part name="parameters" element="tns:FundCollectInfo_SelectForPage" />
+  </wsdl:message>
+  <wsdl:message name="FundCollectInfo_SelectForPageSoapOut">
+    <wsdl:part name="parameters" element="tns:FundCollectInfo_SelectForPageResponse" />
+  </wsdl:message>
+  <wsdl:message name="FundCollectInfo_SelectsSoapIn">
+    <wsdl:part name="parameters" element="tns:FundCollectInfo_Selects" />
+  </wsdl:message>
+  <wsdl:message name="FundCollectInfo_SelectsSoapOut">
+    <wsdl:part name="parameters" element="tns:FundCollectInfo_SelectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="FundCollectInfo_SelectsForSortSoapIn">
+    <wsdl:part name="parameters" element="tns:FundCollectInfo_SelectsForSort" />
+  </wsdl:message>
+  <wsdl:message name="FundCollectInfo_SelectsForSortSoapOut">
+    <wsdl:part name="parameters" element="tns:FundCollectInfo_SelectsForSortResponse" />
+  </wsdl:message>
+  <wsdl:message name="FundCollectInfo_SelectsForPageSoapIn">
+    <wsdl:part name="parameters" element="tns:FundCollectInfo_SelectsForPage" />
+  </wsdl:message>
+  <wsdl:message name="FundCollectInfo_SelectsForPageSoapOut">
+    <wsdl:part name="parameters" element="tns:FundCollectInfo_SelectsForPageResponse" />
+  </wsdl:message>
+  <wsdl:message name="ShowAllModels_SelectSoapIn">
+    <wsdl:part name="parameters" element="tns:ShowAllModels_Select" />
+  </wsdl:message>
+  <wsdl:message name="ShowAllModels_SelectSoapOut">
+    <wsdl:part name="parameters" element="tns:ShowAllModels_SelectResponse" />
+  </wsdl:message>
+  <wsdl:message name="ShowAllModels_SelectForSortSoapIn">
+    <wsdl:part name="parameters" element="tns:ShowAllModels_SelectForSort" />
+  </wsdl:message>
+  <wsdl:message name="ShowAllModels_SelectForSortSoapOut">
+    <wsdl:part name="parameters" element="tns:ShowAllModels_SelectForSortResponse" />
+  </wsdl:message>
+  <wsdl:message name="ShowAllModels_SelectForPageSoapIn">
+    <wsdl:part name="parameters" element="tns:ShowAllModels_SelectForPage" />
+  </wsdl:message>
+  <wsdl:message name="ShowAllModels_SelectForPageSoapOut">
+    <wsdl:part name="parameters" element="tns:ShowAllModels_SelectForPageResponse" />
+  </wsdl:message>
+  <wsdl:message name="ShowAllModels_SelectsSoapIn">
+    <wsdl:part name="parameters" element="tns:ShowAllModels_Selects" />
+  </wsdl:message>
+  <wsdl:message name="ShowAllModels_SelectsSoapOut">
+    <wsdl:part name="parameters" element="tns:ShowAllModels_SelectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ShowAllModels_SelectsForSortSoapIn">
+    <wsdl:part name="parameters" element="tns:ShowAllModels_SelectsForSort" />
+  </wsdl:message>
+  <wsdl:message name="ShowAllModels_SelectsForSortSoapOut">
+    <wsdl:part name="parameters" element="tns:ShowAllModels_SelectsForSortResponse" />
+  </wsdl:message>
+  <wsdl:message name="ShowAllModels_SelectsForPageSoapIn">
+    <wsdl:part name="parameters" element="tns:ShowAllModels_SelectsForPage" />
+  </wsdl:message>
+  <wsdl:message name="ShowAllModels_SelectsForPageSoapOut">
+    <wsdl:part name="parameters" element="tns:ShowAllModels_SelectsForPageResponse" />
+  </wsdl:message>
+  <wsdl:message name="TableDicationary_SelectSoapIn">
+    <wsdl:part name="parameters" element="tns:TableDicationary_Select" />
+  </wsdl:message>
+  <wsdl:message name="TableDicationary_SelectSoapOut">
+    <wsdl:part name="parameters" element="tns:TableDicationary_SelectResponse" />
+  </wsdl:message>
+  <wsdl:message name="TableDicationary_SelectForSortSoapIn">
+    <wsdl:part name="parameters" element="tns:TableDicationary_SelectForSort" />
+  </wsdl:message>
+  <wsdl:message name="TableDicationary_SelectForSortSoapOut">
+    <wsdl:part name="parameters" element="tns:TableDicationary_SelectForSortResponse" />
+  </wsdl:message>
+  <wsdl:message name="TableDicationary_SelectForPageSoapIn">
+    <wsdl:part name="parameters" element="tns:TableDicationary_SelectForPage" />
+  </wsdl:message>
+  <wsdl:message name="TableDicationary_SelectForPageSoapOut">
+    <wsdl:part name="parameters" element="tns:TableDicationary_SelectForPageResponse" />
+  </wsdl:message>
+  <wsdl:message name="TableDicationary_SelectsSoapIn">
+    <wsdl:part name="parameters" element="tns:TableDicationary_Selects" />
+  </wsdl:message>
+  <wsdl:message name="TableDicationary_SelectsSoapOut">
+    <wsdl:part name="parameters" element="tns:TableDicationary_SelectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="TableDicationary_SelectsForSortSoapIn">
+    <wsdl:part name="parameters" element="tns:TableDicationary_SelectsForSort" />
+  </wsdl:message>
+  <wsdl:message name="TableDicationary_SelectsForSortSoapOut">
+    <wsdl:part name="parameters" element="tns:TableDicationary_SelectsForSortResponse" />
+  </wsdl:message>
+  <wsdl:message name="TableDicationary_SelectsForPageSoapIn">
+    <wsdl:part name="parameters" element="tns:TableDicationary_SelectsForPage" />
+  </wsdl:message>
+  <wsdl:message name="TableDicationary_SelectsForPageSoapOut">
+    <wsdl:part name="parameters" element="tns:TableDicationary_SelectsForPageResponse" />
+  </wsdl:message>
+  <wsdl:message name="实体字典_SelectSoapIn">
+    <wsdl:part name="parameters" element="tns:实体字典_Select" />
+  </wsdl:message>
+  <wsdl:message name="实体字典_SelectSoapOut">
+    <wsdl:part name="parameters" element="tns:实体字典_SelectResponse" />
+  </wsdl:message>
+  <wsdl:message name="实体字典_SelectForSortSoapIn">
+    <wsdl:part name="parameters" element="tns:实体字典_SelectForSort" />
+  </wsdl:message>
+  <wsdl:message name="实体字典_SelectForSortSoapOut">
+    <wsdl:part name="parameters" element="tns:实体字典_SelectForSortResponse" />
+  </wsdl:message>
+  <wsdl:message name="实体字典_SelectForPageSoapIn">
+    <wsdl:part name="parameters" element="tns:实体字典_SelectForPage" />
+  </wsdl:message>
+  <wsdl:message name="实体字典_SelectForPageSoapOut">
+    <wsdl:part name="parameters" element="tns:实体字典_SelectForPageResponse" />
+  </wsdl:message>
+  <wsdl:message name="实体字典_SelectsSoapIn">
+    <wsdl:part name="parameters" element="tns:实体字典_Selects" />
+  </wsdl:message>
+  <wsdl:message name="实体字典_SelectsSoapOut">
+    <wsdl:part name="parameters" element="tns:实体字典_SelectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="实体字典_SelectsForSortSoapIn">
+    <wsdl:part name="parameters" element="tns:实体字典_SelectsForSort" />
+  </wsdl:message>
+  <wsdl:message name="实体字典_SelectsForSortSoapOut">
+    <wsdl:part name="parameters" element="tns:实体字典_SelectsForSortResponse" />
+  </wsdl:message>
+  <wsdl:message name="实体字典_SelectsForPageSoapIn">
+    <wsdl:part name="parameters" element="tns:实体字典_SelectsForPage" />
+  </wsdl:message>
+  <wsdl:message name="实体字典_SelectsForPageSoapOut">
+    <wsdl:part name="parameters" element="tns:实体字典_SelectsForPageResponse" />
+  </wsdl:message>
+  <wsdl:portType name="LogicSrvSoap">
+    <wsdl:operation name="AdjustAccountTable_Select">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">条件查询[AdjustAccountTable]</wsdl:documentation>
+      <wsdl:input message="tns:AdjustAccountTable_SelectSoapIn" />
+      <wsdl:output message="tns:AdjustAccountTable_SelectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AdjustAccountTable_SelectForSort">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">条件查询并排序[AdjustAccountTable]</wsdl:documentation>
+      <wsdl:input message="tns:AdjustAccountTable_SelectForSortSoapIn" />
+      <wsdl:output message="tns:AdjustAccountTable_SelectForSortSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AdjustAccountTable_SelectForPage">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">条件查询分页[AdjustAccountTable]</wsdl:documentation>
+      <wsdl:input message="tns:AdjustAccountTable_SelectForPageSoapIn" />
+      <wsdl:output message="tns:AdjustAccountTable_SelectForPageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AdjustAccountTable_Selects">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询所有[AdjustAccountTable]</wsdl:documentation>
+      <wsdl:input message="tns:AdjustAccountTable_SelectsSoapIn" />
+      <wsdl:output message="tns:AdjustAccountTable_SelectsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AdjustAccountTable_SelectsForSort">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询并排序所有[AdjustAccountTable]</wsdl:documentation>
+      <wsdl:input message="tns:AdjustAccountTable_SelectsForSortSoapIn" />
+      <wsdl:output message="tns:AdjustAccountTable_SelectsForSortSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AdjustAccountTable_SelectsForPage">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询所有[AdjustAccountTable]分页</wsdl:documentation>
+      <wsdl:input message="tns:AdjustAccountTable_SelectsForPageSoapIn" />
+      <wsdl:output message="tns:AdjustAccountTable_SelectsForPageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FundCollectInfo_Select">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">条件查询[FundCollectInfo]</wsdl:documentation>
+      <wsdl:input message="tns:FundCollectInfo_SelectSoapIn" />
+      <wsdl:output message="tns:FundCollectInfo_SelectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FundCollectInfo_SelectForSort">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">条件查询并排序[FundCollectInfo]</wsdl:documentation>
+      <wsdl:input message="tns:FundCollectInfo_SelectForSortSoapIn" />
+      <wsdl:output message="tns:FundCollectInfo_SelectForSortSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FundCollectInfo_SelectForPage">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">条件查询分页[FundCollectInfo]</wsdl:documentation>
+      <wsdl:input message="tns:FundCollectInfo_SelectForPageSoapIn" />
+      <wsdl:output message="tns:FundCollectInfo_SelectForPageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FundCollectInfo_Selects">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询所有[FundCollectInfo]</wsdl:documentation>
+      <wsdl:input message="tns:FundCollectInfo_SelectsSoapIn" />
+      <wsdl:output message="tns:FundCollectInfo_SelectsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FundCollectInfo_SelectsForSort">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询并排序所有[FundCollectInfo]</wsdl:documentation>
+      <wsdl:input message="tns:FundCollectInfo_SelectsForSortSoapIn" />
+      <wsdl:output message="tns:FundCollectInfo_SelectsForSortSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FundCollectInfo_SelectsForPage">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询所有[FundCollectInfo]分页</wsdl:documentation>
+      <wsdl:input message="tns:FundCollectInfo_SelectsForPageSoapIn" />
+      <wsdl:output message="tns:FundCollectInfo_SelectsForPageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ShowAllModels_Select">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">条件查询[ShowAllModels]</wsdl:documentation>
+      <wsdl:input message="tns:ShowAllModels_SelectSoapIn" />
+      <wsdl:output message="tns:ShowAllModels_SelectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ShowAllModels_SelectForSort">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">条件查询并排序[ShowAllModels]</wsdl:documentation>
+      <wsdl:input message="tns:ShowAllModels_SelectForSortSoapIn" />
+      <wsdl:output message="tns:ShowAllModels_SelectForSortSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ShowAllModels_SelectForPage">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">条件查询分页[ShowAllModels]</wsdl:documentation>
+      <wsdl:input message="tns:ShowAllModels_SelectForPageSoapIn" />
+      <wsdl:output message="tns:ShowAllModels_SelectForPageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ShowAllModels_Selects">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询所有[ShowAllModels]</wsdl:documentation>
+      <wsdl:input message="tns:ShowAllModels_SelectsSoapIn" />
+      <wsdl:output message="tns:ShowAllModels_SelectsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ShowAllModels_SelectsForSort">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询并排序所有[ShowAllModels]</wsdl:documentation>
+      <wsdl:input message="tns:ShowAllModels_SelectsForSortSoapIn" />
+      <wsdl:output message="tns:ShowAllModels_SelectsForSortSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ShowAllModels_SelectsForPage">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询所有[ShowAllModels]分页</wsdl:documentation>
+      <wsdl:input message="tns:ShowAllModels_SelectsForPageSoapIn" />
+      <wsdl:output message="tns:ShowAllModels_SelectsForPageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TableDicationary_Select">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">条件查询[TableDicationary]</wsdl:documentation>
+      <wsdl:input message="tns:TableDicationary_SelectSoapIn" />
+      <wsdl:output message="tns:TableDicationary_SelectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TableDicationary_SelectForSort">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">条件查询并排序[TableDicationary]</wsdl:documentation>
+      <wsdl:input message="tns:TableDicationary_SelectForSortSoapIn" />
+      <wsdl:output message="tns:TableDicationary_SelectForSortSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TableDicationary_SelectForPage">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">条件查询分页[TableDicationary]</wsdl:documentation>
+      <wsdl:input message="tns:TableDicationary_SelectForPageSoapIn" />
+      <wsdl:output message="tns:TableDicationary_SelectForPageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TableDicationary_Selects">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询所有[TableDicationary]</wsdl:documentation>
+      <wsdl:input message="tns:TableDicationary_SelectsSoapIn" />
+      <wsdl:output message="tns:TableDicationary_SelectsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TableDicationary_SelectsForSort">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询并排序所有[TableDicationary]</wsdl:documentation>
+      <wsdl:input message="tns:TableDicationary_SelectsForSortSoapIn" />
+      <wsdl:output message="tns:TableDicationary_SelectsForSortSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TableDicationary_SelectsForPage">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询所有[TableDicationary]分页</wsdl:documentation>
+      <wsdl:input message="tns:TableDicationary_SelectsForPageSoapIn" />
+      <wsdl:output message="tns:TableDicationary_SelectsForPageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="实体字典_Select">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">条件查询[实体字典]</wsdl:documentation>
+      <wsdl:input message="tns:实体字典_SelectSoapIn" />
+      <wsdl:output message="tns:实体字典_SelectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="实体字典_SelectForSort">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">条件查询并排序[实体字典]</wsdl:documentation>
+      <wsdl:input message="tns:实体字典_SelectForSortSoapIn" />
+      <wsdl:output message="tns:实体字典_SelectForSortSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="实体字典_SelectForPage">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">条件查询分页[实体字典]</wsdl:documentation>
+      <wsdl:input message="tns:实体字典_SelectForPageSoapIn" />
+      <wsdl:output message="tns:实体字典_SelectForPageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="实体字典_Selects">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询所有[实体字典]</wsdl:documentation>
+      <wsdl:input message="tns:实体字典_SelectsSoapIn" />
+      <wsdl:output message="tns:实体字典_SelectsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="实体字典_SelectsForSort">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询并排序所有[实体字典]</wsdl:documentation>
+      <wsdl:input message="tns:实体字典_SelectsForSortSoapIn" />
+      <wsdl:output message="tns:实体字典_SelectsForSortSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="实体字典_SelectsForPage">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询所有[实体字典]分页</wsdl:documentation>
+      <wsdl:input message="tns:实体字典_SelectsForPageSoapIn" />
+      <wsdl:output message="tns:实体字典_SelectsForPageSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="LogicSrvSoap" type="tns:LogicSrvSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AdjustAccountTable_Select">
+      <soap:operation soapAction="http://tempuri.org/AdjustAccountTable_Select" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdjustAccountTable_SelectForSort">
+      <soap:operation soapAction="http://tempuri.org/AdjustAccountTable_SelectForSort" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdjustAccountTable_SelectForPage">
+      <soap:operation soapAction="http://tempuri.org/AdjustAccountTable_SelectForPage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdjustAccountTable_Selects">
+      <soap:operation soapAction="http://tempuri.org/AdjustAccountTable_Selects" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdjustAccountTable_SelectsForSort">
+      <soap:operation soapAction="http://tempuri.org/AdjustAccountTable_SelectsForSort" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdjustAccountTable_SelectsForPage">
+      <soap:operation soapAction="http://tempuri.org/AdjustAccountTable_SelectsForPage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FundCollectInfo_Select">
+      <soap:operation soapAction="http://tempuri.org/FundCollectInfo_Select" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FundCollectInfo_SelectForSort">
+      <soap:operation soapAction="http://tempuri.org/FundCollectInfo_SelectForSort" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FundCollectInfo_SelectForPage">
+      <soap:operation soapAction="http://tempuri.org/FundCollectInfo_SelectForPage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FundCollectInfo_Selects">
+      <soap:operation soapAction="http://tempuri.org/FundCollectInfo_Selects" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FundCollectInfo_SelectsForSort">
+      <soap:operation soapAction="http://tempuri.org/FundCollectInfo_SelectsForSort" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FundCollectInfo_SelectsForPage">
+      <soap:operation soapAction="http://tempuri.org/FundCollectInfo_SelectsForPage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ShowAllModels_Select">
+      <soap:operation soapAction="http://tempuri.org/ShowAllModels_Select" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ShowAllModels_SelectForSort">
+      <soap:operation soapAction="http://tempuri.org/ShowAllModels_SelectForSort" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ShowAllModels_SelectForPage">
+      <soap:operation soapAction="http://tempuri.org/ShowAllModels_SelectForPage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ShowAllModels_Selects">
+      <soap:operation soapAction="http://tempuri.org/ShowAllModels_Selects" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ShowAllModels_SelectsForSort">
+      <soap:operation soapAction="http://tempuri.org/ShowAllModels_SelectsForSort" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ShowAllModels_SelectsForPage">
+      <soap:operation soapAction="http://tempuri.org/ShowAllModels_SelectsForPage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TableDicationary_Select">
+      <soap:operation soapAction="http://tempuri.org/TableDicationary_Select" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TableDicationary_SelectForSort">
+      <soap:operation soapAction="http://tempuri.org/TableDicationary_SelectForSort" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TableDicationary_SelectForPage">
+      <soap:operation soapAction="http://tempuri.org/TableDicationary_SelectForPage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TableDicationary_Selects">
+      <soap:operation soapAction="http://tempuri.org/TableDicationary_Selects" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TableDicationary_SelectsForSort">
+      <soap:operation soapAction="http://tempuri.org/TableDicationary_SelectsForSort" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TableDicationary_SelectsForPage">
+      <soap:operation soapAction="http://tempuri.org/TableDicationary_SelectsForPage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="实体字典_Select">
+      <soap:operation soapAction="http://tempuri.org/实体字典_Select" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="实体字典_SelectForSort">
+      <soap:operation soapAction="http://tempuri.org/实体字典_SelectForSort" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="实体字典_SelectForPage">
+      <soap:operation soapAction="http://tempuri.org/实体字典_SelectForPage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="实体字典_Selects">
+      <soap:operation soapAction="http://tempuri.org/实体字典_Selects" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="实体字典_SelectsForSort">
+      <soap:operation soapAction="http://tempuri.org/实体字典_SelectsForSort" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="实体字典_SelectsForPage">
+      <soap:operation soapAction="http://tempuri.org/实体字典_SelectsForPage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="LogicSrvSoap12" type="tns:LogicSrvSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AdjustAccountTable_Select">
+      <soap12:operation soapAction="http://tempuri.org/AdjustAccountTable_Select" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdjustAccountTable_SelectForSort">
+      <soap12:operation soapAction="http://tempuri.org/AdjustAccountTable_SelectForSort" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdjustAccountTable_SelectForPage">
+      <soap12:operation soapAction="http://tempuri.org/AdjustAccountTable_SelectForPage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdjustAccountTable_Selects">
+      <soap12:operation soapAction="http://tempuri.org/AdjustAccountTable_Selects" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdjustAccountTable_SelectsForSort">
+      <soap12:operation soapAction="http://tempuri.org/AdjustAccountTable_SelectsForSort" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdjustAccountTable_SelectsForPage">
+      <soap12:operation soapAction="http://tempuri.org/AdjustAccountTable_SelectsForPage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FundCollectInfo_Select">
+      <soap12:operation soapAction="http://tempuri.org/FundCollectInfo_Select" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FundCollectInfo_SelectForSort">
+      <soap12:operation soapAction="http://tempuri.org/FundCollectInfo_SelectForSort" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FundCollectInfo_SelectForPage">
+      <soap12:operation soapAction="http://tempuri.org/FundCollectInfo_SelectForPage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FundCollectInfo_Selects">
+      <soap12:operation soapAction="http://tempuri.org/FundCollectInfo_Selects" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FundCollectInfo_SelectsForSort">
+      <soap12:operation soapAction="http://tempuri.org/FundCollectInfo_SelectsForSort" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FundCollectInfo_SelectsForPage">
+      <soap12:operation soapAction="http://tempuri.org/FundCollectInfo_SelectsForPage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ShowAllModels_Select">
+      <soap12:operation soapAction="http://tempuri.org/ShowAllModels_Select" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ShowAllModels_SelectForSort">
+      <soap12:operation soapAction="http://tempuri.org/ShowAllModels_SelectForSort" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ShowAllModels_SelectForPage">
+      <soap12:operation soapAction="http://tempuri.org/ShowAllModels_SelectForPage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ShowAllModels_Selects">
+      <soap12:operation soapAction="http://tempuri.org/ShowAllModels_Selects" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ShowAllModels_SelectsForSort">
+      <soap12:operation soapAction="http://tempuri.org/ShowAllModels_SelectsForSort" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ShowAllModels_SelectsForPage">
+      <soap12:operation soapAction="http://tempuri.org/ShowAllModels_SelectsForPage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TableDicationary_Select">
+      <soap12:operation soapAction="http://tempuri.org/TableDicationary_Select" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TableDicationary_SelectForSort">
+      <soap12:operation soapAction="http://tempuri.org/TableDicationary_SelectForSort" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TableDicationary_SelectForPage">
+      <soap12:operation soapAction="http://tempuri.org/TableDicationary_SelectForPage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TableDicationary_Selects">
+      <soap12:operation soapAction="http://tempuri.org/TableDicationary_Selects" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TableDicationary_SelectsForSort">
+      <soap12:operation soapAction="http://tempuri.org/TableDicationary_SelectsForSort" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TableDicationary_SelectsForPage">
+      <soap12:operation soapAction="http://tempuri.org/TableDicationary_SelectsForPage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="实体字典_Select">
+      <soap12:operation soapAction="http://tempuri.org/实体字典_Select" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="实体字典_SelectForSort">
+      <soap12:operation soapAction="http://tempuri.org/实体字典_SelectForSort" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="实体字典_SelectForPage">
+      <soap12:operation soapAction="http://tempuri.org/实体字典_SelectForPage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="实体字典_Selects">
+      <soap12:operation soapAction="http://tempuri.org/实体字典_Selects" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="实体字典_SelectsForSort">
+      <soap12:operation soapAction="http://tempuri.org/实体字典_SelectsForSort" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="实体字典_SelectsForPage">
+      <soap12:operation soapAction="http://tempuri.org/实体字典_SelectsForPage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="LogicSrv">
+    <wsdl:port name="LogicSrvSoap" binding="tns:LogicSrvSoap">
+      <soap:address location="http://localhost:28124/Services/LogicSrv.asmx" />
+    </wsdl:port>
+    <wsdl:port name="LogicSrvSoap12" binding="tns:LogicSrvSoap12">
+      <soap12:address location="http://localhost:28124/Services/LogicSrv.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

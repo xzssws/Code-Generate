@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+	<!--实体类别名-->
+	<alias>
+		<typeAlias alias="ParmItemEntity" type="DynamicEntity.ParmItemEntity,EntityTemplate" />
+	</alias>
+	<!--结果返回集-->
+	<resultMaps>
+		<resultMap id="SelectAllParmItem" class="ParmItemEntity">
+			<result property="PI_SetCode" column="PI_SetCode"/>
+			<result property="PI_ItemCode" column="PI_ItemCode"/>
+			<result property="PI_ItemName" column="PI_ItemName"/>
+			<result property="PI_ColorValue" column="PI_ColorValue"/>
+			<result property="PI_ItemValue" column="PI_ItemValue"/>
+			<result property="PI_ParentSetCode" column="PI_ParentSetCode"/>
+		</resultMap>
+	</resultMaps>
+	<!--操作指令-->
+	<statements>
+		<!--查询-->
+		<select id="SelectParmItem" resultMap="SelectAllParmItem">
+			SELECT
+			PI_SetCode,
+			PI_ItemCode,
+			PI_ItemName,
+			PI_ColorValue,
+			PI_ItemValue,
+			PI_ParentSetCode
+			FROM ParmItem
+			WHERE  1=1
+			<isNotEmpty  prepend="AND" property="PI_SetCode">
+				PI_SetCode = #PI_SetCode#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="PI_ItemCode">
+				PI_ItemCode = #PI_ItemCode#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="PI_ItemName">
+				PI_ItemName = #PI_ItemName#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="PI_ColorValue">
+				PI_ColorValue = #PI_ColorValue#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="PI_ItemValue">
+				PI_ItemValue = #PI_ItemValue#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="PI_ParentSetCode">
+				PI_ParentSetCode = #PI_ParentSetCode#
+			</isNotEmpty>
+			<isNotEmpty prepend="ORDER BY " property="SortField">
+				$SortField$
+				<isEqual property="IsDesc" compareValue="true">
+				  DESC
+				</isEqual>
+			</isNotEmpty>
+		</select>
+		<!--添加-->
+		<insert id="AddParmItem" parameterClass="ParmItemEntity">
+			INSERT INTO ParmItem
+			(
+
+				PI_SetCode
+				,PI_ItemCode
+				,PI_ItemName
+				<isNotEmpty prepend=","   property="PI_ColorValue">
+					PI_ColorValue
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PI_ItemValue">
+					PI_ItemValue
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PI_ParentSetCode">
+					PI_ParentSetCode
+				  </isNotEmpty>
+
+			) VALUES (
+			
+				#PI_SetCode#
+				#,PI_ItemCode#
+				#,PI_ItemName#
+				<isNotEmpty prepend=","   property="PI_ColorValue">
+					#PI_ColorValue#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PI_ItemValue">
+					#PI_ItemValue#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="PI_ParentSetCode">
+					#PI_ParentSetCode#
+				  </isNotEmpty>
+			
+			);
+		</insert>
+		<!--更新-->
+
+		<update id ="UpdateParmItem" parameterClass="ParmItemEntity">
+			UPDATE ParmItem
+			SET
+			[ID] = #[ID]#
+			<isNotEmpty prepend="," property="PI_SetCode">
+				PI_SetCode = #PI_SetCode#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="PI_ItemCode">
+				PI_ItemCode = #PI_ItemCode#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="PI_ItemName">
+				PI_ItemName = #PI_ItemName#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="PI_ColorValue">
+				PI_ColorValue = #PI_ColorValue#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="PI_ItemValue">
+				PI_ItemValue = #PI_ItemValue#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="PI_ParentSetCode">
+				PI_ParentSetCode = #PI_ParentSetCode#
+			</isNotEmpty>
+			WHERE  [ID] = #[ID]#
+		</update>
+		<!--删除-->
+		<delete id="DeleteParmItem" parameterClass="string">
+			DELETE ParmItem WHERE  [ID] = #value#;
+		</delete>
+
+	</statements>
+</sqlMap>

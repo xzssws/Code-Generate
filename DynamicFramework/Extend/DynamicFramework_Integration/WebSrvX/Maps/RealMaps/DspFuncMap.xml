@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+	<!--实体类别名-->
+	<alias>
+		<typeAlias alias="DspFuncEntity" type="DynamicEntity.DspFuncEntity,EntityTemplate" />
+	</alias>
+	<!--结果返回集-->
+	<resultMaps>
+		<resultMap id="SelectAllDspFunc" class="DspFuncEntity">
+			<result property="MenuId" column="MenuId"/>
+			<result property="Code" column="Code"/>
+			<result property="Name" column="Name"/>
+			<result property="Path" column="Path"/>
+			<result property="Layer" column="Layer"/>
+			<result property="Parent" column="Parent"/>
+			<result property="IsDetail" column="IsDetail"/>
+			<result property="InvokingConfig" column="InvokingConfig"/>
+			<result property="ICon" column="ICon"/>
+			<result property="Ordinal" column="Ordinal"/>
+			<result property="AssemblyName" column="AssemblyName"/>
+			<result property="WindowName" column="WindowName"/>
+		</resultMap>
+	</resultMaps>
+	<!--操作指令-->
+	<statements>
+		<!--查询-->
+		<select id="SelectDspFunc" resultMap="SelectAllDspFunc">
+			SELECT
+			MenuId,
+			Code,
+			Name,
+			Path,
+			Layer,
+			Parent,
+			IsDetail,
+			InvokingConfig,
+			ICon,
+			Ordinal,
+			AssemblyName,
+			WindowName
+			FROM DspFunc
+			WHERE  1=1
+			<isNotEmpty  prepend="AND" property="MenuId">
+				MenuId = #MenuId#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="Code">
+				Code = #Code#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="Name">
+				Name = #Name#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="Path">
+				Path = #Path#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="Layer">
+				Layer = #Layer#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="Parent">
+				Parent = #Parent#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="IsDetail">
+				IsDetail = #IsDetail#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="InvokingConfig">
+				InvokingConfig = #InvokingConfig#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="ICon">
+				ICon = #ICon#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="Ordinal">
+				Ordinal = #Ordinal#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="AssemblyName">
+				AssemblyName = #AssemblyName#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="WindowName">
+				WindowName = #WindowName#
+			</isNotEmpty>
+			<isNotEmpty prepend="ORDER BY " property="SortField">
+				$SortField$
+				<isEqual property="IsDesc" compareValue="true">
+				  DESC
+				</isEqual>
+			</isNotEmpty>
+		</select>
+		<!--添加-->
+		<insert id="AddDspFunc" parameterClass="DspFuncEntity">
+			INSERT INTO DspFunc
+			(
+
+				MenuId
+				<isNotEmpty prepend=","   property="Code">
+					Code
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="Name">
+					Name
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="Path">
+					Path
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="Layer">
+					Layer
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="Parent">
+					Parent
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="IsDetail">
+					IsDetail
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="InvokingConfig">
+					InvokingConfig
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="ICon">
+					ICon
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="Ordinal">
+					Ordinal
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="AssemblyName">
+					AssemblyName
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="WindowName">
+					WindowName
+				  </isNotEmpty>
+
+			) VALUES (
+			
+				#MenuId#
+				<isNotEmpty prepend=","   property="Code">
+					#Code#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="Name">
+					#Name#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="Path">
+					#Path#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="Layer">
+					#Layer#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="Parent">
+					#Parent#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="IsDetail">
+					#IsDetail#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="InvokingConfig">
+					#InvokingConfig#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="ICon">
+					#ICon#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="Ordinal">
+					#Ordinal#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="AssemblyName">
+					#AssemblyName#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="WindowName">
+					#WindowName#
+				  </isNotEmpty>
+			
+			);
+		</insert>
+		<!--更新-->
+
+		<update id ="UpdateDspFunc" parameterClass="DspFuncEntity">
+			UPDATE DspFunc
+			SET
+			MenuId = #MenuId#
+			<isNotEmpty prepend="," property="MenuId">
+				MenuId = #MenuId#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="Code">
+				Code = #Code#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="Name">
+				Name = #Name#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="Path">
+				Path = #Path#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="Layer">
+				Layer = #Layer#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="Parent">
+				Parent = #Parent#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="IsDetail">
+				IsDetail = #IsDetail#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="InvokingConfig">
+				InvokingConfig = #InvokingConfig#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="ICon">
+				ICon = #ICon#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="Ordinal">
+				Ordinal = #Ordinal#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="AssemblyName">
+				AssemblyName = #AssemblyName#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="WindowName">
+				WindowName = #WindowName#
+			</isNotEmpty>
+			WHERE  MenuId = #MenuId#
+		</update>
+		<!--删除-->
+		<delete id="DeleteDspFunc" parameterClass="string">
+			DELETE DspFunc WHERE  MenuId = #value#;
+		</delete>
+
+	</statements>
+</sqlMap>

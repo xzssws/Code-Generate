@@ -1,0 +1,109 @@
+﻿<#@ template debug="false" hostspecific="True" language="C#" #>
+<#@include file="$(SolutionDir)\Utils\TBUild.ttinclude" #>
+<#@ output extension=".i" #>
+<# 
+	Init("T");
+	NTable("TableName","TableName");
+#>
+<#
+	//亲~~~~~~~ 如果上面的基本配置好了就不要改我了。
+    foreach (Page page in pages)
+    {
+	  if(NTables.Contains(page.Name)) continue;//排除表过滤
+	  string DisplayName = page.Name; //文件名称
+	  string DisplayLabel = page.Label; //文件中文表示 现在所有都是英文
+      if(string.IsNullOrEmpty(DisplayLabel)){ DisplayName="None"+Flag;}//处理空字段空表情况
+	  Field PrimaryField = GetPrimaryKey(page);//主键字段
+	  NewFile(DisplayName+"Mgr.cs"); //生成文件名称定义	  
+	  string EntityName = DisplayName+EntitySuffix;
+#>
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Data;
+using DongZheng.Soft.BT.Spi;
+using DongZhengSoft.Framework.Core.Common;
+
+namespace DongZheng.Soft.BT.Core
+{
+    public class <#=DisplayName#>Mgr
+    {
+        #region DAC访问对象单例
+        private <#=DisplayName#>DAC dacInstance;
+        /// <summary>
+        /// 获得DAC对象
+        /// </summary>
+        /// <returns>DAC对象</returns>
+        private <#=DisplayName#>DAC GetDacInstance()
+        {
+            if (dacInstance == null)
+                dacInstance = new <#=DisplayName#>DAC();
+            return dacInstance;
+        }
+        #endregion
+
+        #region 预制方法
+        /// <summary>
+        /// 增加一条[<#=DisplayName#>]
+        /// </summary>
+        public bool Add<#=DisplayName#>(<#=DisplayName#> obj)
+        {
+            return GetDacInstance().Add<#=DisplayName#>(obj);
+        }
+        /// <summary>
+        /// 更改一条[<#=DisplayName#>]
+        /// </summary>
+        public bool Update<#=DisplayName#>(<#=DisplayName#> obj, string primaryKey)
+        {
+            return GetDacInstance().Update<#=DisplayName#>(obj, primaryKey);
+        }
+        /// <summary>
+        /// 根据条件删除一条或多条[<#=DisplayName#>]
+        /// </summary>
+        public bool Delete<#=DisplayName#>(DZFFilter filter)
+        {
+            return GetDacInstance().Delete<#=DisplayName#>(filter);
+        }
+        /// <summary>
+        /// 根据主键删除一条[<#=DisplayName#>]
+        /// </summary>
+        public bool Delete<#=DisplayName#>(string Key)
+        {
+            return GetDacInstance().Delete<#=DisplayName#>(Key);
+        }
+        /// <summary>
+        /// 根据主键获取一条[<#=DisplayName#>]
+        /// </summary>
+        public <#=DisplayName#> Get<#=DisplayName#>(string Key)
+        {
+            return GetDacInstance().Get<#=DisplayName#>(Key);
+        }
+        /// <summary>
+        /// 根据条件筛选并获得多条[<#=DisplayName#>]
+        /// </summary>
+        public List<<#=DisplayName#>> Get<#=DisplayName#>s(DZFFilter filter)
+        {
+            return GetDacInstance().Get<#=DisplayName#>s(filter);
+        }
+        /// <summary>
+        /// 根据筛选实体筛选并获得多条[<#=DisplayName#>]
+        /// </summary>
+        public List<<#=DisplayName#>> Get<#=DisplayName#>s(<#=DisplayName#> obj)
+        {
+            return GetDacInstance().Get<#=DisplayName#>s(obj);
+        }
+        /// <summary>
+        /// 获取数据库中所有[<#=DisplayName#>]
+        /// </summary>
+        public List<<#=DisplayName#>> Get<#=DisplayName#>s()
+        {
+            return GetDacInstance().Get<#=DisplayName#>s();
+        }
+        #endregion
+
+        #region 业务方法
+
+        #endregion
+    }
+}
+<#}EndFile();#>

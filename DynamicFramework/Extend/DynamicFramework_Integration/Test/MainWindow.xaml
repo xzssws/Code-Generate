@@ -1,0 +1,11 @@
+﻿<Window x:Class="Test.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Button Content="刷新" HorizontalAlignment="Left" Margin="432,23,0,0" VerticalAlignment="Top" Width="75" Click="flush"/>
+        <DataGrid Name="DR" HorizontalAlignment="Left" Margin="0,103,0,0" VerticalAlignment="Top" Height="216" Width="517"/>
+        <Button Content="添加" HorizontalAlignment="Left" Margin="332,23,0,0" VerticalAlignment="Top" Width="75" Click="Add"/>
+
+    </Grid>
+</Window>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+	<!--实体类别名-->
+	<alias>
+		<typeAlias alias="JG_ListidEntity" type="DynamicEntity.JG_ListidEntity,EntityTemplate" />
+	</alias>
+	<!--结果返回集-->
+	<resultMaps>
+		<resultMap id="SelectAllJG_Listid" class="JG_ListidEntity">
+			<result property="ID" column="ID"/>
+			<result property="sny" column="sny"/>
+			<result property="lsh" column="lsh"/>
+			<result property="zt" column="zt"/>
+		</resultMap>
+	</resultMaps>
+	<!--操作指令-->
+	<statements>
+		<!--查询-->
+		<select id="SelectJG_Listid" resultMap="SelectAllJG_Listid">
+			SELECT
+			ID,
+			sny,
+			lsh,
+			zt
+			FROM JG_Listid
+			WHERE  1=1
+			<isNotEmpty  prepend="AND" property="ID">
+				ID = #ID#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="sny">
+				sny = #sny#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="lsh">
+				lsh = #lsh#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="zt">
+				zt = #zt#
+			</isNotEmpty>
+			<isNotEmpty prepend="ORDER BY " property="SortField">
+				$SortField$
+				<isEqual property="IsDesc" compareValue="true">
+				  DESC
+				</isEqual>
+			</isNotEmpty>
+		</select>
+		<!--添加-->
+		<insert id="AddJG_Listid" parameterClass="JG_ListidEntity">
+			INSERT INTO JG_Listid
+			(
+
+				ID
+				,lsh
+				,zt
+				<isNotEmpty prepend=","   property="sny">
+					sny
+				  </isNotEmpty>
+
+			) VALUES (
+			
+				#ID#
+				#,lsh#
+				#,zt#
+				<isNotEmpty prepend=","   property="sny">
+					#sny#
+				  </isNotEmpty>
+			
+			);
+		</insert>
+		<!--更新-->
+
+		<update id ="UpdateJG_Listid" parameterClass="JG_ListidEntity">
+			UPDATE JG_Listid
+			SET
+			[ID] = #[ID]#
+			<isNotEmpty prepend="," property="ID">
+				ID = #ID#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="sny">
+				sny = #sny#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="lsh">
+				lsh = #lsh#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="zt">
+				zt = #zt#
+			</isNotEmpty>
+			WHERE  [ID] = #[ID]#
+		</update>
+		<!--删除-->
+		<delete id="DeleteJG_Listid" parameterClass="string">
+			DELETE JG_Listid WHERE  [ID] = #value#;
+		</delete>
+
+	</statements>
+</sqlMap>

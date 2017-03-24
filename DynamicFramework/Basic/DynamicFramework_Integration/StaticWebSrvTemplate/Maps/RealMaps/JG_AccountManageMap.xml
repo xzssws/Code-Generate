@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+	<!--实体类别名-->
+	<alias>
+		<typeAlias alias="JG_AccountManageEntity" type="DynamicEntity.JG_AccountManageEntity,EntityTemplate" />
+	</alias>
+	<!--结果返回集-->
+	<resultMaps>
+		<resultMap id="SelectAllJG_AccountManage" class="JG_AccountManageEntity">
+			<result property="AM_ID" column="AM_ID"/>
+			<result property="AM_zhmc" column="AM_zhmc"/>
+			<result property="AM_CorpCode" column="AM_CorpCode"/>
+			<result property="AM_CorpName" column="AM_CorpName"/>
+			<result property="AM_ItemName" column="AM_ItemName"/>
+			<result property="AM_JgAccount" column="AM_JgAccount"/>
+			<result property="AM_Shbh" column="AM_Shbh"/>
+			<result property="AM_CreateDate" column="AM_CreateDate"/>
+			<result property="AM_UseFlag" column="AM_UseFlag"/>
+			<result property="AM_Person" column="AM_Person"/>
+			<result property="AM_BankCode" column="AM_BankCode"/>
+		</resultMap>
+	</resultMaps>
+	<!--操作指令-->
+	<statements>
+		<!--查询-->
+		<select id="SelectJG_AccountManage" resultMap="SelectAllJG_AccountManage">
+			SELECT
+			AM_ID,
+			AM_zhmc,
+			AM_CorpCode,
+			AM_CorpName,
+			AM_ItemName,
+			AM_JgAccount,
+			AM_Shbh,
+			AM_CreateDate,
+			AM_UseFlag,
+			AM_Person,
+			AM_BankCode
+			FROM JG_AccountManage
+			WHERE  1=1
+			<isNotEmpty  prepend="AND" property="AM_ID">
+				AM_ID = #AM_ID#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="AM_zhmc">
+				AM_zhmc = #AM_zhmc#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="AM_CorpCode">
+				AM_CorpCode = #AM_CorpCode#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="AM_CorpName">
+				AM_CorpName = #AM_CorpName#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="AM_ItemName">
+				AM_ItemName = #AM_ItemName#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="AM_JgAccount">
+				AM_JgAccount = #AM_JgAccount#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="AM_Shbh">
+				AM_Shbh = #AM_Shbh#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="AM_CreateDate">
+				AM_CreateDate = #AM_CreateDate#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="AM_UseFlag">
+				AM_UseFlag = #AM_UseFlag#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="AM_Person">
+				AM_Person = #AM_Person#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="AM_BankCode">
+				AM_BankCode = #AM_BankCode#
+			</isNotEmpty>
+			<isNotEmpty prepend="ORDER BY " property="OrderField">
+				$OrderField$
+				<isEqual property="IsDesc" compareValue="true">
+				  DESC
+				</isEqual>
+			</isNotEmpty>
+		</select>
+		<!--添加-->
+		<insert id="AddJG_AccountManage" parameterClass="JG_AccountManageEntity">
+			INSERT INTO JG_AccountManage
+			(
+			AM_ID,
+			AM_zhmc,
+			AM_CorpCode,
+			AM_CorpName,
+			AM_ItemName,
+			AM_JgAccount,
+			AM_Shbh,
+			AM_CreateDate,
+			AM_UseFlag,
+			AM_Person,
+			AM_BankCode
+
+			) VALUES (
+
+			#AM_ID#,
+			#AM_zhmc#,
+			#AM_CorpCode#,
+			#AM_CorpName#,
+			#AM_ItemName#,
+			#AM_JgAccount#,
+			#AM_Shbh#,
+			#AM_CreateDate#,
+			#AM_UseFlag#,
+			#AM_Person#,
+			#AM_BankCode#
+			
+			);
+		</insert>
+		<!--更新-->
+		<update id ="UpdateJG_AccountManage" parameterClass="JG_AccountManageEntity">
+			UPDATE JG_AccountManage
+			SET
+			AM_ID = #AM_ID#
+			<isNotEmpty prepend="," property="AM_ID">
+				AM_ID = #AM_ID#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="AM_zhmc">
+				AM_zhmc = #AM_zhmc#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="AM_CorpCode">
+				AM_CorpCode = #AM_CorpCode#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="AM_CorpName">
+				AM_CorpName = #AM_CorpName#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="AM_ItemName">
+				AM_ItemName = #AM_ItemName#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="AM_JgAccount">
+				AM_JgAccount = #AM_JgAccount#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="AM_Shbh">
+				AM_Shbh = #AM_Shbh#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="AM_CreateDate">
+				AM_CreateDate = #AM_CreateDate#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="AM_UseFlag">
+				AM_UseFlag = #AM_UseFlag#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="AM_Person">
+				AM_Person = #AM_Person#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="AM_BankCode">
+				AM_BankCode = #AM_BankCode#
+			</isNotEmpty>
+			WHERE  AM_ID = #AM_ID#
+		</update>
+		<!--删除-->
+		<delete id="DeleteJG_AccountManage" parameterClass="string">
+			DELETE JG_AccountManage WHERE  AM_ID = #value#;
+		</delete>
+
+	</statements>
+</sqlMap>

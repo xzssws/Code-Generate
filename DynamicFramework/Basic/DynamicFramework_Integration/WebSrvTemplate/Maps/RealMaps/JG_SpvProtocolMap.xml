@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+	<!--实体类别名-->
+	<alias>
+		<typeAlias alias="JG_SpvProtocolEntity" type="DynamicEntity.JG_SpvProtocolEntity,EntityTemplate" />
+	</alias>
+	<!--结果返回集-->
+	<resultMaps>
+		<resultMap id="SelectAllJG_SpvProtocol" class="JG_SpvProtocolEntity">
+			<result property="SP_ID" column="SP_ID"/>
+			<result property="SP_SaleItemID" column="SP_SaleItemID"/>
+			<result property="SP_XYBH" column="SP_XYBH"/>
+			<result property="SP_JGJG" column="SP_JGJG"/>
+			<result property="SP_CorpCode" column="SP_CorpCode"/>
+			<result property="SP_CorpName" column="SP_CorpName"/>
+			<result property="SP_QM" column="SP_QM"/>
+			<result property="SP_ItemSite" column="SP_ItemSite"/>
+			<result property="SP_ItemName" column="SP_ItemName"/>
+			<result property="SP_JZMJ" column="SP_JZMJ"/>
+			<result property="SP_BuildingNo" column="SP_BuildingNo"/>
+			<result property="SP_GCJSF" column="SP_GCJSF"/>
+			<result property="SP_BKYJF" column="SP_BKYJF"/>
+			<result property="SP_ZDJGYSK" column="SP_ZDJGYSK"/>
+			<result property="SP_QYZHMC" column="SP_QYZHMC"/>
+			<result property="SP_QYKHYHBH" column="SP_QYKHYHBH"/>
+			<result property="SP_QYKHYH" column="SP_QYKHYH"/>
+			<result property="SP_QYZH" column="SP_QYZH"/>
+			<result property="SP_JGJGZHMC" column="SP_JGJGZHMC"/>
+			<result property="SP_JGJGKHYHBH" column="SP_JGJGKHYHBH"/>
+			<result property="SP_JGJGKHYH" column="SP_JGJGKHYH"/>
+			<result property="SP_JGJGZH" column="SP_JGJGZH"/>
+			<result property="SP_XYLC" column="SP_XYLC"/>
+			<result property="SP_XYZT" column="SP_XYZT"/>
+			<result property="SP_IsReject" column="SP_IsReject"/>
+			<result property="SP_QYLXDH" column="SP_QYLXDH"/>
+			<result property="SP_LXR" column="SP_LXR"/>
+			<result property="SP_LXRDH" column="SP_LXRDH"/>
+			<result property="SP_JZX" column="SP_JZX"/>
+			<result property="SP_BZ" column="SP_BZ"/>
+			<result property="SP_CreateDate" column="SP_CreateDate"/>
+			<result property="SP_ZYJJFS" column="SP_ZYJJFS"/>
+			<result property="SP_PrtlSaveDate" column="SP_PrtlSaveDate"/>
+		</resultMap>
+	</resultMaps>
+	<!--操作指令-->
+	<statements>
+		<!--查询-->
+		<select id="SelectJG_SpvProtocol" resultMap="SelectAllJG_SpvProtocol">
+			SELECT
+			SP_ID,
+			SP_SaleItemID,
+			SP_XYBH,
+			SP_JGJG,
+			SP_CorpCode,
+			SP_CorpName,
+			SP_QM,
+			SP_ItemSite,
+			SP_ItemName,
+			SP_JZMJ,
+			SP_BuildingNo,
+			SP_GCJSF,
+			SP_BKYJF,
+			SP_ZDJGYSK,
+			SP_QYZHMC,
+			SP_QYKHYHBH,
+			SP_QYKHYH,
+			SP_QYZH,
+			SP_JGJGZHMC,
+			SP_JGJGKHYHBH,
+			SP_JGJGKHYH,
+			SP_JGJGZH,
+			SP_XYLC,
+			SP_XYZT,
+			SP_IsReject,
+			SP_QYLXDH,
+			SP_LXR,
+			SP_LXRDH,
+			SP_JZX,
+			SP_BZ,
+			SP_CreateDate,
+			SP_ZYJJFS,
+			SP_PrtlSaveDate
+			FROM JG_SpvProtocol
+			WHERE  1=1
+			<isNotEmpty  prepend="AND" property="SP_ID">
+				SP_ID = #SP_ID#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="SP_SaleItemID">
+				SP_SaleItemID = #SP_SaleItemID#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="SP_XYBH">
+				SP_XYBH = #SP_XYBH#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="SP_JGJG">
+				SP_JGJG = #SP_JGJG#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="SP_CorpCode">
+				SP_CorpCode = #SP_CorpCode#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="SP_CorpName">
+				SP_CorpName = #SP_CorpName#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="SP_QM">
+				SP_QM = #SP_QM#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="SP_ItemSite">
+				SP_ItemSite = #SP_ItemSite#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="SP_ItemName">
+				SP_ItemName = #SP_ItemName#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="SP_JZMJ">
+				SP_JZMJ = #SP_JZMJ#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="SP_BuildingNo">
+				SP_BuildingNo = #SP_BuildingNo#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="SP_GCJSF">
+				SP_GCJSF = #SP_GCJSF#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="SP_BKYJF">
+				SP_BKYJF = #SP_BKYJF#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="SP_ZDJGYSK">
+				SP_ZDJGYSK = #SP_ZDJGYSK#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="SP_QYZHMC">
+				SP_QYZHMC = #SP_QYZHMC#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="SP_QYKHYHBH">
+				SP_QYKHYHBH = #SP_QYKHYHBH#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="SP_QYKHYH">
+				SP_QYKHYH = #SP_QYKHYH#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="SP_QYZH">
+				SP_QYZH = #SP_QYZH#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="SP_JGJGZHMC">
+				SP_JGJGZHMC = #SP_JGJGZHMC#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="SP_JGJGKHYHBH">
+				SP_JGJGKHYHBH = #SP_JGJGKHYHBH#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="SP_JGJGKHYH">
+				SP_JGJGKHYH = #SP_JGJGKHYH#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="SP_JGJGZH">
+				SP_JGJGZH = #SP_JGJGZH#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="SP_XYLC">
+				SP_XYLC = #SP_XYLC#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="SP_XYZT">
+				SP_XYZT = #SP_XYZT#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="SP_IsReject">
+				SP_IsReject = #SP_IsReject#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="SP_QYLXDH">
+				SP_QYLXDH = #SP_QYLXDH#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="SP_LXR">
+				SP_LXR = #SP_LXR#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="SP_LXRDH">
+				SP_LXRDH = #SP_LXRDH#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="SP_JZX">
+				SP_JZX = #SP_JZX#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="SP_BZ">
+				SP_BZ = #SP_BZ#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="SP_CreateDate">
+				SP_CreateDate = #SP_CreateDate#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="SP_ZYJJFS">
+				SP_ZYJJFS = #SP_ZYJJFS#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="SP_PrtlSaveDate">
+				SP_PrtlSaveDate = #SP_PrtlSaveDate#
+			</isNotEmpty>
+			<isNotEmpty prepend="ORDER BY " property="OrderField">
+				$OrderField$
+				<isEqual property="IsDesc" compareValue="true">
+				  DESC
+				</isEqual>
+			</isNotEmpty>
+		</select>
+		<!--添加-->
+		<insert id="AddJG_SpvProtocol" parameterClass="JG_SpvProtocolEntity">
+			INSERT INTO JG_SpvProtocol
+			(
+			SP_ID,
+			SP_SaleItemID,
+			SP_XYBH,
+			SP_JGJG,
+			SP_CorpCode,
+			SP_CorpName,
+			SP_QM,
+			SP_ItemSite,
+			SP_ItemName,
+			SP_JZMJ,
+			SP_BuildingNo,
+			SP_GCJSF,
+			SP_BKYJF,
+			SP_ZDJGYSK,
+			SP_QYZHMC,
+			SP_QYKHYHBH,
+			SP_QYKHYH,
+			SP_QYZH,
+			SP_JGJGZHMC,
+			SP_JGJGKHYHBH,
+			SP_JGJGKHYH,
+			SP_JGJGZH,
+			SP_XYLC,
+			SP_XYZT,
+			SP_IsReject,
+			SP_QYLXDH,
+			SP_LXR,
+			SP_LXRDH,
+			SP_JZX,
+			SP_BZ,
+			SP_CreateDate,
+			SP_ZYJJFS,
+			SP_PrtlSaveDate
+
+			) VALUES (
+
+			#SP_ID#,
+			#SP_SaleItemID#,
+			#SP_XYBH#,
+			#SP_JGJG#,
+			#SP_CorpCode#,
+			#SP_CorpName#,
+			#SP_QM#,
+			#SP_ItemSite#,
+			#SP_ItemName#,
+			#SP_JZMJ#,
+			#SP_BuildingNo#,
+			#SP_GCJSF#,
+			#SP_BKYJF#,
+			#SP_ZDJGYSK#,
+			#SP_QYZHMC#,
+			#SP_QYKHYHBH#,
+			#SP_QYKHYH#,
+			#SP_QYZH#,
+			#SP_JGJGZHMC#,
+			#SP_JGJGKHYHBH#,
+			#SP_JGJGKHYH#,
+			#SP_JGJGZH#,
+			#SP_XYLC#,
+			#SP_XYZT#,
+			#SP_IsReject#,
+			#SP_QYLXDH#,
+			#SP_LXR#,
+			#SP_LXRDH#,
+			#SP_JZX#,
+			#SP_BZ#,
+			#SP_CreateDate#,
+			#SP_ZYJJFS#,
+			#SP_PrtlSaveDate#
+			
+			);
+		</insert>
+		<!--更新-->
+		<update id ="UpdateJG_SpvProtocol" parameterClass="JG_SpvProtocolEntity">
+			UPDATE JG_SpvProtocol
+			SET
+			SP_ID = #SP_ID#
+			<isNotEmpty prepend="," property="SP_ID">
+				SP_ID = #SP_ID#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="SP_SaleItemID">
+				SP_SaleItemID = #SP_SaleItemID#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="SP_XYBH">
+				SP_XYBH = #SP_XYBH#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="SP_JGJG">
+				SP_JGJG = #SP_JGJG#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="SP_CorpCode">
+				SP_CorpCode = #SP_CorpCode#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="SP_CorpName">
+				SP_CorpName = #SP_CorpName#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="SP_QM">
+				SP_QM = #SP_QM#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="SP_ItemSite">
+				SP_ItemSite = #SP_ItemSite#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="SP_ItemName">
+				SP_ItemName = #SP_ItemName#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="SP_JZMJ">
+				SP_JZMJ = #SP_JZMJ#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="SP_BuildingNo">
+				SP_BuildingNo = #SP_BuildingNo#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="SP_GCJSF">
+				SP_GCJSF = #SP_GCJSF#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="SP_BKYJF">
+				SP_BKYJF = #SP_BKYJF#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="SP_ZDJGYSK">
+				SP_ZDJGYSK = #SP_ZDJGYSK#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="SP_QYZHMC">
+				SP_QYZHMC = #SP_QYZHMC#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="SP_QYKHYHBH">
+				SP_QYKHYHBH = #SP_QYKHYHBH#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="SP_QYKHYH">
+				SP_QYKHYH = #SP_QYKHYH#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="SP_QYZH">
+				SP_QYZH = #SP_QYZH#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="SP_JGJGZHMC">
+				SP_JGJGZHMC = #SP_JGJGZHMC#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="SP_JGJGKHYHBH">
+				SP_JGJGKHYHBH = #SP_JGJGKHYHBH#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="SP_JGJGKHYH">
+				SP_JGJGKHYH = #SP_JGJGKHYH#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="SP_JGJGZH">
+				SP_JGJGZH = #SP_JGJGZH#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="SP_XYLC">
+				SP_XYLC = #SP_XYLC#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="SP_XYZT">
+				SP_XYZT = #SP_XYZT#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="SP_IsReject">
+				SP_IsReject = #SP_IsReject#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="SP_QYLXDH">
+				SP_QYLXDH = #SP_QYLXDH#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="SP_LXR">
+				SP_LXR = #SP_LXR#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="SP_LXRDH">
+				SP_LXRDH = #SP_LXRDH#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="SP_JZX">
+				SP_JZX = #SP_JZX#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="SP_BZ">
+				SP_BZ = #SP_BZ#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="SP_CreateDate">
+				SP_CreateDate = #SP_CreateDate#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="SP_ZYJJFS">
+				SP_ZYJJFS = #SP_ZYJJFS#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="SP_PrtlSaveDate">
+				SP_PrtlSaveDate = #SP_PrtlSaveDate#
+			</isNotEmpty>
+			WHERE  SP_ID = #SP_ID#
+		</update>
+		<!--删除-->
+		<delete id="DeleteJG_SpvProtocol" parameterClass="string">
+			DELETE JG_SpvProtocol WHERE  SP_ID = #value#;
+		</delete>
+
+	</statements>
+</sqlMap>

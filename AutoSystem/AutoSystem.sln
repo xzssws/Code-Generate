@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoPage", "AutoPage\AutoPage.csproj", "{3DE93C20-BEBA-4160-957A-51C0FEAA16CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoCode", "AutoCode\AutoCode.csproj", "{1BBBDA43-10BF-4C44-ABF4-9D40E15869CF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3DE93C20-BEBA-4160-957A-51C0FEAA16CA}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{3DE93C20-BEBA-4160-957A-51C0FEAA16CA}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{3DE93C20-BEBA-4160-957A-51C0FEAA16CA}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{3DE93C20-BEBA-4160-957A-51C0FEAA16CA}.Debug|x86.ActiveCfg = Debug|x86
+		{3DE93C20-BEBA-4160-957A-51C0FEAA16CA}.Debug|x86.Build.0 = Debug|x86
+		{3DE93C20-BEBA-4160-957A-51C0FEAA16CA}.Release|Any CPU.ActiveCfg = Release|x86
+		{3DE93C20-BEBA-4160-957A-51C0FEAA16CA}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{3DE93C20-BEBA-4160-957A-51C0FEAA16CA}.Release|Mixed Platforms.Build.0 = Release|x86
+		{3DE93C20-BEBA-4160-957A-51C0FEAA16CA}.Release|x86.ActiveCfg = Release|x86
+		{3DE93C20-BEBA-4160-957A-51C0FEAA16CA}.Release|x86.Build.0 = Release|x86
+		{1BBBDA43-10BF-4C44-ABF4-9D40E15869CF}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{1BBBDA43-10BF-4C44-ABF4-9D40E15869CF}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{1BBBDA43-10BF-4C44-ABF4-9D40E15869CF}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{1BBBDA43-10BF-4C44-ABF4-9D40E15869CF}.Debug|x86.ActiveCfg = Debug|x86
+		{1BBBDA43-10BF-4C44-ABF4-9D40E15869CF}.Debug|x86.Build.0 = Debug|x86
+		{1BBBDA43-10BF-4C44-ABF4-9D40E15869CF}.Release|Any CPU.ActiveCfg = Release|x86
+		{1BBBDA43-10BF-4C44-ABF4-9D40E15869CF}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{1BBBDA43-10BF-4C44-ABF4-9D40E15869CF}.Release|Mixed Platforms.Build.0 = Release|x86
+		{1BBBDA43-10BF-4C44-ABF4-9D40E15869CF}.Release|x86.ActiveCfg = Release|x86
+		{1BBBDA43-10BF-4C44-ABF4-9D40E15869CF}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

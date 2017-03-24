@@ -1,0 +1,39 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".txt" #>
+<# 
+	//定义命令字典
+	Dictionary<string,string> dic = new Dictionary<string,string>();
+	dic.Add("命令说明","命令名称");
+ #>
+ <#foreach (var item in dic.Keys){#>
+#region <#=item#>
+/// <summary>
+/// <#=item#> 属性字段 [命令]
+/// <para>关联属性:<#=dic[item]#>Command</para>
+/// </summary>
+private static ICommand _<#=dic[item].ToLower()#>Command;
+/// <summary>
+/// <#=item#> [命令]
+/// </summary>
+public static DelegateCommand <#=dic[item]#>Command
+{
+    get
+    {
+        if (_<#=dic[item].ToLower()#>Command == null) _<#=dic[item].ToLower()#>Command = new DelegateCommand(<#=dic[item]#>Execute);
+        return _<#=dic[item].ToLower()#>Command;
+    }
+    set { _<#=dic[item].ToLower()#>Command = value; }
+}
+
+/// <summary>
+/// <para> 命令方法概述：<#=item#>命令关联方法 </para>
+/// <para> 命令方法说明：方法说明内容 </para>
+/// <para> 关联命令：<#=dic[item]#>Command</para>
+/// </summary>
+public static void <#=dic[item]#>Execute()
+{
+            
+}
+#endregion
+<#}#>

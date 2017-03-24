@@ -1,0 +1,261 @@
+﻿<#@ template debug="false" hostspecific="True" language="C#" #>
+<#@include file="$(SolutionDir)\Utils\TBUild.ttinclude" #>
+<#@ output extension=".i" #>
+<# 
+	//(* = *)这里是基本配置
+	Init("T");
+	NTable("Table1","Table2");
+#>
+<#
+	//亲~~~~~~~ 如果上面的基本配置好了就不要改我了。
+	List<Field> Canull;
+	List<Field> Nonull;
+    foreach (Page page in pages)
+    {
+	  if(NTables.Contains(page.Name)) continue;//排除表过滤
+	  string DisplayName = page.Name; //文件名称
+	  string DisplayLabel = page.Label; //文件中文表示 现在所有都是英文
+      if(string.IsNullOrEmpty(DisplayLabel)){ DisplayName="None"+Flag;}//处理空字段空表情况
+	  Field PrimaryField = GetPrimaryKey(page);//主键字段
+	  NewFile(DisplayName+"DAC.cs"); //生成文件名称定义	  
+	  string EntityName = DisplayName+EntitySuffix;//实体名称
+	  Canull = new List<Field>();//可空字段
+	  Nonull = new List<Field>();//非空字段
+	  StringBuilder AllFields=new StringBuilder();
+	  StringBuilder AllFieldss = new StringBuilder();
+	  StringBuilder objfields = new StringBuilder();
+	  StringBuilder newobjfields = new StringBuilder();
+	  foreach (Field field in page.Fields){
+		  if(field.CanNull||field.IsIdentity||field.Default != string.Empty) Canull.Add(field);
+		  else Nonull.Add(field);
+		  AllFields.Append(field.Name+",");
+		  AllFieldss.Append("\""+field.Name+"\",");
+		  objfields.Append("obj."+field.Name+",");
+		  newobjfields.Append("newObject."+field.Name+",");
+      }
+	  
+#>
+using System;
+using System.Collections.Generic;
+using System.Text;
+using DongZhengSoft.Framework.Core.DataAccess;
+using DongZheng.Soft.BT.Spi;
+using System.Data;
+
+namespace DongZheng.Soft.BT.Core
+{
+    public class <#=DisplayName#>DAC : AbstractDAC<<#=DisplayName#>, string>
+    {
+        #region 基础实现
+        
+        //注：此段代码是实现框架对于基础的增删改查的实现，请注意修改。
+        
+        //获得数据库访问对象
+        protected override IDZFDatabase GetDatabase()
+        {
+            return Database.GetDatabase();
+        }
+        //表名
+        protected override string Table
+        {
+            get
+            {
+                return "<#=DisplayName#>";
+            }
+        }
+        //主键字段名称
+        protected override string PrimaryKey
+        {
+            get
+            {
+                return "<#=PrimaryField.Name#>";
+            }
+        }
+        //查询字段集
+        protected override string QueryFields
+        {
+            get
+            {
+                return "<#=AllFields.ToString().TrimEnd(',')#>";
+            }
+        }
+        //插入字段数组
+        protected override string[] InsertFields
+        {
+            get
+            {
+                return new string[]{ <#=AllFieldss.ToString().TrimEnd(',')#> };
+            }
+        }
+        //插入语句参数赋值
+        protected override object[] GetInsertSQLParamDataList(<#=DisplayName#> newObject)
+        {
+            return new object[] { <#=newobjfields.ToString().TrimEnd(',')#> };
+        }
+        //更新字段数组
+        protected override string[] UpdateFields
+        {
+            get
+            {
+                return new string[]{ <#=AllFieldss.ToString().TrimEnd(',')#> };
+            }
+        }
+        //更新语句参数赋值 最多加一位为主键
+        protected override object[] GetUpdateRowSQLParamDataList(<#=DisplayName#> obj)
+        {
+            return new object[] { <#=objfields.ToString().TrimEnd(',')#>};
+        }
+        //获取是否存在
+        protected override string GetContainsObjectSQL(<#=DisplayName#> obj)
+        {
+            throw new NotImplementedException();
+        }
+        //通过DataRow给对象各个属性赋值
+        protected override <#=DisplayName#> GetObjectByDataRow(DataRow row)
+        {
+            <#=DisplayName#> obj = new <#=DisplayName#>();
+			<#foreach (Field field in page.Fields){#>
+obj.<#=field.Name#> = <#=CLRConvert(field.Type)#>row["<#=field.Name#>"]);
+			<#}#>
+return obj;
+        }
+        #endregion
+
+        #region 业务方法
+
+        #endregion
+    }
+}
+<#NewFile(DisplayName+"Mgr.cs");#>
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Data;
+using DongZheng.Soft.BT.Spi;
+using DongZhengSoft.Framework.Core.Common;
+
+namespace DongZheng.Soft.BT.Core
+{
+    public class <#=DisplayName#>Mgr
+    {
+        #region DAC访问对象单例
+        private <#=DisplayName#>DAC dacInstance;
+        /// <summary>
+        /// 获得DAC对象
+        /// </summary>
+        /// <returns>DAC对象</returns>
+        public <#=DisplayName#>DAC GetDacInstance()
+        {
+            if (dacInstance == null)
+                dacInstance = new <#=DisplayName#>DAC();
+            return dacInstance;
+        } 
+        #endregion
+
+        #region 默认方法
+        /// <summary>
+        /// 增加项
+        /// </summary>
+        public bool Add<#=DisplayName#>(<#=DisplayName#> obj)
+        {
+            try
+            {
+                GetDacInstance().Add(obj);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        /// <summary>
+        /// 更改项
+        /// </summary>
+        public bool Update<#=DisplayName#>(<#=DisplayName#> obj, string primaryKey)
+        {
+            try
+            {
+                GetDacInstance()[primaryKey] = obj;
+                GetDacInstance().SetObject(primaryKey, obj);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        /// <summary>
+        /// 删除项（条件）
+        /// </summary>
+        public bool Delete<#=DisplayName#>(DZFFilter filter)
+        {
+            try
+            {
+                GetDacInstance().Remove(filter);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        /// <summary>
+        /// 删除项（主键）
+        /// </summary>
+        public bool Delete<#=DisplayName#>(string Key)
+        {
+            try
+            {
+                GetDacInstance().Remove(Key);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        /// <summary>
+        /// 获取单项（主键）
+        /// </summary>
+        public <#=DisplayName#> Get<#=DisplayName#>(string Key)
+        {
+            try
+            {
+                <#=DisplayName#> obj = GetDacInstance()[Key];
+                return obj;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        /// <summary>
+        /// 获取集合项（条件）
+        /// </summary>
+        public List<<#=DisplayName#>> Get<#=DisplayName#>s(DZFFilter filter)
+        {
+            try
+            {
+                return GetDacInstance().GetObjects(filter);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        /// <summary>
+        /// 获取所有集合项
+        /// </summary>
+        public List<<#=DisplayName#>> Get<#=DisplayName#>s()
+        {
+            DZFFilter filter = new DZFFilter();//编写obj定义
+            return Get<#=DisplayName#>s(filter);
+        } 
+        #endregion
+
+		#region 业务方法
+		#endregion
+    }
+}
+
+<#}EndFile();#>

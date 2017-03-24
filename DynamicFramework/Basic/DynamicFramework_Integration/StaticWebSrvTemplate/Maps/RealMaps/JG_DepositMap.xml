@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+	<!--实体类别名-->
+	<alias>
+		<typeAlias alias="JG_DepositEntity" type="DynamicEntity.JG_DepositEntity,EntityTemplate" />
+	</alias>
+	<!--结果返回集-->
+	<resultMaps>
+		<resultMap id="SelectAllJG_Deposit" class="JG_DepositEntity">
+			<result property="DE_ID" column="DE_ID"/>
+			<result property="DE_xybh" column="DE_xybh"/>
+			<result property="DE_qybh" column="DE_qybh"/>
+			<result property="DE_ckr" column="DE_ckr"/>
+			<result property="DE_dwbh" column="DE_dwbh"/>
+			<result property="DE_ckxz" column="DE_ckxz"/>
+			<result property="DE_cklb" column="DE_cklb"/>
+			<result property="DE_ckje" column="DE_ckje"/>
+			<result property="DE_ckrq" column="DE_ckrq"/>
+			<result property="DE_cklsh" column="DE_cklsh"/>
+			<result property="DE_Person" column="DE_Person"/>
+			<result property="DE_jyckh" column="DE_jyckh"/>
+			<result property="DE_BankCode" column="DE_BankCode"/>
+			<result property="DE_zhye" column="DE_zhye"/>
+		</resultMap>
+	</resultMaps>
+	<!--操作指令-->
+	<statements>
+		<!--查询-->
+		<select id="SelectJG_Deposit" resultMap="SelectAllJG_Deposit">
+			SELECT
+			DE_ID,
+			DE_xybh,
+			DE_qybh,
+			DE_ckr,
+			DE_dwbh,
+			DE_ckxz,
+			DE_cklb,
+			DE_ckje,
+			DE_ckrq,
+			DE_cklsh,
+			DE_Person,
+			DE_jyckh,
+			DE_BankCode,
+			DE_zhye
+			FROM JG_Deposit
+			WHERE  1=1
+			<isNotEmpty  prepend="AND" property="DE_ID">
+				DE_ID = #DE_ID#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="DE_xybh">
+				DE_xybh = #DE_xybh#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="DE_qybh">
+				DE_qybh = #DE_qybh#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="DE_ckr">
+				DE_ckr = #DE_ckr#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="DE_dwbh">
+				DE_dwbh = #DE_dwbh#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="DE_ckxz">
+				DE_ckxz = #DE_ckxz#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="DE_cklb">
+				DE_cklb = #DE_cklb#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="DE_ckje">
+				DE_ckje = #DE_ckje#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="DE_ckrq">
+				DE_ckrq = #DE_ckrq#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="DE_cklsh">
+				DE_cklsh = #DE_cklsh#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="DE_Person">
+				DE_Person = #DE_Person#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="DE_jyckh">
+				DE_jyckh = #DE_jyckh#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="DE_BankCode">
+				DE_BankCode = #DE_BankCode#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="DE_zhye">
+				DE_zhye = #DE_zhye#
+			</isNotEmpty>
+			<isNotEmpty prepend="ORDER BY " property="OrderField">
+				$OrderField$
+				<isEqual property="IsDesc" compareValue="true">
+				  DESC
+				</isEqual>
+			</isNotEmpty>
+		</select>
+		<!--添加-->
+		<insert id="AddJG_Deposit" parameterClass="JG_DepositEntity">
+			INSERT INTO JG_Deposit
+			(
+			DE_ID,
+			DE_xybh,
+			DE_qybh,
+			DE_ckr,
+			DE_dwbh,
+			DE_ckxz,
+			DE_cklb,
+			DE_ckje,
+			DE_ckrq,
+			DE_cklsh,
+			DE_Person,
+			DE_jyckh,
+			DE_BankCode,
+			DE_zhye
+
+			) VALUES (
+
+			#DE_ID#,
+			#DE_xybh#,
+			#DE_qybh#,
+			#DE_ckr#,
+			#DE_dwbh#,
+			#DE_ckxz#,
+			#DE_cklb#,
+			#DE_ckje#,
+			#DE_ckrq#,
+			#DE_cklsh#,
+			#DE_Person#,
+			#DE_jyckh#,
+			#DE_BankCode#,
+			#DE_zhye#
+			
+			);
+		</insert>
+		<!--更新-->
+		<update id ="UpdateJG_Deposit" parameterClass="JG_DepositEntity">
+			UPDATE JG_Deposit
+			SET
+			DE_ID = #DE_ID#
+			<isNotEmpty prepend="," property="DE_ID">
+				DE_ID = #DE_ID#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="DE_xybh">
+				DE_xybh = #DE_xybh#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="DE_qybh">
+				DE_qybh = #DE_qybh#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="DE_ckr">
+				DE_ckr = #DE_ckr#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="DE_dwbh">
+				DE_dwbh = #DE_dwbh#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="DE_ckxz">
+				DE_ckxz = #DE_ckxz#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="DE_cklb">
+				DE_cklb = #DE_cklb#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="DE_ckje">
+				DE_ckje = #DE_ckje#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="DE_ckrq">
+				DE_ckrq = #DE_ckrq#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="DE_cklsh">
+				DE_cklsh = #DE_cklsh#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="DE_Person">
+				DE_Person = #DE_Person#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="DE_jyckh">
+				DE_jyckh = #DE_jyckh#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="DE_BankCode">
+				DE_BankCode = #DE_BankCode#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="DE_zhye">
+				DE_zhye = #DE_zhye#
+			</isNotEmpty>
+			WHERE  DE_ID = #DE_ID#
+		</update>
+		<!--删除-->
+		<delete id="DeleteJG_Deposit" parameterClass="string">
+			DELETE JG_Deposit WHERE  DE_ID = #value#;
+		</delete>
+
+	</statements>
+</sqlMap>

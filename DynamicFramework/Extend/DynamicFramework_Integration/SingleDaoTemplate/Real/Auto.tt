@@ -1,0 +1,176 @@
+﻿<#@ template debug="false" hostspecific="True" language="C#" #>
+<#@include file="$(SolutionDir)\Utils\TBUild.ttinclude" #>
+<#@ output extension=".i" #>
+<# 
+	Init("T");
+	NTable("TableName","TableName");
+#>
+<#
+	//亲~~~~~~~ 如果上面的基本配置好了就不要改我了。
+    foreach (Page item in pages)
+    {
+	  if(NTables.Contains(item.Name)) continue;//排除表过滤
+	  string DisplayName = item.Name; //文件名称
+	  string DisplayLabel = item.Label; //文件中文表示 现在所有都是英文
+	  string EntityName = DisplayName+EntitySuffix;//实体名称
+	  string DaoName = DisplayName+DaoSuffix;//Dao名称
+      if(string.IsNullOrEmpty(DisplayLabel)){ DisplayName="None"+Flag;}
+	  NewFile(DisplayName+DaoSuffix+".cs"); //生成文件名称定义
+#>
+using System;
+using System.Collections.Generic;
+<#=string.IsNullOrEmpty(EntityNameSpace)?"":string.Format("using {0};",EntityNameSpace)#>
+
+namespace <#=DaoNamespace#>
+{
+    /// <summary>
+    /// <#=DisplayLabel#>数据库访问类
+    /// </summary>
+    public sealed partial class <#=DaoName#> :BaseDao<<#=EntityName#>>,IBaseReal<<#=EntityName#>>
+    {
+		#region 单例模式
+
+		private <#=DisplayName#><#=DaoSuffix#>(){ }
+
+        private static readonly object LockObj = new object();
+
+        private static <#=DisplayName#><#=DaoSuffix#> _instance;
+
+        /// <summary>
+        /// 获得对象实例
+        /// </summary>
+        public static <#=DisplayName#><#=DaoSuffix#> Instance
+        {
+            get
+            {
+                lock (LockObj)
+                {
+                    if (_instance == null)
+                    {
+                        _instance = new <#=DisplayName#><#=DaoSuffix#>();
+                    }
+                    return _instance;
+                }
+            }
+        }
+
+        #endregion
+
+        #region 默认标志
+
+        private const string DefaultKey = "<#=DisplayName#>";
+        #endregion
+
+        #region 执行操作
+
+        /// <summary>
+        /// 添加一条[<#=DisplayLabel#>]
+        /// </summary>
+        /// <param name="entity">[<#=DisplayLabel#>]实例</param>
+        /// <returns>执行完成状态</returns>
+        public bool Add(<#=EntityName#> entity)
+        {
+            if (entity == null) throw new ArgumentNullException("系统异常:参数 entity 是空值");
+            return i("Add" + DefaultKey, entity);
+        }
+
+        /// <summary>
+        /// 更新一条[<#=DisplayLabel#>]
+        /// </summary>
+        /// <param name="entity">更新的[<#=DisplayLabel#>]实例</param>
+        /// <returns>执行完成状态</returns>
+        public bool Update(<#=EntityName#> entity)
+        {
+            if (entity == null) throw new ArgumentNullException("系统异常:参数 entity 是空值");
+            return u("Upate" + DefaultKey, entity);
+        }
+
+        /// <summary>
+        /// 删除一条[<#=DisplayLabel#>]
+        /// </summary>
+        /// <param name="entityID"></param>
+        /// <returns>执行完成状态</returns>
+        public bool Delete(string entityID)
+        {
+            if (string.IsNullOrEmpty(entityID)) throw new ArgumentNullException("系统异常:参数 entity 是空值");
+            return d("Delete" + DefaultKey, entityID);
+        }
+        #endregion
+
+        #region 查询操作
+
+		/// <summary>
+        /// 条件查询[<#=DisplayLabel#>]
+        /// </summary>
+        /// <param name="entity">[<#=DisplayLabel#>]筛选实例</param>
+        /// <returns>[<#=DisplayLabel#>结果集</returns>
+        public IList<<#=EntityName#>> Select(<#=EntityName#> entity)
+        {
+            if (entity == null) throw new ArgumentNullException("系统异常:参数 entity 是空值");
+            return s("Select" + DefaultKey, entity);
+        }
+        /// <summary>
+        /// 条件查询排序
+        /// </summary>
+        /// <param name="entity">筛选实例</param>
+        /// <param name="sortField">排序字段名</param>
+        /// <param name="isDesc">是否倒序</param>
+        /// <returns></returns>
+		public IList<<#=EntityName#>> SelectForSort(<#=EntityName#> entity,string sortField, bool isDesc)
+        {
+            if (entity == null) throw new ArgumentNullException("系统异常:参数 entity 是空值");
+            if (string.IsNullOrEmpty(sortField)) throw new ArgumentNullException("系统异常:参数 sortField 是空值");
+            entity.SortField = sortField;
+            entity.IsDesc = isDesc;
+            return s("Select" + DefaultKey, entity);
+        }
+		/// <summary>
+        /// 条件查询分页[<#=DisplayLabel#>]
+        /// </summary>
+        /// <param name="entity">[<#=DisplayLabel#>]筛选实例</param>
+        /// <param name="Skip">页数</param>
+        /// <param name="Count">页条目数量</param>
+        /// <returns>[<#=DisplayLabel#>结果集</returns>
+        public IList<<#=EntityName#>> SelectForPage(<#=EntityName#> entity,int Skip,int Count)
+        {
+            if (entity == null) throw new ArgumentNullException("系统异常:参数 entity 是空值");
+            if (Count==0) throw new ArgumentNullException("系统异常:参数 Count 不可以是0");
+            return sp("Select" + DefaultKey, entity,Skip,Count);
+        }
+        /// <summary>
+        /// 查询所有[<#=DisplayLabel#>]
+        /// </summary>
+        /// <returns></returns>
+        public IList<<#=EntityName#>> Selects()
+        {
+            return ss("Select" + DefaultKey);
+        }
+        /// <summary>
+        /// 查询所有[<#=DisplayLabel#>]带排序
+        /// </summary>
+        /// <param name="sortField">排序列</param>
+        /// <param name="isDesc">是否倒序</param>
+        /// <returns></returns>
+        public IList<<#=EntityName#>> SelectsForSort(string sortField,bool isDesc)
+        {
+            if (string.IsNullOrEmpty(sortField)) throw new ArgumentNullException("系统异常:参数 sortField 是空值");
+            <#=EntityName#> entity = new <#=EntityName#>() { SortField = sortField, IsDesc = isDesc };
+            return s("Select" + DefaultKey, entity);
+        }
+
+        /// <summary>
+        /// 查询所有[<#=DisplayLabel#>]分页
+        /// </summary>
+        /// <param name="Skip">页数</param>
+        /// <param name="Count">页条目数量</param>
+        /// <returns></returns>
+        public IList<<#=EntityName#>> SelectsForPage(int Skip, int Count)
+        {
+            if (Count==0) throw new ArgumentNullException("系统异常:参数 Count 不可以是0");
+            return ssp("Select" + DefaultKey, Skip,Count);
+        }
+        #endregion
+    }
+}
+<#}EndFile();#>
+

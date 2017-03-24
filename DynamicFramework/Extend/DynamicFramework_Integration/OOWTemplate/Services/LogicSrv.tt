@@ -1,0 +1,77 @@
+﻿<#@ template debug="false" hostspecific="True" language="C#" #>
+<#@include file="$(SolutionDir)\Utils\TBUild.ttinclude" #>
+<#@ output extension=".i" #>
+<# 
+	Init("V");
+	NTable("TableName","TableName");
+	NewFile("LogicSrv.asmx"); 
+#>
+<%@ WebService Language="C#" CodeBehind="LogicSrv.asmx.cs" Class="<#=WebSrvNameSpace#>.LogicSrv" %>
+<#NewFile("LogicSrv.asmx.cs");#>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Services;
+<#=string.IsNullOrEmpty(DaoNamespace)?"":string.Format("using {0};",DaoNamespace)#>
+
+namespace <#=WebSrvNameSpace#>
+{
+    /// <summary>
+    /// LogicSrv 的摘要说明
+    /// </summary>
+    [WebService(Namespace = "http://tempuri.org/")]
+    [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+    [System.ComponentModel.ToolboxItem(false)]
+    // 若要允许使用 ASP.NET AJAX 从脚本中调用此 Web 服务，请取消对下行的注释。
+    // [System.Web.Script.Services.ScriptService]
+    public partial class LogicSrv : System.Web.Services.WebService
+    {
+<#
+	//亲~~~~~~~ 如果上面的基本配置好了就不要改我了。
+    foreach (Page item in pages)
+    {
+		if(NTables.Contains(item.Name)) continue;
+		string DisplayName = item.Name; //文件名称
+		string DisplayLabel = item.Label; //文件中文表示 现在所有都是英文
+		if(string.IsNullOrEmpty(DisplayLabel)){ DisplayName="None"+Flag;}
+		string EntityName = EntityNameSpace+"."+DisplayName+EntitySuffix;//实体名称拼凑
+		string DaoName = DisplayName+DaoSuffix+".Instance";
+		string ServiceName = DisplayName+WebSrvSuffix;
+#>
+        #region [<#=DisplayLabel#>]操作
+        [WebMethod(Description="条件查询[<#=DisplayLabel#>]")]
+        public List<<#=EntityName#>> <#=DisplayName#>_Select(<#=EntityName#> entity)
+        {
+            return <#=DaoName#>.Select(entity) as List<<#=EntityName#>>;
+        }
+        [WebMethod(Description="条件查询并排序[<#=DisplayLabel#>]")]       
+		public List<<#=EntityName#>> <#=DisplayName#>_SelectForSort(<#=EntityName#> entity,string sortField, bool isDesc)
+        {
+            return <#=DaoName#>.SelectForSort(entity,sortField,isDesc) as List<<#=EntityName#>>;
+        }
+        [WebMethod(Description="条件查询分页[<#=DisplayLabel#>]")]
+        public List<<#=EntityName#>> <#=DisplayName#>_SelectForPage(<#=EntityName#> entity,int Skip,int Count)
+        {
+            return <#=DaoName#>.SelectForPage(entity,Skip,Count) as List<<#=EntityName#>>;
+        }
+        [WebMethod(Description="查询所有[<#=DisplayLabel#>]")]
+        public List<<#=EntityName#>> <#=DisplayName#>_Selects()
+        {
+            return <#=DaoName#>.Selects() as List<<#=EntityName#>>;
+        }
+        [WebMethod(Description="查询并排序所有[<#=DisplayLabel#>]")]
+        public List<<#=EntityName#>> <#=DisplayName#>_SelectsForSort(string sortField,bool isDesc)
+        {
+            return <#=DaoName#>.SelectsForSort(sortField,isDesc) as List<<#=EntityName#>>;
+        }
+        [WebMethod(Description="查询所有[<#=DisplayLabel#>]分页")]
+        public List<<#=EntityName#>> <#=DisplayName#>_SelectsForPage(int Skip, int Count)
+        {
+            return <#=DaoName#>.SelectsForPage(Skip,Count) as List<<#=EntityName#>>;
+        }
+		#endregion
+<#}#>
+    }
+}
+<#EndFile();#>

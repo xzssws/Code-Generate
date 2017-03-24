@@ -1,0 +1,508 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5DAB962F-75F2-492B-AE85-415B3F8DEEC5}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WebSrvX</RootNamespace>
+    <AssemblyName>WebSrvX</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Maps\LogicMaps\AdjustAccountTableMap.xml">
+      <DependentUpon>LogicMaps.tt</DependentUpon>
+    </Content>
+    <Content Include="Maps\LogicMaps\FundCollectInfoMap.xml">
+      <DependentUpon>LogicMaps.tt</DependentUpon>
+    </Content>
+    <Content Include="Maps\LogicMaps\LogicMaps.i">
+      <DependentUpon>LogicMaps.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Content>
+    <Content Include="Maps\LogicMaps\ShowAllModelsMap.xml">
+      <DependentUpon>LogicMaps.tt</DependentUpon>
+    </Content>
+    <Content Include="Maps\LogicMaps\TableDicationaryMap.xml">
+      <DependentUpon>LogicMaps.tt</DependentUpon>
+    </Content>
+    <Content Include="Maps\LogicMaps\实体字典Map.xml">
+      <DependentUpon>LogicMaps.tt</DependentUpon>
+    </Content>
+    <Content Include="Maps\RealMaps\DspFuncMap.xml">
+      <DependentUpon>RealMaps.tt</DependentUpon>
+    </Content>
+    <Content Include="Maps\RealMaps\DutyFunMap.xml">
+      <DependentUpon>RealMaps.tt</DependentUpon>
+    </Content>
+    <Content Include="Maps\RealMaps\DutyMap.xml">
+      <DependentUpon>RealMaps.tt</DependentUpon>
+    </Content>
+    <Content Include="Maps\RealMaps\JG_AccountManageMap.xml">
+      <DependentUpon>RealMaps.tt</DependentUpon>
+    </Content>
+    <Content Include="Maps\RealMaps\JG_AdjustMap.xml">
+      <DependentUpon>RealMaps.tt</DependentUpon>
+    </Content>
+    <Content Include="Maps\RealMaps\JG_AmountCollectMap.xml">
+      <DependentUpon>RealMaps.tt</DependentUpon>
+    </Content>
+    <Content Include="Maps\RealMaps\JG_BranchesMap.xml">
+      <DependentUpon>RealMaps.tt</DependentUpon>
+    </Content>
+    <Content Include="Maps\RealMaps\JG_DepositMap.xml">
+      <DependentUpon>RealMaps.tt</DependentUpon>
+    </Content>
+    <Content Include="Maps\RealMaps\JG_InterestMap.xml">
+      <DependentUpon>RealMaps.tt</DependentUpon>
+    </Content>
+    <Content Include="Maps\RealMaps\JG_InterestRateMap.xml">
+      <DependentUpon>RealMaps.tt</DependentUpon>
+    </Content>
+    <Content Include="Maps\RealMaps\JG_ListidMap.xml">
+      <DependentUpon>RealMaps.tt</DependentUpon>
+    </Content>
+    <Content Include="Maps\RealMaps\JG_MessageInfoMap.xml">
+      <DependentUpon>RealMaps.tt</DependentUpon>
+    </Content>
+    <Content Include="Maps\RealMaps\JG_PaymentMap.xml">
+      <DependentUpon>RealMaps.tt</DependentUpon>
+    </Content>
+    <Content Include="Maps\RealMaps\JG_SpvProtocolMap.xml">
+      <DependentUpon>RealMaps.tt</DependentUpon>
+    </Content>
+    <Content Include="Maps\RealMaps\ParmItemMap.xml">
+      <DependentUpon>RealMaps.tt</DependentUpon>
+    </Content>
+    <Content Include="Maps\RealMaps\ParmMap.xml">
+      <DependentUpon>RealMaps.tt</DependentUpon>
+    </Content>
+    <Content Include="Maps\RealMaps\RealMaps.i">
+      <DependentUpon>RealMaps.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Content>
+    <Content Include="Maps\RealMaps\SerialNoConfigMap.xml">
+      <DependentUpon>RealMaps.tt</DependentUpon>
+    </Content>
+    <Content Include="Maps\RealMaps\SysConfigMap.xml">
+      <DependentUpon>RealMaps.tt</DependentUpon>
+    </Content>
+    <Content Include="Maps\RealMaps\UserDutyMap.xml">
+      <DependentUpon>RealMaps.tt</DependentUpon>
+    </Content>
+    <Content Include="Maps\RealMaps\UserInfoMap.xml">
+      <DependentUpon>RealMaps.tt</DependentUpon>
+    </Content>
+    <Content Include="Services\AdjustAccountTableSrv.asmx">
+      <DependentUpon>LogicSrv.tt</DependentUpon>
+    </Content>
+    <Content Include="Services\DspFuncSrv.asmx">
+      <DependentUpon>RealSrv.tt</DependentUpon>
+    </Content>
+    <Content Include="Services\DutyFunSrv.asmx">
+      <DependentUpon>RealSrv.tt</DependentUpon>
+    </Content>
+    <Content Include="Services\DutySrv.asmx">
+      <DependentUpon>RealSrv.tt</DependentUpon>
+    </Content>
+    <Content Include="Services\FundCollectInfoSrv.asmx">
+      <DependentUpon>LogicSrv.tt</DependentUpon>
+    </Content>
+    <Content Include="Services\JG_AccountManageSrv.asmx">
+      <DependentUpon>RealSrv.tt</DependentUpon>
+    </Content>
+    <Content Include="Services\JG_AdjustSrv.asmx">
+      <DependentUpon>RealSrv.tt</DependentUpon>
+    </Content>
+    <Content Include="Services\JG_AmountCollectSrv.asmx">
+      <DependentUpon>RealSrv.tt</DependentUpon>
+    </Content>
+    <Content Include="Services\JG_BranchesSrv.asmx">
+      <DependentUpon>RealSrv.tt</DependentUpon>
+    </Content>
+    <Content Include="Services\JG_DepositSrv.asmx">
+      <DependentUpon>RealSrv.tt</DependentUpon>
+    </Content>
+    <Content Include="Services\JG_InterestRateSrv.asmx">
+      <DependentUpon>RealSrv.tt</DependentUpon>
+    </Content>
+    <Content Include="Services\JG_InterestSrv.asmx">
+      <DependentUpon>RealSrv.tt</DependentUpon>
+    </Content>
+    <Content Include="Services\JG_ListidSrv.asmx">
+      <DependentUpon>RealSrv.tt</DependentUpon>
+    </Content>
+    <Content Include="Services\JG_MessageInfoSrv.asmx">
+      <DependentUpon>RealSrv.tt</DependentUpon>
+    </Content>
+    <Content Include="Services\JG_PaymentSrv.asmx">
+      <DependentUpon>RealSrv.tt</DependentUpon>
+    </Content>
+    <Content Include="Services\JG_SpvProtocolSrv.asmx">
+      <DependentUpon>RealSrv.tt</DependentUpon>
+    </Content>
+    <Content Include="Services\LogicSrv.i">
+      <DependentUpon>LogicSrv.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Content>
+    <Content Include="Services\ParmItemSrv.asmx">
+      <DependentUpon>RealSrv.tt</DependentUpon>
+    </Content>
+    <Content Include="Services\ParmSrv.asmx">
+      <DependentUpon>RealSrv.tt</DependentUpon>
+    </Content>
+    <Content Include="Services\RealSrv.i">
+      <DependentUpon>RealSrv.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Content>
+    <Content Include="Services\SerialNoConfigSrv.asmx">
+      <DependentUpon>RealSrv.tt</DependentUpon>
+    </Content>
+    <Content Include="Services\ShowAllModelsSrv.asmx">
+      <DependentUpon>LogicSrv.tt</DependentUpon>
+    </Content>
+    <Content Include="Services\SysConfigSrv.asmx">
+      <DependentUpon>RealSrv.tt</DependentUpon>
+    </Content>
+    <Content Include="Services\TableDicationarySrv.asmx">
+      <DependentUpon>LogicSrv.tt</DependentUpon>
+    </Content>
+    <Content Include="Services\UserDutySrv.asmx">
+      <DependentUpon>RealSrv.tt</DependentUpon>
+    </Content>
+    <Content Include="Services\UserInfoSrv.asmx">
+      <DependentUpon>RealSrv.tt</DependentUpon>
+    </Content>
+    <Content Include="Services\实体字典Srv.asmx">
+      <DependentUpon>LogicSrv.tt</DependentUpon>
+    </Content>
+    <Content Include="Web.config" />
+    <Content Include="WebLogic\LogicDao.auto.i">
+      <DependentUpon>LogicDao.auto.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Content>
+    <Content Include="WebLogic\RealDao.auto.i">
+      <DependentUpon>RealDao.auto.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AdjustAccountTableSrv.asmx.cs">
+      <DependentUpon>LogicSrv.tt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Services\DspFuncSrv.asmx.cs">
+      <DependentUpon>RealSrv.tt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Services\DutyFunSrv.asmx.cs">
+      <DependentUpon>RealSrv.tt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Services\DutySrv.asmx.cs">
+      <DependentUpon>RealSrv.tt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Services\FundCollectInfoSrv.asmx.cs">
+      <DependentUpon>LogicSrv.tt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Services\JG_AccountManageSrv.asmx.cs">
+      <DependentUpon>RealSrv.tt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Services\JG_AdjustSrv.asmx.cs">
+      <DependentUpon>RealSrv.tt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Services\JG_AmountCollectSrv.asmx.cs">
+      <DependentUpon>RealSrv.tt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Services\JG_BranchesSrv.asmx.cs">
+      <DependentUpon>RealSrv.tt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Services\JG_DepositSrv.asmx.cs">
+      <DependentUpon>RealSrv.tt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Services\JG_InterestRateSrv.asmx.cs">
+      <DependentUpon>RealSrv.tt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Services\JG_InterestSrv.asmx.cs">
+      <DependentUpon>RealSrv.tt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Services\JG_ListidSrv.asmx.cs">
+      <DependentUpon>RealSrv.tt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Services\JG_MessageInfoSrv.asmx.cs">
+      <DependentUpon>RealSrv.tt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Services\JG_PaymentSrv.asmx.cs">
+      <DependentUpon>RealSrv.tt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Services\JG_SpvProtocolSrv.asmx.cs">
+      <DependentUpon>RealSrv.tt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Services\ParmItemSrv.asmx.cs">
+      <DependentUpon>RealSrv.tt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Services\ParmSrv.asmx.cs">
+      <DependentUpon>RealSrv.tt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Services\SerialNoConfigSrv.asmx.cs">
+      <DependentUpon>RealSrv.tt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Services\ShowAllModelsSrv.asmx.cs">
+      <DependentUpon>LogicSrv.tt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Services\SysConfigSrv.asmx.cs">
+      <DependentUpon>RealSrv.tt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Services\TableDicationarySrv.asmx.cs">
+      <DependentUpon>LogicSrv.tt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Services\UserDutySrv.asmx.cs">
+      <DependentUpon>RealSrv.tt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Services\UserInfoSrv.asmx.cs">
+      <DependentUpon>RealSrv.tt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Services\实体字典Srv.asmx.cs">
+      <DependentUpon>LogicSrv.tt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WebLogic\AdjustAccountTableLogic.auto.cs">
+      <DependentUpon>LogicDao.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WebLogic\DspFuncLogic.auto.cs">
+      <DependentUpon>RealDao.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WebLogic\DutyFunLogic.auto.cs">
+      <DependentUpon>RealDao.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WebLogic\DutyLogic.auto.cs">
+      <DependentUpon>RealDao.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WebLogic\FundCollectInfoLogic.auto.cs">
+      <DependentUpon>LogicDao.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WebLogic\JG_AccountManageLogic.auto.cs">
+      <DependentUpon>RealDao.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WebLogic\JG_AdjustLogic.auto.cs">
+      <DependentUpon>RealDao.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WebLogic\JG_AmountCollectLogic.auto.cs">
+      <DependentUpon>RealDao.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WebLogic\JG_BranchesLogic.auto.cs">
+      <DependentUpon>RealDao.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WebLogic\JG_DepositLogic.auto.cs">
+      <DependentUpon>RealDao.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WebLogic\JG_InterestLogic.auto.cs">
+      <DependentUpon>RealDao.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WebLogic\JG_InterestRateLogic.auto.cs">
+      <DependentUpon>RealDao.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WebLogic\JG_ListidLogic.auto.cs">
+      <DependentUpon>RealDao.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WebLogic\JG_MessageInfoLogic.auto.cs">
+      <DependentUpon>RealDao.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WebLogic\JG_PaymentLogic.auto.cs">
+      <DependentUpon>RealDao.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WebLogic\JG_SpvProtocolLogic.auto.cs">
+      <DependentUpon>RealDao.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WebLogic\ParmItemLogic.auto.cs">
+      <DependentUpon>RealDao.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WebLogic\ParmLogic.auto.cs">
+      <DependentUpon>RealDao.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WebLogic\SerialNoConfigLogic.auto.cs">
+      <DependentUpon>RealDao.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WebLogic\ShowAllModelsLogic.auto.cs">
+      <DependentUpon>LogicDao.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WebLogic\SysConfigLogic.auto.cs">
+      <DependentUpon>RealDao.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WebLogic\TableDicationaryLogic.auto.cs">
+      <DependentUpon>LogicDao.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WebLogic\UserDutyLogic.auto.cs">
+      <DependentUpon>RealDao.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WebLogic\UserInfoLogic.auto.cs">
+      <DependentUpon>RealDao.auto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WebLogic\实体字典Logic.auto.cs">
+      <DependentUpon>LogicDao.auto.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Maps\LogicMaps\LogicMaps.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>LogicMaps.i</LastGenOutput>
+    </Content>
+    <Content Include="Maps\RealMaps\RealMaps.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>RealMaps.i</LastGenOutput>
+    </Content>
+    <Content Include="database.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Maps\SqlMap.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Services\LogicSrv.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>LogicSrv.i</LastGenOutput>
+    </Content>
+    <Content Include="Services\RealSrv.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>RealSrv.i</LastGenOutput>
+    </Content>
+    <Content Include="providers.config" />
+    <Content Include="sqlmap.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <Content Include="WebLogic\RealDao.auto.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>RealDao.auto.i</LastGenOutput>
+    </Content>
+    <Content Include="WebLogic\LogicDao.auto.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>LogicDao.auto.i</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Maps\CustomMaps\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EntityTemplate\EntityTemplate.csproj">
+      <Project>{bb30cbca-64d2-49dd-9e67-fcb3bbb8bbc2}</Project>
+      <Name>EntityTemplate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SingleDaoTemplate\SingleDaoTemplate.csproj">
+      <Project>{d58a6473-3368-4103-b51f-20367162371b}</Project>
+      <Name>SingleDaoTemplate</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>29529</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:29529/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+	<!--实体类别名-->
+	<alias>
+		<typeAlias alias="SysConfigEntity" type="DynamicEntity.SysConfigEntity,EntityTemplate" />
+	</alias>
+	<!--结果返回集-->
+	<resultMaps>
+		<resultMap id="SelectAllSysConfig" class="SysConfigEntity">
+			<result property="BankCode" column="BankCode"/>
+			<result property="BankName" column="BankName"/>
+			<result property="JGAccount" column="JGAccount"/>
+			<result property="IP" column="IP"/>
+			<result property="Port" column="Port"/>
+			<result property="PayAccuralDate" column="PayAccuralDate"/>
+		</resultMap>
+	</resultMaps>
+	<!--操作指令-->
+	<statements>
+		<!--查询-->
+		<select id="SelectSysConfig" resultMap="SelectAllSysConfig">
+			SELECT
+			BankCode,
+			BankName,
+			JGAccount,
+			IP,
+			Port,
+			PayAccuralDate
+			FROM SysConfig
+			WHERE  1=1
+			<isNotEmpty  prepend="AND" property="BankCode">
+				BankCode = #BankCode#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="BankName">
+				BankName = #BankName#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="JGAccount">
+				JGAccount = #JGAccount#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="IP">
+				IP = #IP#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="Port">
+				Port = #Port#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="PayAccuralDate">
+				PayAccuralDate = #PayAccuralDate#
+			</isNotEmpty>
+			<isNotEmpty prepend="ORDER BY " property="OrderField">
+				$OrderField$
+				<isEqual property="IsDesc" compareValue="true">
+				  DESC
+				</isEqual>
+			</isNotEmpty>
+		</select>
+		<!--添加-->
+		<insert id="AddSysConfig" parameterClass="SysConfigEntity">
+			INSERT INTO SysConfig
+			(
+			BankCode,
+			BankName,
+			JGAccount,
+			IP,
+			Port,
+			PayAccuralDate
+
+			) VALUES (
+
+			#BankCode#,
+			#BankName#,
+			#JGAccount#,
+			#IP#,
+			#Port#,
+			#PayAccuralDate#
+			
+			);
+		</insert>
+		<!--更新-->
+		<update id ="UpdateSysConfig" parameterClass="SysConfigEntity">
+			UPDATE SysConfig
+			SET
+			[ID] = #[ID]#
+			<isNotEmpty prepend="," property="BankCode">
+				BankCode = #BankCode#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="BankName">
+				BankName = #BankName#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="JGAccount">
+				JGAccount = #JGAccount#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="IP">
+				IP = #IP#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="Port">
+				Port = #Port#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="PayAccuralDate">
+				PayAccuralDate = #PayAccuralDate#
+			</isNotEmpty>
+			WHERE  [ID] = #[ID]#
+		</update>
+		<!--删除-->
+		<delete id="DeleteSysConfig" parameterClass="string">
+			DELETE SysConfig WHERE  [ID] = #value#;
+		</delete>
+
+	</statements>
+</sqlMap>

@@ -1,0 +1,36 @@
+﻿<#@ template debug="false" hostspecific="True" language="C#" #>
+<#@ include file="$(ProjectDir)\Utils\TBUild.ttinclude" #>
+<#@ output extension=".i" #>
+<#Init("T");  foreach (Page item in pages) {
+      if(string.IsNullOrEmpty(item.Name)){ item.Name=Guid.NewGuid().ToString();}
+	  NewFile(item.Name+".cs");
+#>
+using System;
+
+namespace Hi
+{
+    /// <summary>
+    /// <#=item.Label#>
+    /// </summary>
+    public class <#=item.Name#>
+    {
+<# foreach (Field field in item.Fields) 
+	{  
+		 string filedName = "_"+field.Name.ToLowerInvariant(); 
+		 string FieldName = field.Name;
+	     if(filedName=="_") filedName = "_"+FLAG.ToString();
+		 if(FieldName=="") {FieldName = FLAG.ToString();}
+#>
+        private <#=Builder.ToCLR(field.Type,field.CanNull)#> <#=filedName#>;
+        /// <summary>
+        /// <#=string.IsNullOrEmpty(field.Remark.Trim())?FieldName:field.Remark#>
+        /// </summary>
+        public <#=Builder.ToCLR(field.Type,field.CanNull)#> <#=FieldName==item.Name?FieldName+"Field":FieldName#>
+        {
+            get { return <#=filedName#>; }
+            set { <#=filedName#> = value; }
+        }
+<# }#>
+   }
+}
+<#}EndFile();#>

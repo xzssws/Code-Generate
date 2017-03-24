@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ClientTemplate.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ClientTemplate_RealService_RealSrv" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost:28232/Services/RealSrv.asmx</Value>
+    </Setting>
+    <Setting Name="ClientTemplate_LogicService_LogicSrv" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost:28124/Services/LogicSrv.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

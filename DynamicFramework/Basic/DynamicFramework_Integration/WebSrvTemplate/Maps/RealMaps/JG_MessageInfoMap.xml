@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+	<!--实体类别名-->
+	<alias>
+		<typeAlias alias="JG_MessageInfoEntity" type="DynamicEntity.JG_MessageInfoEntity,EntityTemplate" />
+	</alias>
+	<!--结果返回集-->
+	<resultMaps>
+		<resultMap id="SelectAllJG_MessageInfo" class="JG_MessageInfoEntity">
+			<result property="MI_ID" column="MI_ID"/>
+			<result property="MI_xybh" column="MI_xybh"/>
+			<result property="MI_Bwlsh" column="MI_Bwlsh"/>
+			<result property="MI_Jydm" column="MI_Jydm"/>
+			<result property="MI_DzDate" column="MI_DzDate"/>
+			<result property="MI_DzTime" column="MI_DzTime"/>
+			<result property="MI_Bwnr" column="MI_Bwnr"/>
+			<result property="MI_Bwfx" column="MI_Bwfx"/>
+		</resultMap>
+	</resultMaps>
+	<!--操作指令-->
+	<statements>
+		<!--查询-->
+		<select id="SelectJG_MessageInfo" resultMap="SelectAllJG_MessageInfo">
+			SELECT
+			MI_ID,
+			MI_xybh,
+			MI_Bwlsh,
+			MI_Jydm,
+			MI_DzDate,
+			MI_DzTime,
+			MI_Bwnr,
+			MI_Bwfx
+			FROM JG_MessageInfo
+			WHERE  1=1
+			<isNotEmpty  prepend="AND" property="MI_ID">
+				MI_ID = #MI_ID#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="MI_xybh">
+				MI_xybh = #MI_xybh#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="MI_Bwlsh">
+				MI_Bwlsh = #MI_Bwlsh#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="MI_Jydm">
+				MI_Jydm = #MI_Jydm#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="MI_DzDate">
+				MI_DzDate = #MI_DzDate#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="MI_DzTime">
+				MI_DzTime = #MI_DzTime#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="MI_Bwnr">
+				MI_Bwnr = #MI_Bwnr#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="MI_Bwfx">
+				MI_Bwfx = #MI_Bwfx#
+			</isNotEmpty>
+			<isNotEmpty prepend="ORDER BY " property="OrderField">
+				$OrderField$
+				<isEqual property="IsDesc" compareValue="true">
+				  DESC
+				</isEqual>
+			</isNotEmpty>
+		</select>
+		<!--添加-->
+		<insert id="AddJG_MessageInfo" parameterClass="JG_MessageInfoEntity">
+			INSERT INTO JG_MessageInfo
+			(
+			MI_ID,
+			MI_xybh,
+			MI_Bwlsh,
+			MI_Jydm,
+			MI_DzDate,
+			MI_DzTime,
+			MI_Bwnr,
+			MI_Bwfx
+
+			) VALUES (
+
+			#MI_ID#,
+			#MI_xybh#,
+			#MI_Bwlsh#,
+			#MI_Jydm#,
+			#MI_DzDate#,
+			#MI_DzTime#,
+			#MI_Bwnr#,
+			#MI_Bwfx#
+			
+			);
+		</insert>
+		<!--更新-->
+		<update id ="UpdateJG_MessageInfo" parameterClass="JG_MessageInfoEntity">
+			UPDATE JG_MessageInfo
+			SET
+			MI_ID = #MI_ID#
+			<isNotEmpty prepend="," property="MI_ID">
+				MI_ID = #MI_ID#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="MI_xybh">
+				MI_xybh = #MI_xybh#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="MI_Bwlsh">
+				MI_Bwlsh = #MI_Bwlsh#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="MI_Jydm">
+				MI_Jydm = #MI_Jydm#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="MI_DzDate">
+				MI_DzDate = #MI_DzDate#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="MI_DzTime">
+				MI_DzTime = #MI_DzTime#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="MI_Bwnr">
+				MI_Bwnr = #MI_Bwnr#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="MI_Bwfx">
+				MI_Bwfx = #MI_Bwfx#
+			</isNotEmpty>
+			WHERE  MI_ID = #MI_ID#
+		</update>
+		<!--删除-->
+		<delete id="DeleteJG_MessageInfo" parameterClass="string">
+			DELETE JG_MessageInfo WHERE  MI_ID = #value#;
+		</delete>
+
+	</statements>
+</sqlMap>

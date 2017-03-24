@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+	<!--实体类别名-->
+	<alias>
+		<typeAlias alias="JG_BranchesEntity" type="DynamicEntity.JG_BranchesEntity,EntityTemplate" />
+	</alias>
+	<!--结果返回集-->
+	<resultMaps>
+		<resultMap id="SelectAllJG_Branches" class="JG_BranchesEntity">
+			<result property="BR_ID" column="BR_ID"/>
+			<result property="BR_BranchCode" column="BR_BranchCode"/>
+			<result property="BR_BranchName" column="BR_BranchName"/>
+			<result property="BR_Fzr" column="BR_Fzr"/>
+			<result property="BR_Address" column="BR_Address"/>
+			<result property="BR_State" column="BR_State"/>
+		</resultMap>
+	</resultMaps>
+	<!--操作指令-->
+	<statements>
+		<!--查询-->
+		<select id="SelectJG_Branches" resultMap="SelectAllJG_Branches">
+			SELECT
+			BR_ID,
+			BR_BranchCode,
+			BR_BranchName,
+			BR_Fzr,
+			BR_Address,
+			BR_State
+			FROM JG_Branches
+			WHERE  1=1
+			<isNotEmpty  prepend="AND" property="BR_ID">
+				BR_ID = #BR_ID#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="BR_BranchCode">
+				BR_BranchCode = #BR_BranchCode#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="BR_BranchName">
+				BR_BranchName = #BR_BranchName#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="BR_Fzr">
+				BR_Fzr = #BR_Fzr#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="BR_Address">
+				BR_Address = #BR_Address#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="BR_State">
+				BR_State = #BR_State#
+			</isNotEmpty>
+			<isNotEmpty prepend="ORDER BY " property="OrderField">
+				$OrderField$
+				<isEqual property="IsDesc" compareValue="true">
+				  DESC
+				</isEqual>
+			</isNotEmpty>
+		</select>
+		<!--添加-->
+		<insert id="AddJG_Branches" parameterClass="JG_BranchesEntity">
+			INSERT INTO JG_Branches
+			(
+			BR_ID,
+			BR_BranchCode,
+			BR_BranchName,
+			BR_Fzr,
+			BR_Address,
+			BR_State
+
+			) VALUES (
+
+			#BR_ID#,
+			#BR_BranchCode#,
+			#BR_BranchName#,
+			#BR_Fzr#,
+			#BR_Address#,
+			#BR_State#
+			
+			);
+		</insert>
+		<!--更新-->
+		<update id ="UpdateJG_Branches" parameterClass="JG_BranchesEntity">
+			UPDATE JG_Branches
+			SET
+			BR_ID = #BR_ID#
+			<isNotEmpty prepend="," property="BR_ID">
+				BR_ID = #BR_ID#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="BR_BranchCode">
+				BR_BranchCode = #BR_BranchCode#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="BR_BranchName">
+				BR_BranchName = #BR_BranchName#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="BR_Fzr">
+				BR_Fzr = #BR_Fzr#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="BR_Address">
+				BR_Address = #BR_Address#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="BR_State">
+				BR_State = #BR_State#
+			</isNotEmpty>
+			WHERE  BR_ID = #BR_ID#
+		</update>
+		<!--删除-->
+		<delete id="DeleteJG_Branches" parameterClass="string">
+			DELETE JG_Branches WHERE  BR_ID = #value#;
+		</delete>
+
+	</statements>
+</sqlMap>

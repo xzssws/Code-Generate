@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+	<!--实体类别名-->
+	<alias>
+		<typeAlias alias="SerialNoConfigEntity" type="DynamicEntity.SerialNoConfigEntity,EntityTemplate" />
+	</alias>
+	<!--结果返回集-->
+	<resultMaps>
+		<resultMap id="SelectAllSerialNoConfig" class="SerialNoConfigEntity">
+			<result property="SerialNo" column="SerialNo"/>
+		</resultMap>
+	</resultMaps>
+	<!--操作指令-->
+	<statements>
+		<!--查询-->
+		<select id="SelectSerialNoConfig" resultMap="SelectAllSerialNoConfig">
+			SELECT
+			SerialNo
+			FROM SerialNoConfig
+			WHERE  1=1
+			<isNotEmpty  prepend="AND" property="SerialNo">
+				SerialNo = #SerialNo#
+			</isNotEmpty>
+			<isNotEmpty prepend="ORDER BY " property="SortField">
+				$SortField$
+				<isEqual property="IsDesc" compareValue="true">
+				  DESC
+				</isEqual>
+			</isNotEmpty>
+		</select>
+		<!--添加-->
+		<insert id="AddSerialNoConfig" parameterClass="SerialNoConfigEntity">
+			INSERT INTO SerialNoConfig
+			(
+
+				<isNotEmpty    property="SerialNo">
+					SerialNo
+				  </isNotEmpty>
+
+			) VALUES (
+			
+				<isNotEmpty    property="SerialNo">
+					#SerialNo#
+				  </isNotEmpty>
+			
+			);
+		</insert>
+		<!--更新-->
+
+		<update id ="UpdateSerialNoConfig" parameterClass="SerialNoConfigEntity">
+			UPDATE SerialNoConfig
+			SET
+			[ID] = #[ID]#
+			<isNotEmpty prepend="," property="SerialNo">
+				SerialNo = #SerialNo#
+			</isNotEmpty>
+			WHERE  [ID] = #[ID]#
+		</update>
+		<!--删除-->
+		<delete id="DeleteSerialNoConfig" parameterClass="string">
+			DELETE SerialNoConfig WHERE  [ID] = #value#;
+		</delete>
+
+	</statements>
+</sqlMap>

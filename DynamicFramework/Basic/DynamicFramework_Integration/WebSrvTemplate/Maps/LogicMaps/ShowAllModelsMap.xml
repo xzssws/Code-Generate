@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+	<!--实体类别名-->
+	<alias>
+		<typeAlias alias="ShowAllModelsEntity" type="DynamicEntity.ShowAllModelsEntity,EntityTemplate" />
+	</alias>
+	<!--结果返回集-->
+	<resultMaps>
+		<resultMap id="SelectAllShowAllModels" class="ShowAllModelsEntity">
+			<result property="FieldPageName" column="FieldPageName"/>
+			<result property="FieldName" column="FieldName"/>
+			<result property="FieldType" column="FieldType"/>
+			<result property="FieldLabel" column="FieldLabel"/>
+			<result property="FieldPageLabel" column="FieldPageLabel"/>
+			<result property="FieldRemark" column="FieldRemark"/>
+		</resultMap>
+	</resultMaps>
+	<!--操作指令-->
+	<statements>
+		<!--查询-->
+		<select id="SelectShowAllModels" resultMap="SelectAllShowAllModels">
+			SELECT
+			FieldPageName,
+			FieldName,
+			FieldType,
+			FieldLabel,
+			FieldPageLabel,
+			FieldRemark
+			FROM ShowAllModels
+			WHERE  1=1
+			<isNotEmpty  prepend="AND" property="FieldPageName">
+				FieldPageName = #FieldPageName#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="FieldName">
+				FieldName = #FieldName#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="FieldType">
+				FieldType = #FieldType#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="FieldLabel">
+				FieldLabel = #FieldLabel#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="FieldPageLabel">
+				FieldPageLabel = #FieldPageLabel#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="FieldRemark">
+				FieldRemark = #FieldRemark#
+			</isNotEmpty>
+			<isNotEmpty prepend="ORDER BY " property="OrderField">
+				$OrderField$
+				<isEqual property="IsDesc" compareValue="true">
+				  DESC
+				</isEqual>
+			</isNotEmpty>
+		</select>
+	</statements>
+</sqlMap>

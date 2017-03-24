@@ -1,0 +1,81 @@
+﻿<#@ template debug="false" hostspecific="True" language="C#" #>
+<#@include file="$(SolutionDir)\Utils\TBUild.ttinclude" #>
+<#@ output extension=".i" #>
+<# 
+	Init("T");
+	NTable("TableName","TableName");
+#>
+<#
+	//亲~~~~~~~ 如果上面的基本配置好了就不要改我了。
+    foreach (Page page in pages)
+    {
+	  if(NTables.Contains(page.Name)) continue;//排除表过滤
+	  string DisplayName = page.Name; //文件名称
+	  string DisplayLabel = page.Label; //文件中文表示 现在所有都是英文
+      if(string.IsNullOrEmpty(DisplayLabel)){ DisplayName="None"+Flag;}//处理空字段空表情况
+	  Field PrimaryField = GetPrimaryKey(page);//主键字段
+	  NewFile("I"+DisplayName+".cs"); //生成文件名称定义	  
+	  string EntityName = DisplayName+EntitySuffix;
+#>
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Text;
+using DongZhengSoft.Framework.Core.Common;
+
+namespace DongZheng.Soft.BT.Spi
+{
+    /// <summary>
+    /// 接口解释
+    /// </summary>
+    public interface I<#=DisplayName#>
+    {
+        #region 预制方法
+        /// <summary>
+        /// 增加一条[<#=DisplayName#>]
+        /// </summary>
+        bool Add<#=DisplayName#>(<#=DisplayName#> obj);
+        /// <summary>
+        /// 更改一条[<#=DisplayName#>]
+        /// </summary>
+        bool Update<#=DisplayName#>(<#=DisplayName#> obj, string primaryKey);
+        /// <summary>
+        /// 根据条件删除一条或多条[<#=DisplayName#>]
+        /// </summary>
+        bool Delete<#=DisplayName#>(DZFFilter filter);
+        /// <summary>
+        /// 根据主键删除一条[<#=DisplayName#>]
+        /// </summary>
+        bool Delete<#=DisplayName#>(string Key);
+        /// <summary>
+        /// 根据主键获取一条[<#=DisplayName#>]
+        /// </summary>
+        <#=DisplayName#> Get<#=DisplayName#>(string Key);
+        /// <summary>
+        /// 根据条件筛选并获得多条[<#=DisplayName#>]
+        /// </summary>
+        List<<#=DisplayName#>> Get<#=DisplayName#>s(DZFFilter filter);
+        /// <summary>
+        /// 根据筛选实体筛选并获得多条[<#=DisplayName#>]
+        /// </summary>
+        List<<#=DisplayName#>> Get<#=DisplayName#>s(<#=DisplayName#> obj);
+        /// <summary>
+        /// 获取数据库中所有[<#=DisplayName#>]
+        /// </summary>
+        List<<#=DisplayName#>> Get<#=DisplayName#>s(); 
+        /// <summary>
+        /// 获取数据库中[<#=DisplayName#>](分页|集合)
+        /// </summary>
+        List<<#=DisplayName#>> Get<#=DisplayName#>Pages(int pageCurrent, int pageSize, string sort, out int count);
+        /// <summary>
+        /// 获取数据库中[<#=DisplayName#>](分页|数据集)
+        /// </summary>
+        DataSet Get<#=DisplayName#>Pages(int pageCurrent, int pageSize, string sort);
+        #endregion
+
+        #region 业务方法
+
+        #endregion
+    }
+}
+<#}EndFile();#>

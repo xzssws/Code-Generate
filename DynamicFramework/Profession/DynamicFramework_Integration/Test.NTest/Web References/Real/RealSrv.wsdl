@@ -1,0 +1,1249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="Classs_Add">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="o" type="tns:ClasssInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ClasssInfo">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseEntity">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Student" nillable="true" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="BaseEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SortField" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsDesc" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Classs_AddResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Classs_AddResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Classs_Update">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="o" type="tns:ClasssInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Classs_UpdateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Classs_UpdateResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Classs_Delete">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="o" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Classs_DeleteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Classs_DeleteResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Classs_Select">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:ClasssInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Classs_SelectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Classs_SelectResult" type="tns:ArrayOfClasssInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfClasssInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ClasssInfo" nillable="true" type="tns:ClasssInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Classs_SelectForSort">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:ClasssInfo" />
+            <s:element minOccurs="0" maxOccurs="1" name="sortField" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isDesc" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Classs_SelectForSortResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Classs_SelectForSortResult" type="tns:ArrayOfClasssInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Classs_SelectForPage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:ClasssInfo" />
+            <s:element minOccurs="1" maxOccurs="1" name="Skip" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Count" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Classs_SelectForPageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Classs_SelectForPageResult" type="tns:ArrayOfClasssInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Classs_Selects">
+        <s:complexType />
+      </s:element>
+      <s:element name="Classs_SelectsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Classs_SelectsResult" type="tns:ArrayOfClasssInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Classs_SelectsForSort">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sortField" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isDesc" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Classs_SelectsForSortResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Classs_SelectsForSortResult" type="tns:ArrayOfClasssInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Classs_SelectsForPage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Skip" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Count" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Classs_SelectsForPageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Classs_SelectsForPageResult" type="tns:ArrayOfClasssInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Student_Add">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="o" type="tns:StudentInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="StudentInfo">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseEntity">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Age" nillable="true" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Sex" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Class" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="Student_AddResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Student_AddResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Student_Update">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="o" type="tns:StudentInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Student_UpdateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Student_UpdateResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Student_Delete">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="o" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Student_DeleteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Student_DeleteResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Student_Select">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:StudentInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Student_SelectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Student_SelectResult" type="tns:ArrayOfStudentInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfStudentInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="StudentInfo" nillable="true" type="tns:StudentInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Student_SelectForSort">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:StudentInfo" />
+            <s:element minOccurs="0" maxOccurs="1" name="sortField" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isDesc" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Student_SelectForSortResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Student_SelectForSortResult" type="tns:ArrayOfStudentInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Student_SelectForPage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:StudentInfo" />
+            <s:element minOccurs="1" maxOccurs="1" name="Skip" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Count" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Student_SelectForPageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Student_SelectForPageResult" type="tns:ArrayOfStudentInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Student_Selects">
+        <s:complexType />
+      </s:element>
+      <s:element name="Student_SelectsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Student_SelectsResult" type="tns:ArrayOfStudentInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Student_SelectsForSort">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sortField" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isDesc" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Student_SelectsForSortResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Student_SelectsForSortResult" type="tns:ArrayOfStudentInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Student_SelectsForPage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Skip" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Count" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Student_SelectsForPageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Student_SelectsForPageResult" type="tns:ArrayOfStudentInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StudentX_Add">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="o" type="tns:StudentXInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="StudentXInfo">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseEntity">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Age" nillable="true" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Sex" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Class" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Flag" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="StudentX_AddResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="StudentX_AddResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StudentX_Update">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="o" type="tns:StudentXInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StudentX_UpdateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="StudentX_UpdateResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StudentX_Delete">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="o" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StudentX_DeleteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="StudentX_DeleteResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StudentX_Select">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:StudentXInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StudentX_SelectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StudentX_SelectResult" type="tns:ArrayOfStudentXInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfStudentXInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="StudentXInfo" nillable="true" type="tns:StudentXInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="StudentX_SelectForSort">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:StudentXInfo" />
+            <s:element minOccurs="0" maxOccurs="1" name="sortField" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isDesc" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StudentX_SelectForSortResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StudentX_SelectForSortResult" type="tns:ArrayOfStudentXInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StudentX_SelectForPage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="entity" type="tns:StudentXInfo" />
+            <s:element minOccurs="1" maxOccurs="1" name="Skip" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Count" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StudentX_SelectForPageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StudentX_SelectForPageResult" type="tns:ArrayOfStudentXInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StudentX_Selects">
+        <s:complexType />
+      </s:element>
+      <s:element name="StudentX_SelectsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StudentX_SelectsResult" type="tns:ArrayOfStudentXInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StudentX_SelectsForSort">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sortField" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isDesc" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StudentX_SelectsForSortResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StudentX_SelectsForSortResult" type="tns:ArrayOfStudentXInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StudentX_SelectsForPage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Skip" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Count" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StudentX_SelectsForPageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StudentX_SelectsForPageResult" type="tns:ArrayOfStudentXInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="Classs_AddSoapIn">
+    <wsdl:part name="parameters" element="tns:Classs_Add" />
+  </wsdl:message>
+  <wsdl:message name="Classs_AddSoapOut">
+    <wsdl:part name="parameters" element="tns:Classs_AddResponse" />
+  </wsdl:message>
+  <wsdl:message name="Classs_UpdateSoapIn">
+    <wsdl:part name="parameters" element="tns:Classs_Update" />
+  </wsdl:message>
+  <wsdl:message name="Classs_UpdateSoapOut">
+    <wsdl:part name="parameters" element="tns:Classs_UpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="Classs_DeleteSoapIn">
+    <wsdl:part name="parameters" element="tns:Classs_Delete" />
+  </wsdl:message>
+  <wsdl:message name="Classs_DeleteSoapOut">
+    <wsdl:part name="parameters" element="tns:Classs_DeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="Classs_SelectSoapIn">
+    <wsdl:part name="parameters" element="tns:Classs_Select" />
+  </wsdl:message>
+  <wsdl:message name="Classs_SelectSoapOut">
+    <wsdl:part name="parameters" element="tns:Classs_SelectResponse" />
+  </wsdl:message>
+  <wsdl:message name="Classs_SelectForSortSoapIn">
+    <wsdl:part name="parameters" element="tns:Classs_SelectForSort" />
+  </wsdl:message>
+  <wsdl:message name="Classs_SelectForSortSoapOut">
+    <wsdl:part name="parameters" element="tns:Classs_SelectForSortResponse" />
+  </wsdl:message>
+  <wsdl:message name="Classs_SelectForPageSoapIn">
+    <wsdl:part name="parameters" element="tns:Classs_SelectForPage" />
+  </wsdl:message>
+  <wsdl:message name="Classs_SelectForPageSoapOut">
+    <wsdl:part name="parameters" element="tns:Classs_SelectForPageResponse" />
+  </wsdl:message>
+  <wsdl:message name="Classs_SelectsSoapIn">
+    <wsdl:part name="parameters" element="tns:Classs_Selects" />
+  </wsdl:message>
+  <wsdl:message name="Classs_SelectsSoapOut">
+    <wsdl:part name="parameters" element="tns:Classs_SelectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Classs_SelectsForSortSoapIn">
+    <wsdl:part name="parameters" element="tns:Classs_SelectsForSort" />
+  </wsdl:message>
+  <wsdl:message name="Classs_SelectsForSortSoapOut">
+    <wsdl:part name="parameters" element="tns:Classs_SelectsForSortResponse" />
+  </wsdl:message>
+  <wsdl:message name="Classs_SelectsForPageSoapIn">
+    <wsdl:part name="parameters" element="tns:Classs_SelectsForPage" />
+  </wsdl:message>
+  <wsdl:message name="Classs_SelectsForPageSoapOut">
+    <wsdl:part name="parameters" element="tns:Classs_SelectsForPageResponse" />
+  </wsdl:message>
+  <wsdl:message name="Student_AddSoapIn">
+    <wsdl:part name="parameters" element="tns:Student_Add" />
+  </wsdl:message>
+  <wsdl:message name="Student_AddSoapOut">
+    <wsdl:part name="parameters" element="tns:Student_AddResponse" />
+  </wsdl:message>
+  <wsdl:message name="Student_UpdateSoapIn">
+    <wsdl:part name="parameters" element="tns:Student_Update" />
+  </wsdl:message>
+  <wsdl:message name="Student_UpdateSoapOut">
+    <wsdl:part name="parameters" element="tns:Student_UpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="Student_DeleteSoapIn">
+    <wsdl:part name="parameters" element="tns:Student_Delete" />
+  </wsdl:message>
+  <wsdl:message name="Student_DeleteSoapOut">
+    <wsdl:part name="parameters" element="tns:Student_DeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="Student_SelectSoapIn">
+    <wsdl:part name="parameters" element="tns:Student_Select" />
+  </wsdl:message>
+  <wsdl:message name="Student_SelectSoapOut">
+    <wsdl:part name="parameters" element="tns:Student_SelectResponse" />
+  </wsdl:message>
+  <wsdl:message name="Student_SelectForSortSoapIn">
+    <wsdl:part name="parameters" element="tns:Student_SelectForSort" />
+  </wsdl:message>
+  <wsdl:message name="Student_SelectForSortSoapOut">
+    <wsdl:part name="parameters" element="tns:Student_SelectForSortResponse" />
+  </wsdl:message>
+  <wsdl:message name="Student_SelectForPageSoapIn">
+    <wsdl:part name="parameters" element="tns:Student_SelectForPage" />
+  </wsdl:message>
+  <wsdl:message name="Student_SelectForPageSoapOut">
+    <wsdl:part name="parameters" element="tns:Student_SelectForPageResponse" />
+  </wsdl:message>
+  <wsdl:message name="Student_SelectsSoapIn">
+    <wsdl:part name="parameters" element="tns:Student_Selects" />
+  </wsdl:message>
+  <wsdl:message name="Student_SelectsSoapOut">
+    <wsdl:part name="parameters" element="tns:Student_SelectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Student_SelectsForSortSoapIn">
+    <wsdl:part name="parameters" element="tns:Student_SelectsForSort" />
+  </wsdl:message>
+  <wsdl:message name="Student_SelectsForSortSoapOut">
+    <wsdl:part name="parameters" element="tns:Student_SelectsForSortResponse" />
+  </wsdl:message>
+  <wsdl:message name="Student_SelectsForPageSoapIn">
+    <wsdl:part name="parameters" element="tns:Student_SelectsForPage" />
+  </wsdl:message>
+  <wsdl:message name="Student_SelectsForPageSoapOut">
+    <wsdl:part name="parameters" element="tns:Student_SelectsForPageResponse" />
+  </wsdl:message>
+  <wsdl:message name="StudentX_AddSoapIn">
+    <wsdl:part name="parameters" element="tns:StudentX_Add" />
+  </wsdl:message>
+  <wsdl:message name="StudentX_AddSoapOut">
+    <wsdl:part name="parameters" element="tns:StudentX_AddResponse" />
+  </wsdl:message>
+  <wsdl:message name="StudentX_UpdateSoapIn">
+    <wsdl:part name="parameters" element="tns:StudentX_Update" />
+  </wsdl:message>
+  <wsdl:message name="StudentX_UpdateSoapOut">
+    <wsdl:part name="parameters" element="tns:StudentX_UpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="StudentX_DeleteSoapIn">
+    <wsdl:part name="parameters" element="tns:StudentX_Delete" />
+  </wsdl:message>
+  <wsdl:message name="StudentX_DeleteSoapOut">
+    <wsdl:part name="parameters" element="tns:StudentX_DeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="StudentX_SelectSoapIn">
+    <wsdl:part name="parameters" element="tns:StudentX_Select" />
+  </wsdl:message>
+  <wsdl:message name="StudentX_SelectSoapOut">
+    <wsdl:part name="parameters" element="tns:StudentX_SelectResponse" />
+  </wsdl:message>
+  <wsdl:message name="StudentX_SelectForSortSoapIn">
+    <wsdl:part name="parameters" element="tns:StudentX_SelectForSort" />
+  </wsdl:message>
+  <wsdl:message name="StudentX_SelectForSortSoapOut">
+    <wsdl:part name="parameters" element="tns:StudentX_SelectForSortResponse" />
+  </wsdl:message>
+  <wsdl:message name="StudentX_SelectForPageSoapIn">
+    <wsdl:part name="parameters" element="tns:StudentX_SelectForPage" />
+  </wsdl:message>
+  <wsdl:message name="StudentX_SelectForPageSoapOut">
+    <wsdl:part name="parameters" element="tns:StudentX_SelectForPageResponse" />
+  </wsdl:message>
+  <wsdl:message name="StudentX_SelectsSoapIn">
+    <wsdl:part name="parameters" element="tns:StudentX_Selects" />
+  </wsdl:message>
+  <wsdl:message name="StudentX_SelectsSoapOut">
+    <wsdl:part name="parameters" element="tns:StudentX_SelectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="StudentX_SelectsForSortSoapIn">
+    <wsdl:part name="parameters" element="tns:StudentX_SelectsForSort" />
+  </wsdl:message>
+  <wsdl:message name="StudentX_SelectsForSortSoapOut">
+    <wsdl:part name="parameters" element="tns:StudentX_SelectsForSortResponse" />
+  </wsdl:message>
+  <wsdl:message name="StudentX_SelectsForPageSoapIn">
+    <wsdl:part name="parameters" element="tns:StudentX_SelectsForPage" />
+  </wsdl:message>
+  <wsdl:message name="StudentX_SelectsForPageSoapOut">
+    <wsdl:part name="parameters" element="tns:StudentX_SelectsForPageResponse" />
+  </wsdl:message>
+  <wsdl:portType name="RealSrvSoap">
+    <wsdl:operation name="Classs_Add">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">添加[Classs]</wsdl:documentation>
+      <wsdl:input message="tns:Classs_AddSoapIn" />
+      <wsdl:output message="tns:Classs_AddSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Classs_Update">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">更新[Classs]</wsdl:documentation>
+      <wsdl:input message="tns:Classs_UpdateSoapIn" />
+      <wsdl:output message="tns:Classs_UpdateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Classs_Delete">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">删除[Classs]</wsdl:documentation>
+      <wsdl:input message="tns:Classs_DeleteSoapIn" />
+      <wsdl:output message="tns:Classs_DeleteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Classs_Select">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">条件查询[Classs]</wsdl:documentation>
+      <wsdl:input message="tns:Classs_SelectSoapIn" />
+      <wsdl:output message="tns:Classs_SelectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Classs_SelectForSort">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">条件查询并排序[Classs]</wsdl:documentation>
+      <wsdl:input message="tns:Classs_SelectForSortSoapIn" />
+      <wsdl:output message="tns:Classs_SelectForSortSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Classs_SelectForPage">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">条件查询分页[Classs]</wsdl:documentation>
+      <wsdl:input message="tns:Classs_SelectForPageSoapIn" />
+      <wsdl:output message="tns:Classs_SelectForPageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Classs_Selects">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询所有[Classs]</wsdl:documentation>
+      <wsdl:input message="tns:Classs_SelectsSoapIn" />
+      <wsdl:output message="tns:Classs_SelectsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Classs_SelectsForSort">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询并排序所有[Classs]</wsdl:documentation>
+      <wsdl:input message="tns:Classs_SelectsForSortSoapIn" />
+      <wsdl:output message="tns:Classs_SelectsForSortSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Classs_SelectsForPage">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询所有[Classs]分页</wsdl:documentation>
+      <wsdl:input message="tns:Classs_SelectsForPageSoapIn" />
+      <wsdl:output message="tns:Classs_SelectsForPageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Student_Add">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">添加[Student]</wsdl:documentation>
+      <wsdl:input message="tns:Student_AddSoapIn" />
+      <wsdl:output message="tns:Student_AddSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Student_Update">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">更新[Student]</wsdl:documentation>
+      <wsdl:input message="tns:Student_UpdateSoapIn" />
+      <wsdl:output message="tns:Student_UpdateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Student_Delete">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">删除[Student]</wsdl:documentation>
+      <wsdl:input message="tns:Student_DeleteSoapIn" />
+      <wsdl:output message="tns:Student_DeleteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Student_Select">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">条件查询[Student]</wsdl:documentation>
+      <wsdl:input message="tns:Student_SelectSoapIn" />
+      <wsdl:output message="tns:Student_SelectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Student_SelectForSort">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">条件查询并排序[Student]</wsdl:documentation>
+      <wsdl:input message="tns:Student_SelectForSortSoapIn" />
+      <wsdl:output message="tns:Student_SelectForSortSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Student_SelectForPage">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">条件查询分页[Student]</wsdl:documentation>
+      <wsdl:input message="tns:Student_SelectForPageSoapIn" />
+      <wsdl:output message="tns:Student_SelectForPageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Student_Selects">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询所有[Student]</wsdl:documentation>
+      <wsdl:input message="tns:Student_SelectsSoapIn" />
+      <wsdl:output message="tns:Student_SelectsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Student_SelectsForSort">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询并排序所有[Student]</wsdl:documentation>
+      <wsdl:input message="tns:Student_SelectsForSortSoapIn" />
+      <wsdl:output message="tns:Student_SelectsForSortSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Student_SelectsForPage">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询所有[Student]分页</wsdl:documentation>
+      <wsdl:input message="tns:Student_SelectsForPageSoapIn" />
+      <wsdl:output message="tns:Student_SelectsForPageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StudentX_Add">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">添加[StudentX]</wsdl:documentation>
+      <wsdl:input message="tns:StudentX_AddSoapIn" />
+      <wsdl:output message="tns:StudentX_AddSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StudentX_Update">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">更新[StudentX]</wsdl:documentation>
+      <wsdl:input message="tns:StudentX_UpdateSoapIn" />
+      <wsdl:output message="tns:StudentX_UpdateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StudentX_Delete">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">删除[StudentX]</wsdl:documentation>
+      <wsdl:input message="tns:StudentX_DeleteSoapIn" />
+      <wsdl:output message="tns:StudentX_DeleteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StudentX_Select">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">条件查询[StudentX]</wsdl:documentation>
+      <wsdl:input message="tns:StudentX_SelectSoapIn" />
+      <wsdl:output message="tns:StudentX_SelectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StudentX_SelectForSort">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">条件查询并排序[StudentX]</wsdl:documentation>
+      <wsdl:input message="tns:StudentX_SelectForSortSoapIn" />
+      <wsdl:output message="tns:StudentX_SelectForSortSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StudentX_SelectForPage">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">条件查询分页[StudentX]</wsdl:documentation>
+      <wsdl:input message="tns:StudentX_SelectForPageSoapIn" />
+      <wsdl:output message="tns:StudentX_SelectForPageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StudentX_Selects">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询所有[StudentX]</wsdl:documentation>
+      <wsdl:input message="tns:StudentX_SelectsSoapIn" />
+      <wsdl:output message="tns:StudentX_SelectsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StudentX_SelectsForSort">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询并排序所有[StudentX]</wsdl:documentation>
+      <wsdl:input message="tns:StudentX_SelectsForSortSoapIn" />
+      <wsdl:output message="tns:StudentX_SelectsForSortSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StudentX_SelectsForPage">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询所有[StudentX]分页</wsdl:documentation>
+      <wsdl:input message="tns:StudentX_SelectsForPageSoapIn" />
+      <wsdl:output message="tns:StudentX_SelectsForPageSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="RealSrvSoap" type="tns:RealSrvSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Classs_Add">
+      <soap:operation soapAction="http://tempuri.org/Classs_Add" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Classs_Update">
+      <soap:operation soapAction="http://tempuri.org/Classs_Update" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Classs_Delete">
+      <soap:operation soapAction="http://tempuri.org/Classs_Delete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Classs_Select">
+      <soap:operation soapAction="http://tempuri.org/Classs_Select" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Classs_SelectForSort">
+      <soap:operation soapAction="http://tempuri.org/Classs_SelectForSort" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Classs_SelectForPage">
+      <soap:operation soapAction="http://tempuri.org/Classs_SelectForPage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Classs_Selects">
+      <soap:operation soapAction="http://tempuri.org/Classs_Selects" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Classs_SelectsForSort">
+      <soap:operation soapAction="http://tempuri.org/Classs_SelectsForSort" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Classs_SelectsForPage">
+      <soap:operation soapAction="http://tempuri.org/Classs_SelectsForPage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Student_Add">
+      <soap:operation soapAction="http://tempuri.org/Student_Add" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Student_Update">
+      <soap:operation soapAction="http://tempuri.org/Student_Update" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Student_Delete">
+      <soap:operation soapAction="http://tempuri.org/Student_Delete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Student_Select">
+      <soap:operation soapAction="http://tempuri.org/Student_Select" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Student_SelectForSort">
+      <soap:operation soapAction="http://tempuri.org/Student_SelectForSort" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Student_SelectForPage">
+      <soap:operation soapAction="http://tempuri.org/Student_SelectForPage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Student_Selects">
+      <soap:operation soapAction="http://tempuri.org/Student_Selects" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Student_SelectsForSort">
+      <soap:operation soapAction="http://tempuri.org/Student_SelectsForSort" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Student_SelectsForPage">
+      <soap:operation soapAction="http://tempuri.org/Student_SelectsForPage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StudentX_Add">
+      <soap:operation soapAction="http://tempuri.org/StudentX_Add" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StudentX_Update">
+      <soap:operation soapAction="http://tempuri.org/StudentX_Update" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StudentX_Delete">
+      <soap:operation soapAction="http://tempuri.org/StudentX_Delete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StudentX_Select">
+      <soap:operation soapAction="http://tempuri.org/StudentX_Select" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StudentX_SelectForSort">
+      <soap:operation soapAction="http://tempuri.org/StudentX_SelectForSort" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StudentX_SelectForPage">
+      <soap:operation soapAction="http://tempuri.org/StudentX_SelectForPage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StudentX_Selects">
+      <soap:operation soapAction="http://tempuri.org/StudentX_Selects" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StudentX_SelectsForSort">
+      <soap:operation soapAction="http://tempuri.org/StudentX_SelectsForSort" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StudentX_SelectsForPage">
+      <soap:operation soapAction="http://tempuri.org/StudentX_SelectsForPage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="RealSrvSoap12" type="tns:RealSrvSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Classs_Add">
+      <soap12:operation soapAction="http://tempuri.org/Classs_Add" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Classs_Update">
+      <soap12:operation soapAction="http://tempuri.org/Classs_Update" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Classs_Delete">
+      <soap12:operation soapAction="http://tempuri.org/Classs_Delete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Classs_Select">
+      <soap12:operation soapAction="http://tempuri.org/Classs_Select" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Classs_SelectForSort">
+      <soap12:operation soapAction="http://tempuri.org/Classs_SelectForSort" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Classs_SelectForPage">
+      <soap12:operation soapAction="http://tempuri.org/Classs_SelectForPage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Classs_Selects">
+      <soap12:operation soapAction="http://tempuri.org/Classs_Selects" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Classs_SelectsForSort">
+      <soap12:operation soapAction="http://tempuri.org/Classs_SelectsForSort" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Classs_SelectsForPage">
+      <soap12:operation soapAction="http://tempuri.org/Classs_SelectsForPage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Student_Add">
+      <soap12:operation soapAction="http://tempuri.org/Student_Add" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Student_Update">
+      <soap12:operation soapAction="http://tempuri.org/Student_Update" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Student_Delete">
+      <soap12:operation soapAction="http://tempuri.org/Student_Delete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Student_Select">
+      <soap12:operation soapAction="http://tempuri.org/Student_Select" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Student_SelectForSort">
+      <soap12:operation soapAction="http://tempuri.org/Student_SelectForSort" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Student_SelectForPage">
+      <soap12:operation soapAction="http://tempuri.org/Student_SelectForPage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Student_Selects">
+      <soap12:operation soapAction="http://tempuri.org/Student_Selects" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Student_SelectsForSort">
+      <soap12:operation soapAction="http://tempuri.org/Student_SelectsForSort" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Student_SelectsForPage">
+      <soap12:operation soapAction="http://tempuri.org/Student_SelectsForPage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StudentX_Add">
+      <soap12:operation soapAction="http://tempuri.org/StudentX_Add" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StudentX_Update">
+      <soap12:operation soapAction="http://tempuri.org/StudentX_Update" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StudentX_Delete">
+      <soap12:operation soapAction="http://tempuri.org/StudentX_Delete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StudentX_Select">
+      <soap12:operation soapAction="http://tempuri.org/StudentX_Select" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StudentX_SelectForSort">
+      <soap12:operation soapAction="http://tempuri.org/StudentX_SelectForSort" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StudentX_SelectForPage">
+      <soap12:operation soapAction="http://tempuri.org/StudentX_SelectForPage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StudentX_Selects">
+      <soap12:operation soapAction="http://tempuri.org/StudentX_Selects" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StudentX_SelectsForSort">
+      <soap12:operation soapAction="http://tempuri.org/StudentX_SelectsForSort" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StudentX_SelectsForPage">
+      <soap12:operation soapAction="http://tempuri.org/StudentX_SelectsForPage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RealSrv">
+    <wsdl:port name="RealSrvSoap" binding="tns:RealSrvSoap">
+      <soap:address location="http://localhost:28232/Services/RealSrv.asmx" />
+    </wsdl:port>
+    <wsdl:port name="RealSrvSoap12" binding="tns:RealSrvSoap12">
+      <soap12:address location="http://localhost:28232/Services/RealSrv.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

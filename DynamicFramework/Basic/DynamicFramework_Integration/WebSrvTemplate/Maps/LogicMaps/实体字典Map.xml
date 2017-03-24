@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+	<!--实体类别名-->
+	<alias>
+		<typeAlias alias="实体字典Entity" type="DynamicEntity.实体字典Entity,EntityTemplate" />
+	</alias>
+	<!--结果返回集-->
+	<resultMaps>
+		<resultMap id="SelectAll实体字典" class="实体字典Entity">
+			<result property="字段" column="字段"/>
+			<result property="字段类型" column="字段类型"/>
+			<result property="字段备注" column="字段备注"/>
+			<result property="实体类" column="实体类"/>
+		</resultMap>
+	</resultMaps>
+	<!--操作指令-->
+	<statements>
+		<!--查询-->
+		<select id="Select实体字典" resultMap="SelectAll实体字典">
+			SELECT
+			字段,
+			字段类型,
+			字段备注,
+			实体类
+			FROM 实体字典
+			WHERE  1=1
+			<isNotEmpty  prepend="AND" property="字段">
+				字段 = #字段#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="字段类型">
+				字段类型 = #字段类型#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="字段备注">
+				字段备注 = #字段备注#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="实体类">
+				实体类 = #实体类#
+			</isNotEmpty>
+			<isNotEmpty prepend="ORDER BY " property="OrderField">
+				$OrderField$
+				<isEqual property="IsDesc" compareValue="true">
+				  DESC
+				</isEqual>
+			</isNotEmpty>
+		</select>
+	</statements>
+</sqlMap>

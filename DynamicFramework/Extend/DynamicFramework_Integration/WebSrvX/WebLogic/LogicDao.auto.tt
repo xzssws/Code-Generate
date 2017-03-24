@@ -1,0 +1,87 @@
+﻿<#@ template debug="false" hostspecific="True" language="C#" #>
+<#@include file="$(SolutionDir)\Utils\TBUild.ttinclude" #>
+<#@ output extension=".i" #>
+<# 
+	Init("V");
+	NTable("Table1","Table2");
+#>
+<#
+	//亲~~~~~~~ 如果上面的基本配置好了就不要改我了。
+    foreach (Page item in pages)
+    {
+	  if(NTables.Contains(item.Name)) continue;//排除表过滤
+	  string DisplayName = item.Name; //文件名称
+	  string DisplayLabel = item.Label; //文件中文表示 现在所有都是英文
+	  string EntityName = DisplayName+EntitySuffix;
+      if(string.IsNullOrEmpty(DisplayLabel)){ DisplayName="None"+Flag;}
+	  NewFile(DisplayName+"Logic.auto.cs"); //生成文件名称定义
+#>
+using System.Collections.Generic;
+<#=string.IsNullOrEmpty(EntityNameSpace)?"":string.Format("using {0};",EntityNameSpace)#>
+
+namespace <#=DaoNamespace#>
+{
+    /// <summary>
+    /// <#=DisplayLabel#>数据库访问类
+    /// </summary>
+    public sealed partial class <#=DisplayName#>Logic
+    {
+		#region 单例模式
+
+		private <#=DisplayName#>Logic(){ }
+
+        private static readonly object LockObj = new object();
+
+        private static <#=DisplayName#>Logic _instance;
+
+        /// <summary>
+        /// 获得对象实例
+        /// </summary>
+        public static <#=DisplayName#>Logic Instance
+        {
+            get
+            {
+                lock (LockObj)
+                {
+                    if (_instance == null)
+                    {
+                        _instance = new <#=DisplayName#>Logic();
+                    }
+                    return _instance;
+                }
+            }
+        }
+
+        #endregion
+
+        <#=DisplayName#><#=DaoSuffix#> daoHelp =  <#=DisplayName#><#=DaoSuffix#>.Instance;
+
+        public List<<#=EntityName#>> Select(<#=EntityName#> entity)
+        {
+            return daoHelp.Select(entity) as List<<#=EntityName#>>;
+        }
+		public List<<#=EntityName#>> SelectForSort(<#=EntityName#> entity,string sortField, bool isDesc)
+        {
+            return daoHelp.SelectForSort(entity,sortField,isDesc) as List<<#=EntityName#>>;
+        }
+        public List<<#=EntityName#>> SelectForPage(<#=EntityName#> entity,int Skip,int Count)
+        {
+            return daoHelp.SelectForPage(entity,Skip,Count) as List<<#=EntityName#>>;
+        }
+        public List<<#=EntityName#>> Selects()
+        {
+            return daoHelp.Selects() as List<<#=EntityName#>>;
+        }
+        public List<<#=EntityName#>> SelectsForSort(string sortField,bool isDesc)
+        {
+            return daoHelp.SelectsForSort(sortField,isDesc) as List<<#=EntityName#>>;
+        }
+        public List<<#=EntityName#>> SelectsForPage(int Skip, int Count)
+        {
+            return daoHelp.SelectsForPage(Skip,Count) as List<<#=EntityName#>>;
+        }
+
+    }
+}
+<#}EndFile();#>
+

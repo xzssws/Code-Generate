@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+	<!--实体类别名-->
+	<alias>
+		<typeAlias alias="ClasssInfo" type="Test.Entity.ClasssInfo,Test.Entity" />
+	</alias>
+	<!--结果返回集-->
+	<resultMaps>
+		<resultMap id="SelectAllClasss" class="ClasssInfo">
+			<result property="ID" column="ID"/>
+			<result property="Name" column="Name"/>
+			<result property="Student" column="Student"/>
+		</resultMap>
+	</resultMaps>
+	<!--操作指令-->
+	<statements>
+		<!--查询-->
+		<select id="SelectClasss" resultMap="SelectAllClasss">
+			SELECT
+			ID,
+			Name,
+			Student
+			FROM Classs
+			WHERE  1=1
+			<isNotEmpty  prepend="AND" property="ID">
+				ID = #ID#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="Name">
+				Name = #Name#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="Student">
+				Student = #Student#
+			</isNotEmpty>
+			<isNotEmpty prepend="ORDER BY " property="SortField">
+				$SortField$
+				<isEqual property="IsDesc" compareValue="true">
+				  DESC
+				</isEqual>
+			</isNotEmpty>
+		</select>
+		<!--添加-->
+		<insert id="AddClasss" parameterClass="ClasssInfo">
+			INSERT INTO Classs
+			(
+
+				ID
+				<isNotEmpty prepend=","   property="Name">
+					Name
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="Student">
+					Student
+				  </isNotEmpty>
+
+			) VALUES (
+			
+				#ID#
+				<isNotEmpty prepend=","   property="Name">
+					#Name#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="Student">
+					#Student#
+				  </isNotEmpty>
+			
+			);
+		</insert>
+		<!--更新-->
+
+		<update id ="UpdateClasss" parameterClass="ClasssInfo">
+			UPDATE Classs
+			SET
+			ID = #ID#
+			<isNotEmpty prepend="," property="ID">
+				ID = #ID#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="Name">
+				Name = #Name#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="Student">
+				Student = #Student#
+			</isNotEmpty>
+			WHERE  ID = #ID#
+		</update>
+		<!--删除-->
+		<delete id="DeleteClasss" parameterClass="string">
+			DELETE Classs WHERE  ID = #value#;
+		</delete>
+
+	</statements>
+</sqlMap>

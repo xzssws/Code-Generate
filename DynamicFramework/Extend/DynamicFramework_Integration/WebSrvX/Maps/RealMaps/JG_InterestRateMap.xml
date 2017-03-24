@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+	<!--实体类别名-->
+	<alias>
+		<typeAlias alias="JG_InterestRateEntity" type="DynamicEntity.JG_InterestRateEntity,EntityTemplate" />
+	</alias>
+	<!--结果返回集-->
+	<resultMaps>
+		<resultMap id="SelectAllJG_InterestRate" class="JG_InterestRateEntity">
+			<result property="ID" column="ID"/>
+			<result property="InterestRate" column="InterestRate"/>
+			<result property="SetDate" column="SetDate"/>
+			<result property="Remark" column="Remark"/>
+			<result property="Flag" column="Flag"/>
+		</resultMap>
+	</resultMaps>
+	<!--操作指令-->
+	<statements>
+		<!--查询-->
+		<select id="SelectJG_InterestRate" resultMap="SelectAllJG_InterestRate">
+			SELECT
+			ID,
+			InterestRate,
+			SetDate,
+			Remark,
+			Flag
+			FROM JG_InterestRate
+			WHERE  1=1
+			<isNotEmpty  prepend="AND" property="ID">
+				ID = #ID#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="InterestRate">
+				InterestRate = #InterestRate#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="SetDate">
+				SetDate = #SetDate#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="Remark">
+				Remark = #Remark#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="Flag">
+				Flag = #Flag#
+			</isNotEmpty>
+			<isNotEmpty prepend="ORDER BY " property="SortField">
+				$SortField$
+				<isEqual property="IsDesc" compareValue="true">
+				  DESC
+				</isEqual>
+			</isNotEmpty>
+		</select>
+		<!--添加-->
+		<insert id="AddJG_InterestRate" parameterClass="JG_InterestRateEntity">
+			INSERT INTO JG_InterestRate
+			(
+
+				ID
+				,InterestRate
+				,SetDate
+				<isNotEmpty prepend=","   property="Remark">
+					Remark
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="Flag">
+					Flag
+				  </isNotEmpty>
+
+			) VALUES (
+			
+				#ID#
+				#,InterestRate#
+				#,SetDate#
+				<isNotEmpty prepend=","   property="Remark">
+					#Remark#
+				  </isNotEmpty>
+				<isNotEmpty prepend=","   property="Flag">
+					#Flag#
+				  </isNotEmpty>
+			
+			);
+		</insert>
+		<!--更新-->
+
+		<update id ="UpdateJG_InterestRate" parameterClass="JG_InterestRateEntity">
+			UPDATE JG_InterestRate
+			SET
+			ID = #ID#
+			<isNotEmpty prepend="," property="ID">
+				ID = #ID#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="InterestRate">
+				InterestRate = #InterestRate#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="SetDate">
+				SetDate = #SetDate#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="Remark">
+				Remark = #Remark#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="Flag">
+				Flag = #Flag#
+			</isNotEmpty>
+			WHERE  ID = #ID#
+		</update>
+		<!--删除-->
+		<delete id="DeleteJG_InterestRate" parameterClass="string">
+			DELETE JG_InterestRate WHERE  ID = #value#;
+		</delete>
+
+	</statements>
+</sqlMap>

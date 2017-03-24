@@ -1,0 +1,94 @@
+﻿<#@assembly name="System.Core"#>
+<#@assembly name="System.Data"#>
+<#@assembly name="$(SolutionDir)\Utils\System.Data.SQLite.dll"#>
+<#@assembly name="$(SolutionDir)\Utils\AutoPage.dll"#>
+<#@assembly name="System.Configuration"#>
+<#@import namespace="System.Collections.Generic"#>
+<#@import namespace="AutoPage"#>
+<#@import namespace="AutoPage.Model"#>
+<#@ include file="..\Tools\MultipleOutputHelper.ttinclude"#>
+<#+
+public class AutoLoad
+{
+	/// <summary>
+    /// SQLServer获取所有界面默认配置
+    /// </summary>
+	public static List<PageModel> GetPages(){
+		return Program.SQLServerModel();
+    }
+	/// <summary>
+    /// SQLServer获取所有界面手动输入
+    /// </summary>
+	public static List<PageModel> GetPages(string dataSource){
+		return Program.SQLServerModel(dataSource);
+    }
+	/// <summary>
+    /// SQLite获取所有界面默认配置
+    /// </summary>
+	public static List<PageModel> GetPagesX(){
+		return Program.SQLiteModel();
+    }
+	/// <summary>
+    /// SQLServer获取所有界面手动输入
+    /// </summary>
+	public static List<PageModel> GetPagesX(string dataSource){
+		return Program.SQLiteModel(dataSource);
+    }
+}
+
+	private Manager manager;
+    /// <summary>
+    /// 全局连接类
+    /// </summary>
+	public string DataSourceQ = @"Data Source=192.168.1.103\SQLEXPRESS;Initial Catalog=FinancialRegulation;User ID=sa;Password=111111";
+	/// <summary>
+    /// 代码程序集命名
+    /// </summary>
+	public string AssemblyName;
+	/// <summary>
+    /// 代码名称空间命名
+    /// </summary>
+	public string NameSpaceName;
+	/// <summary>
+    /// 获取所有实体
+    /// </summary>
+	public List<PageModel> GetPagesQ()
+	{
+		return AutoLoad.GetPages(DataSourceQ);
+	}
+	
+	/// <summary>
+    /// 初始构建
+    /// </summary>
+	public void Init()
+	{
+		manager = Manager.Create(Host,GenerationEnvironment);//创建多文件生成对象
+    }
+	/// <summary>
+    /// 创建一个新的文件
+    /// </summary>
+	public void NewFile(string key)
+	{
+		manager.StartNewFile(key);
+    }
+	/// <summary>
+    /// 结束构建多文件
+    /// </summary>
+	public void EndFile()
+	{
+		manager.EndBlock(); 
+		manager.Process(true);
+    }
+    private int _flag;
+	/// <summary>
+    /// 没有名称标记
+    /// </summary>
+    public int Flag
+    {
+        get { 
+			_flag++;
+			return _flag;
+		}
+    }
+	
+#>

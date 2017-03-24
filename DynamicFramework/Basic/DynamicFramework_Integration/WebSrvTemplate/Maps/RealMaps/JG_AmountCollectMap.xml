@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+	<!--实体类别名-->
+	<alias>
+		<typeAlias alias="JG_AmountCollectEntity" type="DynamicEntity.JG_AmountCollectEntity,EntityTemplate" />
+	</alias>
+	<!--结果返回集-->
+	<resultMaps>
+		<resultMap id="SelectAllJG_AmountCollect" class="JG_AmountCollectEntity">
+			<result property="AC_ID" column="AC_ID"/>
+			<result property="AC_xybh" column="AC_xybh"/>
+			<result property="AC_cklsh" column="AC_cklsh"/>
+			<result property="AC_skfzh" column="AC_skfzh"/>
+			<result property="AC_fkfzh" column="AC_fkfzh"/>
+			<result property="AC_yhmc" column="AC_yhmc"/>
+			<result property="AC_ckje" column="AC_ckje"/>
+			<result property="AC_cksj" column="AC_cksj"/>
+			<result property="AC_fkfye" column="AC_fkfye"/>
+			<result property="AC_skfye" column="AC_skfye"/>
+			<result property="AC_BankCode" column="AC_BankCode"/>
+		</resultMap>
+	</resultMaps>
+	<!--操作指令-->
+	<statements>
+		<!--查询-->
+		<select id="SelectJG_AmountCollect" resultMap="SelectAllJG_AmountCollect">
+			SELECT
+			AC_ID,
+			AC_xybh,
+			AC_cklsh,
+			AC_skfzh,
+			AC_fkfzh,
+			AC_yhmc,
+			AC_ckje,
+			AC_cksj,
+			AC_fkfye,
+			AC_skfye,
+			AC_BankCode
+			FROM JG_AmountCollect
+			WHERE  1=1
+			<isNotEmpty  prepend="AND" property="AC_ID">
+				AC_ID = #AC_ID#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="AC_xybh">
+				AC_xybh = #AC_xybh#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="AC_cklsh">
+				AC_cklsh = #AC_cklsh#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="AC_skfzh">
+				AC_skfzh = #AC_skfzh#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="AC_fkfzh">
+				AC_fkfzh = #AC_fkfzh#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="AC_yhmc">
+				AC_yhmc = #AC_yhmc#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="AC_ckje">
+				AC_ckje = #AC_ckje#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="AC_cksj">
+				AC_cksj = #AC_cksj#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="AC_fkfye">
+				AC_fkfye = #AC_fkfye#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="AC_skfye">
+				AC_skfye = #AC_skfye#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="AC_BankCode">
+				AC_BankCode = #AC_BankCode#
+			</isNotEmpty>
+			<isNotEmpty prepend="ORDER BY " property="OrderField">
+				$OrderField$
+				<isEqual property="IsDesc" compareValue="true">
+				  DESC
+				</isEqual>
+			</isNotEmpty>
+		</select>
+		<!--添加-->
+		<insert id="AddJG_AmountCollect" parameterClass="JG_AmountCollectEntity">
+			INSERT INTO JG_AmountCollect
+			(
+			AC_ID,
+			AC_xybh,
+			AC_cklsh,
+			AC_skfzh,
+			AC_fkfzh,
+			AC_yhmc,
+			AC_ckje,
+			AC_cksj,
+			AC_fkfye,
+			AC_skfye,
+			AC_BankCode
+
+			) VALUES (
+
+			#AC_ID#,
+			#AC_xybh#,
+			#AC_cklsh#,
+			#AC_skfzh#,
+			#AC_fkfzh#,
+			#AC_yhmc#,
+			#AC_ckje#,
+			#AC_cksj#,
+			#AC_fkfye#,
+			#AC_skfye#,
+			#AC_BankCode#
+			
+			);
+		</insert>
+		<!--更新-->
+		<update id ="UpdateJG_AmountCollect" parameterClass="JG_AmountCollectEntity">
+			UPDATE JG_AmountCollect
+			SET
+			AC_ID = #AC_ID#
+			<isNotEmpty prepend="," property="AC_ID">
+				AC_ID = #AC_ID#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="AC_xybh">
+				AC_xybh = #AC_xybh#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="AC_cklsh">
+				AC_cklsh = #AC_cklsh#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="AC_skfzh">
+				AC_skfzh = #AC_skfzh#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="AC_fkfzh">
+				AC_fkfzh = #AC_fkfzh#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="AC_yhmc">
+				AC_yhmc = #AC_yhmc#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="AC_ckje">
+				AC_ckje = #AC_ckje#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="AC_cksj">
+				AC_cksj = #AC_cksj#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="AC_fkfye">
+				AC_fkfye = #AC_fkfye#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="AC_skfye">
+				AC_skfye = #AC_skfye#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="AC_BankCode">
+				AC_BankCode = #AC_BankCode#
+			</isNotEmpty>
+			WHERE  AC_ID = #AC_ID#
+		</update>
+		<!--删除-->
+		<delete id="DeleteJG_AmountCollect" parameterClass="string">
+			DELETE JG_AmountCollect WHERE  AC_ID = #value#;
+		</delete>
+
+	</statements>
+</sqlMap>

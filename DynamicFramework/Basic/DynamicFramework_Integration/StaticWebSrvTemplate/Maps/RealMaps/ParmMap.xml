@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+	<!--实体类别名-->
+	<alias>
+		<typeAlias alias="ParmEntity" type="DynamicEntity.ParmEntity,EntityTemplate" />
+	</alias>
+	<!--结果返回集-->
+	<resultMaps>
+		<resultMap id="SelectAllParm" class="ParmEntity">
+			<result property="PR_ID" column="PR_ID"/>
+			<result property="PR_SetCode" column="PR_SetCode"/>
+			<result property="PR_SetName" column="PR_SetName"/>
+			<result property="PR_IsMaintainable" column="PR_IsMaintainable"/>
+			<result property="PR_IsColor" column="PR_IsColor"/>
+		</resultMap>
+	</resultMaps>
+	<!--操作指令-->
+	<statements>
+		<!--查询-->
+		<select id="SelectParm" resultMap="SelectAllParm">
+			SELECT
+			PR_ID,
+			PR_SetCode,
+			PR_SetName,
+			PR_IsMaintainable,
+			PR_IsColor
+			FROM Parm
+			WHERE  1=1
+			<isNotEmpty  prepend="AND" property="PR_ID">
+				PR_ID = #PR_ID#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="PR_SetCode">
+				PR_SetCode = #PR_SetCode#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="PR_SetName">
+				PR_SetName = #PR_SetName#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="PR_IsMaintainable">
+				PR_IsMaintainable = #PR_IsMaintainable#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="PR_IsColor">
+				PR_IsColor = #PR_IsColor#
+			</isNotEmpty>
+			<isNotEmpty prepend="ORDER BY " property="OrderField">
+				$OrderField$
+				<isEqual property="IsDesc" compareValue="true">
+				  DESC
+				</isEqual>
+			</isNotEmpty>
+		</select>
+		<!--添加-->
+		<insert id="AddParm" parameterClass="ParmEntity">
+			INSERT INTO Parm
+			(
+			PR_ID,
+			PR_SetCode,
+			PR_SetName,
+			PR_IsMaintainable,
+			PR_IsColor
+
+			) VALUES (
+
+			#PR_ID#,
+			#PR_SetCode#,
+			#PR_SetName#,
+			#PR_IsMaintainable#,
+			#PR_IsColor#
+			
+			);
+		</insert>
+		<!--更新-->
+		<update id ="UpdateParm" parameterClass="ParmEntity">
+			UPDATE Parm
+			SET
+			PR_ID = #PR_ID#
+			<isNotEmpty prepend="," property="PR_ID">
+				PR_ID = #PR_ID#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="PR_SetCode">
+				PR_SetCode = #PR_SetCode#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="PR_SetName">
+				PR_SetName = #PR_SetName#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="PR_IsMaintainable">
+				PR_IsMaintainable = #PR_IsMaintainable#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="PR_IsColor">
+				PR_IsColor = #PR_IsColor#
+			</isNotEmpty>
+			WHERE  PR_ID = #PR_ID#
+		</update>
+		<!--删除-->
+		<delete id="DeleteParm" parameterClass="string">
+			DELETE Parm WHERE  PR_ID = #value#;
+		</delete>
+
+	</statements>
+</sqlMap>

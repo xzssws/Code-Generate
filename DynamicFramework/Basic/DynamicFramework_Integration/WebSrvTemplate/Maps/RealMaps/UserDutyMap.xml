@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+	<!--实体类别名-->
+	<alias>
+		<typeAlias alias="UserDutyEntity" type="DynamicEntity.UserDutyEntity,EntityTemplate" />
+	</alias>
+	<!--结果返回集-->
+	<resultMaps>
+		<resultMap id="SelectAllUserDuty" class="UserDutyEntity">
+			<result property="UserDutyId" column="UserDutyId"/>
+			<result property="UserId" column="UserId"/>
+			<result property="DutyId" column="DutyId"/>
+			<result property="Remark" column="Remark"/>
+		</resultMap>
+	</resultMaps>
+	<!--操作指令-->
+	<statements>
+		<!--查询-->
+		<select id="SelectUserDuty" resultMap="SelectAllUserDuty">
+			SELECT
+			UserDutyId,
+			UserId,
+			DutyId,
+			Remark
+			FROM UserDuty
+			WHERE  1=1
+			<isNotEmpty  prepend="AND" property="UserDutyId">
+				UserDutyId = #UserDutyId#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="UserId">
+				UserId = #UserId#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="DutyId">
+				DutyId = #DutyId#
+			</isNotEmpty>
+			<isNotEmpty  prepend="AND" property="Remark">
+				Remark = #Remark#
+			</isNotEmpty>
+			<isNotEmpty prepend="ORDER BY " property="OrderField">
+				$OrderField$
+				<isEqual property="IsDesc" compareValue="true">
+				  DESC
+				</isEqual>
+			</isNotEmpty>
+		</select>
+		<!--添加-->
+		<insert id="AddUserDuty" parameterClass="UserDutyEntity">
+			INSERT INTO UserDuty
+			(
+			UserDutyId,
+			UserId,
+			DutyId,
+			Remark
+
+			) VALUES (
+
+			#UserDutyId#,
+			#UserId#,
+			#DutyId#,
+			#Remark#
+			
+			);
+		</insert>
+		<!--更新-->
+		<update id ="UpdateUserDuty" parameterClass="UserDutyEntity">
+			UPDATE UserDuty
+			SET
+			UserDutyId = #UserDutyId#
+			<isNotEmpty prepend="," property="UserDutyId">
+				UserDutyId = #UserDutyId#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="UserId">
+				UserId = #UserId#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="DutyId">
+				DutyId = #DutyId#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="Remark">
+				Remark = #Remark#
+			</isNotEmpty>
+			WHERE  UserDutyId = #UserDutyId#
+		</update>
+		<!--删除-->
+		<delete id="DeleteUserDuty" parameterClass="string">
+			DELETE UserDuty WHERE  UserDutyId = #value#;
+		</delete>
+
+	</statements>
+</sqlMap>
